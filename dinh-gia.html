@@ -1,0 +1,762 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Định Giá Xe - OTOTHESIU</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    :root {
+      --gold-color: #FFD700;
+      --dark-gold: #B8860B;
+      --jade-black: #0D1B2A;
+      --jade-dark: #041E42;
+      --accent-gold: #F4E27C;
+      --text-light: #E8E8E8;
+      --success-color: #28a745;
+      --warning-color: #ffc107;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: var(--jade-black);
+      color: var(--text-light);
+    }
+
+    /* Navigation */
+    .navbar {
+      background: linear-gradient(135deg, var(--gold-color), var(--dark-gold)) !important;
+      box-shadow: 0 4px 20px rgba(255, 215, 0, 0.3);
+    }
+
+    .navbar-brand .brand-text {
+      font-weight: bold;
+      font-size: 1.5rem;
+      background: linear-gradient(45deg, var(--jade-black), var(--jade-dark));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+    }
+
+    .navbar-nav .nav-link {
+      color: var(--jade-black) !important;
+      font-weight: 600;
+      position: relative;
+      transition: all 0.3s ease;
+    }
+
+    .navbar-nav .nav-link:hover {
+      color: var(--jade-dark) !important;
+      transform: translateY(-2px);
+    }
+
+    /* Hero Section */
+    .pricing-hero {
+      background: linear-gradient(rgba(13, 27, 42, 0.8), rgba(4, 30, 66, 0.9)), 
+                  url('https://images.unsplash.com/photo-1568605117036-5fe5e7bab0b7?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80');
+      background-size: cover;
+      background-position: center;
+      color: var(--text-light);
+      padding: 100px 0;
+      text-align: center;
+      border-bottom: 3px solid var(--gold-color);
+    }
+
+    .pricing-hero h1 {
+      font-size: 3.5rem;
+      margin-bottom: 1.5rem;
+      color: var(--gold-color);
+      text-shadow: 2px 2px 8px rgba(0,0,0,0.5);
+      font-weight: bold;
+    }
+
+    .pricing-hero p {
+      font-size: 1.3rem;
+      max-width: 800px;
+      margin: 0 auto 2rem;
+      opacity: 0.9;
+    }
+
+    /* Pricing Form Section */
+    .pricing-form-section {
+      padding: 80px 0;
+      background: var(--jade-dark);
+    }
+
+    .pricing-card {
+      background: var(--jade-black);
+      border: 2px solid var(--gold-color);
+      border-radius: 15px;
+      padding: 30px;
+      box-shadow: 0 10px 30px rgba(255, 215, 0, 0.1);
+    }
+
+    .form-label {
+      color: var(--gold-color);
+      font-weight: 600;
+      margin-bottom: 8px;
+    }
+
+    .form-control, .form-select {
+      background-color: rgba(255, 255, 255, 0.1);
+      border: 1px solid var(--gold-color);
+      color: var(--text-light);
+      padding: 12px 15px;
+      border-radius: 8px;
+    }
+
+    .form-control:focus, .form-select:focus {
+      background-color: rgba(255, 255, 255, 0.15);
+      border-color: var(--dark-gold);
+      box-shadow: 0 0 0 0.2rem rgba(255, 215, 0, 0.25);
+      color: var(--text-light);
+    }
+
+    .btn-pricing {
+      background: linear-gradient(135deg, var(--gold-color), var(--dark-gold));
+      border: none;
+      color: var(--jade-black);
+      padding: 12px 30px;
+      font-size: 1.1rem;
+      font-weight: 600;
+      border-radius: 50px;
+      transition: all 0.3s ease;
+      width: 100%;
+      margin-top: 20px;
+    }
+
+    .btn-pricing:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 25px rgba(255, 215, 0, 0.4);
+    }
+
+    /* Result Section */
+    .result-section {
+      padding: 50px 0;
+      background: var(--jade-black);
+      display: none;
+    }
+
+    .result-card {
+      background: linear-gradient(135deg, var(--jade-dark), var(--jade-black));
+      border: 2px solid var(--success-color);
+      border-radius: 15px;
+      padding: 30px;
+      text-align: center;
+      box-shadow: 0 10px 30px rgba(40, 167, 69, 0.2);
+    }
+
+    .price-result {
+      font-size: 2.5rem;
+      font-weight: bold;
+      color: var(--success-color);
+      margin: 20px 0;
+    }
+
+    .price-details {
+      text-align: left;
+      margin-top: 20px;
+    }
+
+    .price-details li {
+      margin-bottom: 10px;
+      padding: 8px 0;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    /* Features Section */
+    .features-section {
+      padding: 80px 0;
+      background: var(--jade-dark);
+    }
+
+    .feature-card {
+      background: var(--jade-black);
+      border: 1px solid var(--gold-color);
+      border-radius: 10px;
+      padding: 25px;
+      text-align: center;
+      height: 100%;
+      transition: all 0.3s ease;
+    }
+
+    .feature-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 25px rgba(255, 215, 0, 0.2);
+    }
+
+    .feature-icon {
+      font-size: 2.5rem;
+      color: var(--gold-color);
+      margin-bottom: 15px;
+    }
+
+    /* Footer */
+    footer {
+      background: var(--jade-dark) !important;
+      border-top: 3px solid var(--gold-color);
+    }
+
+    footer h5 {
+      color: var(--gold-color);
+    }
+
+    footer p {
+      margin-bottom: 8px;
+      opacity: 0.9;
+      color: var(--text-light);
+    }
+
+    /* Contact Float */
+    .contact-float {
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+      z-index: 1000;
+    }
+
+    .contact-float a {
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: var(--jade-black);
+      font-size: 24px;
+      text-decoration: none;
+      box-shadow: 0 6px 20px rgba(255, 215, 0, 0.3);
+      transition: all 0.3s ease;
+    }
+
+    .contact-float a:hover {
+      transform: scale(1.15);
+      box-shadow: 0 8px 25px rgba(255, 215, 0, 0.5);
+    }
+
+    .hotline { 
+      background: linear-gradient(135deg, var(--gold-color), var(--dark-gold));
+    }
+
+    .facebook { 
+      background: linear-gradient(135deg, var(--accent-gold), var(--gold-color));
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .pricing-hero h1 {
+        font-size: 2.5rem;
+      }
+      
+      .pricing-hero p {
+        font-size: 1.1rem;
+      }
+      
+      .price-result {
+        font-size: 2rem;
+      }
+      
+      .contact-float {
+        bottom: 20px;
+        right: 20px;
+      }
+      
+      .contact-float a {
+        width: 50px;
+        height: 50px;
+        font-size: 20px;
+      }
+    }
+
+    /* Loading animation */
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .fade-in-up {
+      animation: fadeInUp 0.6s ease;
+    }
+
+    /* Progress bar */
+    .progress {
+      height: 8px;
+      background-color: rgba(255, 255, 255, 0.1);
+      border-radius: 4px;
+      margin: 20px 0;
+      overflow: hidden;
+    }
+
+    .progress-bar {
+      background: linear-gradient(90deg, var(--gold-color), var(--dark-gold));
+      transition: width 0.5s ease;
+    }
+  </style>
+</head>
+<body>
+  <!-- Navigation -->
+  <nav class="navbar navbar-expand-lg shadow-lg">
+    <div class="container">
+      <a class="navbar-brand d-flex align-items-center" href="D:/webdesignproject/webbanhang.html">
+        <img src="https://preview.redd.it/petition-to-make-this-the-new-pic-of-the-sub-v0-x8o3qf29ah5f1.png?width=640&crop=smart&auto=webp&s=d04da2f01be93af3cba092e71c636a1c3bf61749" 
+             alt="Logo" 
+             style="height:40px; margin-right:10px; border-radius:50%; background-color:#000; padding:2px;">
+        <span class="brand-text">OTOTHESIU</span>
+      </a>
+      
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          
+          <!-- Mua xe Dropdown -->
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              <i class="fas fa-shopping-cart me-1"></i>Mua xe
+            </a>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item" href="lamborghini.html"><i class="fas fa-car me-2"></i>Lamborghini</a></li>
+              <li><a class="dropdown-item" href="ferrari.html"><i class="fas fa-car me-2"></i>Ferrari</a></li>
+              <li><a class="dropdown-item" href="bugatti.html"><i class="fas fa-car me-2"></i>Bugatti</a></li>
+              <li><a class="dropdown-item" href="bmw.html"><i class="fas fa-car me-2"></i>BMW</a></li>
+              <li><a class="dropdown-item" href="mercedes.html"><i class="fas fa-car me-2"></i>Mercedes</a></li>
+              <li><hr class="dropdown-divider"></li>
+              <li><a class="dropdown-item" href="all.html"><i class="fas fa-eye me-2"></i>Xem tất cả</a></li>
+            </ul>
+          </li>
+          
+          <!-- Bán xe Dropdown -->
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              <i class="fas fa-tags me-1"></i>Bán xe
+            </a>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item" href="dang-ban.html"><i class="fas fa-plus-circle me-2"></i>Đăng bán xe</a></li>
+              <li><a class="dropdown-item active" href="dinh-gia.html"><i class="fas fa-calculator me-2"></i>Định giá xe</a></li>
+              <li><hr class="dropdown-divider"></li>
+              <li><a class="dropdown-item" href="huong-dan.html"><i class="fas fa-info-circle me-2"></i>Hướng dẫn bán xe</a></li>
+            </ul>
+          </li>
+          
+          <!-- Sản phẩm Dropdown -->
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              <i class="fas fa-th-large me-1"></i>Sản phẩm
+            </a>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item" href="xe-the-thao.html"><i class="fas fa-car me-2"></i>Xe thể thao</a></li>
+              <li><a class="dropdown-item" href="xe-sang.html"><i class="fas fa-crown me-2"></i>Xe sang</a></li>
+              <li><a class="dropdown-item" href="suv.html"><i class="fas fa-road me-2"></i>SUV hạng sang</a></li>
+              <li><a class="dropdown-item" href="xe-dien.html"><i class="fas fa-bolt me-2"></i>Xe điện</a></li>
+              <li><hr class="dropdown-divider"></li>
+              <li><a class="dropdown-item" href="noi-bat.html"><i class="fas fa-star me-2"></i>Sản phẩm nổi bật</a></li>
+            </ul>
+          </li>
+        </ul>
+        
+        <ul class="navbar-nav mb-2 mb-lg-0">
+          <li class="nav-item">
+            <a class="nav-link" href="#" data-bs-toggle="modal" data-bs-target="#loginModal">
+              <i class="fas fa-user me-1"></i>Đăng nhập
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">
+              <i class="fas fa-shopping-bag me-1"></i>Giỏ hàng
+            </a>
+          </li>
+        </ul>
+        
+        <!-- Search Bar -->
+        <form class="d-flex ms-3" role="search">
+          <input class="form-control me-2" type="search" placeholder="Tìm kiếm siêu xe..." aria-label="Search">
+          <button class="btn btn-outline-light" type="submit">
+            <i class="fas fa-search"></i>
+          </button>
+        </form>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section class="pricing-hero">
+    <div class="container">
+      <h1 class="fade-in-up">ĐỊNH GIÁ XE</h1>
+      <p class="fade-in-up">Công cụ định giá chính xác và nhanh chóng cho siêu xe của bạn</p>
+      <div class="progress fade-in-up">
+        <div class="progress-bar" id="pricingProgress" style="width: 0%"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Pricing Form Section -->
+  <section class="pricing-form-section">
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-lg-8">
+          <div class="pricing-card fade-in-up">
+            <h2 class="text-center mb-4" style="color: var(--gold-color);">Thông tin xe cần định giá</h2>
+            <form id="pricingForm">
+              <div class="row">
+                <div class="col-md-6 mb-3">
+                  <label for="carBrand" class="form-label">Hãng xe</label>
+                  <select class="form-select" id="carBrand" required>
+                    <option value="">Chọn hãng xe</option>
+                    <option value="bugatti">Bugatti</option>
+                    <option value="lamborghini">Lamborghini</option>
+                    <option value="ferrari">Ferrari</option>
+                    <option value="porsche">Porsche</option>
+                    <option value="mclaren">McLaren</option>
+                    <option value="bmw">BMW</option>
+                    <option value="mercedes">Mercedes-Benz</option>
+                    <option value="audi">Audi</option>
+                    <option value="other">Hãng khác</option>
+                  </select>
+                </div>
+                <div class="col-md-6 mb-3">
+                  <label for="carModel" class="form-label">Dòng xe</label>
+                  <input type="text" class="form-control" id="carModel" placeholder="Ví dụ: Chiron, Aventador..." required>
+                </div>
+              </div>
+              
+              <div class="row">
+                <div class="col-md-6 mb-3">
+                  <label for="carYear" class="form-label">Năm sản xuất</label>
+                  <select class="form-select" id="carYear" required>
+                    <option value="">Chọn năm</option>
+                    <!-- Options sẽ được tạo bằng JavaScript -->
+                  </select>
+                </div>
+                <div class="col-md-6 mb-3">
+                  <label for="carCondition" class="form-label">Tình trạng xe</label>
+                  <select class="form-select" id="carCondition" required>
+                    <option value="">Chọn tình trạng</option>
+                    <option value="excellent">Rất tốt (ít hơn 10,000 km)</option>
+                    <option value="good">Tốt (10,000 - 30,000 km)</option>
+                    <option value="fair">Khá (30,000 - 60,000 km)</option>
+                    <option value="poor">Cần bảo dưỡng (trên 60,000 km)</option>
+                  </select>
+                </div>
+              </div>
+              
+              <div class="row">
+                <div class="col-md-6 mb-3">
+                  <label for="carMileage" class="form-label">Số km đã đi</label>
+                  <input type="number" class="form-control" id="carMileage" placeholder="Nhập số km" min="0" required>
+                </div>
+                <div class="col-md-6 mb-3">
+                  <label for="carColor" class="form-label">Màu sắc</label>
+                  <select class="form-select" id="carColor" required>
+                    <option value="">Chọn màu</option>
+                    <option value="black">Đen</option>
+                    <option value="white">Trắng</option>
+                    <option value="red">Đỏ</option>
+                    <option value="blue">Xanh dương</option>
+                    <option value="silver">Bạc</option>
+                    <option value="yellow">Vàng</option>
+                    <option value="green">Xanh lá</option>
+                    <option value="other">Màu khác</option>
+                  </select>
+                </div>
+              </div>
+              
+              <div class="mb-3">
+                <label for="carFeatures" class="form-label">Tính năng đặc biệt (nếu có)</label>
+                <textarea class="form-control" id="carFeatures" rows="3" placeholder="Mô tả các tính năng đặc biệt, nâng cấp..."></textarea>
+              </div>
+              
+              <div class="mb-3">
+                <label for="carHistory" class="form-label">Lịch sử sử dụng</label>
+                <select class="form-select" id="carHistory" required>
+                  <option value="">Chọn lịch sử sử dụng</option>
+                  <option value="new">Xe mới, chưa sử dụng</option>
+                  <option value="one-owner">Một chủ sở hữu</option>
+                  <option value="multiple-owners">Nhiều chủ sở hữu</option>
+                  <option value="accident-free">Không tai nạn</option>
+                  <option value="accident-repaired">Đã sửa chữa tai nạn</option>
+                </select>
+              </div>
+              
+              <button type="submit" class="btn btn-pricing">
+                <i class="fas fa-calculator me-2"></i>ĐỊNH GIÁ NGAY
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Result Section -->
+  <section class="result-section" id="resultSection">
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-lg-8">
+          <div class="result-card fade-in-up">
+            <h2 style="color: var(--success-color);">KẾT QUẢ ĐỊNH GIÁ</h2>
+            <p>Dựa trên thông tin bạn cung cấp, giá trị ước tính của chiếc xe là:</p>
+            <div class="price-result" id="estimatedPrice">0 tỷ VNĐ</div>
+            <p>Đây là giá trị tham khảo. Để có báo giá chính xác nhất, vui lòng liên hệ với chuyên gia của chúng tôi.</p>
+            
+            <div class="price-details">
+              <h4 style="color: var(--gold-color); margin-top: 30px;">Chi tiết định giá:</h4>
+              <ul id="priceDetails">
+                <!-- Chi tiết sẽ được thêm bằng JavaScript -->
+              </ul>
+            </div>
+            
+            <div class="mt-4">
+              <button class="btn btn-pricing me-3" onclick="resetForm()">
+                <i class="fas fa-redo me-2"></i>Định giá xe khác
+              </button>
+              <button class="btn btn-outline-light" onclick="contactExpert()">
+                <i class="fas fa-phone me-2"></i>Liên hệ chuyên gia
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Features Section -->
+  <section class="features-section">
+    <div class="container">
+      <h2 class="text-center mb-5" style="color: var(--gold-color);">Tại sao chọn định giá tại OTOTHESIU?</h2>
+      <div class="row">
+        <div class="col-md-4 mb-4">
+          <div class="feature-card fade-in-up">
+            <div class="feature-icon">
+              <i class="fas fa-bolt"></i>
+            </div>
+            <h4>Nhanh chóng</h4>
+            <p>Nhận kết quả định giá chỉ trong vài phút với công nghệ AI tiên tiến.</p>
+          </div>
+        </div>
+        <div class="col-md-4 mb-4">
+          <div class="feature-card fade-in-up">
+            <div class="feature-icon">
+              <i class="fas fa-chart-line"></i>
+            </div>
+            <h4>Chính xác</h4>
+            <p>Dựa trên dữ liệu thị trường cập nhật và phân tích chuyên sâu.</p>
+          </div>
+        </div>
+        <div class="col-md-4 mb-4">
+          <div class="feature-card fade-in-up">
+            <div class="feature-icon">
+              <i class="fas fa-user-tie"></i>
+            </div>
+            <h4>Chuyên nghiệp</h4>
+            <p>Đội ngũ chuyên gia giàu kinh nghiệm trong lĩnh vực siêu xe.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="py-4">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-6">
+          <h5 class="mb-3">
+            <i class="fas fa-phone-alt me-2"></i>Thông tin liên hệ
+          </h5>
+          <p class="mb-2"><i class="fas fa-envelope me-2"></i>thanhhoa13052006@gmail.com</p>
+          <p class="mb-2"><i class="fas fa-phone me-2"></i>0983 XXX XXX</p>
+        </div>
+        <div class="col-md-6">
+          <h5 class="mb-3">
+            <i class="fas fa-map-marker-alt me-2"></i>Địa chỉ
+          </h5>
+          <p class="mb-2"><i class="fas fa-building me-2"></i>123XYZ quận 1, TP.HCM</p>
+          <p class="mb-2"><i class="fas fa-user-tie me-2"></i>Liên hệ: Trần Văn Thiện</p>
+        </div>
+      </div>
+      <hr class="my-4" style="border-color: var(--gold-color);">
+      <div class="text-center">
+        <p class="mb-0">&copy; 2025 OTOTHESIU. Tất cả quyền được bảo lưu.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Floating Contact Buttons -->
+  <div class="contact-float">
+    <a href="tel:0838266864" class="hotline" title="Gọi ngay">
+      <i class="fas fa-phone"></i>
+    </a>
+    <a href="https://web.facebook.com/?_rdc=1&_rdr" class="facebook" title="Liên hệ qua Facebook" target="_blank">
+      <i class="fab fa-facebook-f"></i>
+    </a>
+  </div>
+
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  
+  <script>
+    // Khởi tạo năm sản xuất (từ 1990 đến năm hiện tại)
+    document.addEventListener('DOMContentLoaded', function() {
+      const yearSelect = document.getElementById('carYear');
+      const currentYear = new Date().getFullYear();
+      
+      for (let year = currentYear; year >= 1990; year--) {
+        const option = document.createElement('option');
+        option.value = year;
+        option.textContent = year;
+        yearSelect.appendChild(option);
+      }
+      
+      // Hiệu ứng fade-in khi cuộn
+      const fadeElements = document.querySelectorAll('.fade-in-up');
+      const fadeInOnScroll = function() {
+        fadeElements.forEach(element => {
+          const elementTop = element.getBoundingClientRect().top;
+          const elementVisible = 150;
+          
+          if (elementTop < window.innerHeight - elementVisible) {
+            element.style.opacity = 1;
+            element.style.transform = 'translateY(0)';
+          }
+        });
+      };
+      
+      fadeInOnScroll();
+      window.addEventListener('scroll', fadeInOnScroll);
+    });
+
+    // Xử lý form định giá
+    document.getElementById('pricingForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      
+      // Hiển thị tiến trình
+      const progressBar = document.getElementById('pricingProgress');
+      progressBar.style.width = '0%';
+      
+      let progress = 0;
+      const progressInterval = setInterval(() => {
+        progress += 5;
+        progressBar.style.width = progress + '%';
+        
+        if (progress >= 100) {
+          clearInterval(progressInterval);
+          calculatePrice();
+        }
+      }, 100);
+    });
+
+    // Hàm tính giá
+    function calculatePrice() {
+      // Lấy giá trị từ form
+      const brand = document.getElementById('carBrand').value;
+      const model = document.getElementById('carModel').value;
+      const year = parseInt(document.getElementById('carYear').value);
+      const condition = document.getElementById('carCondition').value;
+      const mileage = parseInt(document.getElementById('carMileage').value);
+      const color = document.getElementById('carColor').value;
+      const history = document.getElementById('carHistory').value;
+      
+      // Giá cơ sở theo hãng xe (tỷ VNĐ)
+      const basePrices = {
+        'bugatti': 80,
+        'lamborghini': 25,
+        'ferrari': 30,
+        'porsche': 10,
+        'mclaren': 20,
+        'bmw': 8,
+        'mercedes': 12,
+        'audi': 7,
+        'other': 15
+      };
+      
+      let basePrice = basePrices[brand] || 10;
+      
+      // Điều chỉnh theo năm
+      const currentYear = new Date().getFullYear();
+      const age = currentYear - year;
+      let yearMultiplier = 1 - (age * 0.05); // Giảm 5% mỗi năm
+      yearMultiplier = Math.max(yearMultiplier, 0.3); // Tối thiểu 30% giá trị
+      
+      // Điều chỉnh theo tình trạng
+      const conditionMultipliers = {
+        'excellent': 1.0,
+        'good': 0.8,
+        'fair': 0.6,
+        'poor': 0.4
+      };
+      const conditionMultiplier = conditionMultipliers[condition] || 0.5;
+      
+      // Điều chỉnh theo số km
+      let mileageMultiplier = 1;
+      if (mileage < 10000) mileageMultiplier = 1.0;
+      else if (mileage < 30000) mileageMultiplier = 0.9;
+      else if (mileage < 60000) mileageMultiplier = 0.7;
+      else mileageMultiplier = 0.5;
+      
+      // Điều chỉnh theo lịch sử
+      const historyMultipliers = {
+        'new': 1.1,
+        'one-owner': 1.0,
+        'multiple-owners': 0.8,
+        'accident-free': 1.0,
+        'accident-repaired': 0.6
+      };
+      const historyMultiplier = historyMultipliers[history] || 0.7;
+      
+      // Tính giá ước tính
+      let estimatedPrice = basePrice * yearMultiplier * conditionMultiplier * mileageMultiplier * historyMultiplier;
+      
+      // Làm tròn đến 0.1 tỷ
+      estimatedPrice = Math.round(estimatedPrice * 10) / 10;
+      
+      // Hiển thị kết quả
+      document.getElementById('estimatedPrice').textContent = estimatedPrice + ' tỷ VNĐ';
+      
+      // Hiển thị chi tiết
+      const detailsList = document.getElementById('priceDetails');
+      detailsList.innerHTML = `
+        <li><strong>Hãng xe:</strong> ${brand.toUpperCase()}</li>
+        <li><strong>Dòng xe:</strong> ${model}</li>
+        <li><strong>Năm sản xuất:</strong> ${year} (${age} năm tuổi)</li>
+        <li><strong>Tình trạng:</strong> ${document.getElementById('carCondition').options[document.getElementById('carCondition').selectedIndex].text}</li>
+        <li><strong>Số km:</strong> ${mileage.toLocaleString()} km</li>
+        <li><strong>Lịch sử:</strong> ${document.getElementById('carHistory').options[document.getElementById('carHistory').selectedIndex].text}</li>
+      `;
+      
+      // Hiển thị section kết quả
+      document.getElementById('resultSection').style.display = 'block';
+      
+      // Cuộn đến kết quả
+      document.getElementById('resultSection').scrollIntoView({ behavior: 'smooth' });
+    }
+
+    // Hàm reset form
+    function resetForm() {
+      document.getElementById('pricingForm').reset();
+      document.getElementById('resultSection').style.display = 'none';
+      document.getElementById('pricingProgress').style.width = '0%';
+      
+      // Cuộn lên đầu form
+      document.querySelector('.pricing-form-section').scrollIntoView({ behavior: 'smooth' });
+    }
+
+    // Hàm liên hệ chuyên gia
+    function contactExpert() {
+      alert('Cảm ơn bạn đã quan tâm! Chuyên gia của chúng tôi sẽ liên hệ với bạn trong vòng 24 giờ.');
+    }
+  </script>
+</body>
+</html>
