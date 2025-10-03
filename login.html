@@ -1,0 +1,974 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>OTOTHESIU - Luxury Cars</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    :root {
+      --gold-color: #FFD700;
+      --dark-gold: #B8860B;
+      --jade-black: #0D1B2A;
+      --jade-dark: #041E42;
+      --accent-gold: #F4E27C;
+      --text-light: #E8E8E8;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: var(--jade-black);
+      color: var(--text-light);
+    }
+
+    /* Navigation */
+    .navbar {
+      background: linear-gradient(135deg, var(--gold-color), var(--dark-gold)) !important;
+      box-shadow: 0 4px 20px rgba(255, 215, 0, 0.3);
+    }
+
+    .navbar-brand .brand-text {
+      font-weight: bold;
+      font-size: 1.5rem;
+      background: linear-gradient(45deg, var(--jade-black), var(--jade-dark));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+    }
+
+    .navbar-nav .nav-link {
+      color: var(--jade-black) !important;
+      font-weight: 600;
+      position: relative;
+      transition: all 0.3s ease;
+    }
+
+    .navbar-nav .nav-link:hover {
+      color: var(--jade-dark) !important;
+      transform: translateY(-2px);
+    }
+
+    .navbar-nav .dropdown-menu {
+      background: var(--jade-black);
+      border: 2px solid var(--gold-color);
+      border-radius: 10px;
+      box-shadow: 0 8px 30px rgba(255, 215, 0, 0.2);
+    }
+
+    .navbar-nav .dropdown-item {
+      color: var(--text-light);
+      padding: 10px 20px;
+      transition: all 0.3s ease;
+    }
+
+    .navbar-nav .dropdown-item:hover {
+      background: linear-gradient(135deg, var(--gold-color), var(--dark-gold));
+      color: var(--jade-black);
+    }
+
+    .btn-outline-light {
+      border-color: var(--jade-black);
+      color: var(--jade-black);
+    }
+
+    .btn-outline-light:hover {
+      background: var(--jade-black);
+      border-color: var(--jade-black);
+    }
+    
+    /* Login Section */
+.login-hero {
+  background: linear-gradient(135deg, var(--jade-black) 0%, var(--jade-dark) 100%);
+  padding: 80px 0;
+  min-height: calc(100vh - 200px);
+  display: flex;
+  align-items: center;
+}
+
+.login-container {
+  background: var(--jade-black);
+  border: 2px solid var(--gold-color);
+  border-radius: 15px;
+  padding: 30px;
+  box-shadow: 0 15px 40px rgba(255, 215, 0, 0.2);
+  transition: all 0.3s ease;
+}
+
+.login-container:hover {
+  box-shadow: 0 20px 50px rgba(255, 215, 0, 0.3);
+  transform: translateY(-5px);
+}
+
+.login-header {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.login-header h2 {
+  color: var(--gold-color);
+  font-weight: bold;
+  font-size: 2rem;
+}
+
+.form-label {
+  color: var(--gold-color);
+  font-weight: 600;
+}
+
+.form-control {
+  background: var(--jade-dark);
+  border: 1px solid var(--gold-color);
+  color: var(--text-light);
+  padding: 12px 15px;
+  border-radius: 10px;
+  transition: all 0.3s ease;
+}
+
+.form-control:focus {
+  background: var(--jade-dark);
+  border-color: var(--accent-gold);
+  color: var(--text-light);
+  box-shadow: 0 0 0 0.25rem rgba(255, 215, 0, 0.25);
+}
+
+.form-check-label {
+  color: var(--text-light);
+}
+
+.form-check-input:checked {
+  background-color: var(--gold-color);
+  border-color: var(--gold-color);
+}
+
+.btn-login {
+  background: linear-gradient(135deg, var(--gold-color), var(--dark-gold));
+  border: none;
+  color: var(--jade-black);
+  padding: 12px 30px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  border-radius: 50px;
+  transition: all 0.3s ease;
+  width: 100%;
+  margin-top: 10px;
+}
+
+.btn-login:hover {
+  background: linear-gradient(135deg, var(--dark-gold), var(--gold-color));
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(255, 215, 0, 0.4);
+  color: var(--jade-black);
+}
+
+.login-footer {
+  text-align: center;
+  margin-top: 20px;
+}
+
+.login-footer p {
+  margin-bottom: 10px;
+}
+
+.login-footer a {
+  color: var(--gold-color);
+  text-decoration: none;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+.login-footer a:hover {
+  color: var(--accent-gold);
+  text-decoration: underline;
+}
+    /* Hero Section */
+    .hero {
+      background: linear-gradient(135deg, var(--jade-black) 0%, var(--jade-dark) 100%);
+      color: var(--text-light);
+      border-bottom: 3px solid var(--gold-color);
+    }
+
+    .hero h1 {
+      font-size: 3rem;
+      margin-bottom: 1.5rem;
+      color: var(--gold-color);
+      text-shadow: 2px 2px 8px rgba(0,0,0,0.5);
+    }
+
+    .hero p {
+      font-size: 1.2rem;
+      opacity: 0.9;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, var(--gold-color), var(--dark-gold));
+      border: none;
+      color: var(--jade-black);
+      padding: 12px 30px;
+      font-size: 1.1rem;
+      font-weight: 600;
+      border-radius: 50px;
+      transition: all 0.3s ease;
+    }
+
+    .btn-primary:hover {
+      background: linear-gradient(135deg, var(--dark-gold), var(--gold-color));
+      transform: translateY(-2px);
+      box-shadow: 0 8px 25px rgba(255, 215, 0, 0.4);
+    }
+
+    /* Slideshow */
+    .slider {
+      overflow: hidden;
+      position: relative;
+      width: 100%;
+      margin-top: 40px;
+      padding: 20px 0;
+      background: var(--jade-dark);
+    }
+
+    .slide-track {
+      display: flex;
+      width: calc(320px * 10);
+      animation: scroll 30s linear infinite;
+    }
+
+    .slide {
+      width: 300px;
+      height: 200px;
+      margin: 0 10px;
+      flex-shrink: 0;
+    }
+
+    .car-card {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      border-radius: 15px;
+      border: 2px solid var(--gold-color);
+      box-shadow: 0 8px 30px rgba(255, 215, 0, 0.2);
+      transition: all 0.3s ease;
+    }
+
+    .car-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 15px 40px rgba(255, 215, 0, 0.4);
+      border-color: var(--accent-gold);
+    }
+
+    .car-card img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.5s ease;
+    }
+
+    .car-card:hover img {
+      transform: scale(1.1);
+    }
+
+    .car-info {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: linear-gradient(to top, rgba(13, 27, 42, 0.95), transparent);
+      color: var(--gold-color);
+      padding: 20px 15px 15px;
+      transform: translateY(100%);
+      transition: transform 0.4s ease;
+    }
+
+    .car-card:hover .car-info {
+      transform: translateY(0);
+    }
+
+    .car-info h3 {
+      font-size: 1.1rem;
+      font-weight: bold;
+      margin-bottom: 5px;
+      color: var(--gold-color);
+    }
+
+    .car-info p {
+      margin: 0;
+      font-size: 0.9rem;
+      color: var(--text-light);
+    }
+
+    @keyframes scroll {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+
+    /* Featured Products Section */
+    .featured-section {
+      background: var(--jade-dark);
+      padding: 60px 0;
+    }
+
+    .featured-section h2 {
+      text-align: center;
+      margin-bottom: 50px;
+      color: var(--gold-color);
+      font-weight: bold;
+      font-size: 2.5rem;
+      text-shadow: 2px 2px 8px rgba(0,0,0,0.5);
+    }
+
+    .card {
+      background: var(--jade-black);
+      border: 2px solid var(--gold-color);
+      color: var(--text-light);
+      transition: all 0.3s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 15px 30px rgba(255, 215, 0, 0.2);
+      border-color: var(--accent-gold);
+    }
+
+    .text-primary {
+      color: var(--gold-color) !important;
+    }
+
+    /* Product Cards */
+    .product-card {
+      background: var(--jade-black);
+      border: 2px solid var(--gold-color);
+      border-radius: 15px;
+      overflow: hidden;
+      transition: all 0.3s ease;
+      margin-bottom: 30px;
+      height: 100%;
+    }
+
+    .product-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 15px 40px rgba(255, 215, 0, 0.3);
+      border-color: var(--accent-gold);
+    }
+
+    .product-card img {
+      width: 100%;
+      height: 250px;
+      object-fit: cover;
+      transition: transform 0.5s ease;
+    }
+
+    .product-card:hover img {
+      transform: scale(1.05);
+    }
+
+    .product-card-body {
+      padding: 20px;
+    }
+
+    .product-card-title {
+      color: var(--gold-color);
+      font-size: 1.5rem;
+      font-weight: bold;
+      margin-bottom: 10px;
+    }
+
+    .product-card-price {
+      color: var(--gold-color);
+      font-size: 1.3rem;
+      font-weight: 600;
+      margin-bottom: 15px;
+    }
+
+    .product-card-features {
+      list-style: none;
+      padding: 0;
+      margin-bottom: 20px;
+    }
+
+    .product-card-features li {
+      margin-bottom: 5px;
+      color: var(--text-light);
+      opacity: 0.9;
+    }
+
+    .product-card-features li i {
+      color: var(--gold-color);
+      margin-right: 8px;
+    }
+
+    .product-card-actions {
+      display: flex;
+      gap: 10px;
+    }
+
+    .btn-order {
+      background: linear-gradient(135deg, var(--gold-color), var(--dark-gold));
+      border: none;
+      color: var(--jade-black);
+      padding: 10px 20px;
+      font-weight: 600;
+      border-radius: 50px;
+      transition: all 0.3s ease;
+      flex: 1;
+    }
+
+    .btn-order:hover {
+      background: linear-gradient(135deg, var(--dark-gold), var(--gold-color));
+      transform: translateY(-2px);
+      box-shadow: 0 8px 25px rgba(255, 215, 0, 0.4);
+      color: var(--jade-black);
+    }
+
+    .btn-detail {
+      border: 2px solid var(--gold-color);
+      color: var(--gold-color);
+      background: transparent;
+      padding: 10px 20px;
+      font-weight: 600;
+      border-radius: 50px;
+      transition: all 0.3s ease;
+      flex: 1;
+    }
+
+    .btn-detail:hover {
+      background: var(--gold-color);
+      color: var(--jade-black);
+      transform: translateY(-2px);
+    }
+
+    /* Pagination */
+    .pagination-section {
+      background: var(--jade-dark);
+      padding: 30px 0;
+    }
+
+    .page-link {
+      background: var(--jade-black);
+      border: 2px solid var(--gold-color);
+      color: var(--gold-color);
+      margin: 0 5px;
+      border-radius: 10px;
+      transition: all 0.3s ease;
+    }
+
+    .page-link:hover {
+      background: var(--gold-color);
+      border-color: var(--gold-color);
+      color: var(--jade-black);
+    }
+
+    .page-item.active .page-link {
+      background: var(--gold-color);
+      border-color: var(--gold-color);
+      color: var(--jade-black);
+    }
+
+    /* Product Detail Modal */
+    .product-modal .modal-content {
+      background: var(--jade-black);
+      border: 3px solid var(--gold-color);
+      border-radius: 20px;
+      color: var(--text-light);
+    }
+
+    .product-modal .modal-header {
+      border-bottom: 2px solid var(--gold-color);
+      background: linear-gradient(135deg, var(--jade-dark), var(--jade-black));
+    }
+
+    .product-modal .modal-title {
+      color: var(--gold-color);
+      font-weight: bold;
+      font-size: 1.8rem;
+    }
+
+    .product-modal .btn-close {
+      filter: invert(1);
+    }
+
+    .product-gallery {
+      position: relative;
+      border-radius: 15px;
+      overflow: hidden;
+      margin-bottom: 20px;
+    }
+
+    .product-gallery img {
+      width: 100%;
+      height: 300px;
+      object-fit: cover;
+      border-radius: 15px;
+      border: 2px solid var(--gold-color);
+    }
+
+    .product-info {
+      padding: 20px;
+    }
+
+    .product-price {
+      font-size: 2rem;
+      color: var(--gold-color);
+      font-weight: bold;
+      margin-bottom: 20px;
+      text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+    }
+
+    .product-specs {
+      background: var(--jade-dark);
+      padding: 20px;
+      border-radius: 15px;
+      border: 1px solid var(--gold-color);
+      margin-bottom: 20px;
+    }
+
+    .spec-item {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 10px;
+      padding: 8px 0;
+      border-bottom: 1px solid rgba(255,215,0,0.2);
+    }
+
+    .spec-label {
+      color: var(--gold-color);
+      font-weight: 600;
+      flex: 1;
+    }
+
+    .spec-value {
+      flex: 1;
+      text-align: right;
+    }
+
+    .product-features {
+      margin-bottom: 20px;
+    }
+
+    .feature-list {
+      list-style: none;
+      padding: 0;
+    }
+
+    .feature-list li {
+      padding: 8px 0;
+      border-bottom: 1px solid rgba(255,255,255,0.1);
+    }
+
+    .feature-list li:before {
+      content: "✓";
+      color: var(--gold-color);
+      font-weight: bold;
+      margin-right: 10px;
+    }
+
+    .modal-actions {
+      display: flex;
+      gap: 15px;
+      margin-top: 20px;
+    }
+
+    .btn-modal-order {
+      background: linear-gradient(135deg, var(--gold-color), var(--dark-gold));
+      border: none;
+      color: var(--jade-black);
+      padding: 12px 30px;
+      font-weight: 600;
+      border-radius: 50px;
+      flex: 2;
+      transition: all 0.3s ease;
+    }
+
+    .btn-modal-order:hover {
+      background: linear-gradient(135deg, var(--dark-gold), var(--gold-color));
+      transform: translateY(-2px);
+      box-shadow: 0 8px 25px rgba(255, 215, 0, 0.4);
+    }
+
+    .btn-modal-close {
+      border: 2px solid var(--gold-color);
+      color: var(--gold-color);
+      background: transparent;
+      padding: 12px 30px;
+      font-weight: 600;
+      border-radius: 50px;
+      flex: 1;
+      transition: all 0.3s ease;
+    }
+
+    .btn-modal-close:hover {
+      background: var(--gold-color);
+      color: var(--jade-black);
+    }
+
+    .product-badge {
+      position: absolute;
+      top: 15px;
+      right: 15px;
+      background: linear-gradient(135deg, var(--gold-color), var(--dark-gold));
+      color: var(--jade-black);
+      padding: 8px 15px;
+      border-radius: 25px;
+      font-weight: bold;
+      font-size: 0.9rem;
+      z-index: 10;
+    }
+
+    .brand-logo {
+      width: 40px;
+      height: 40px;
+      background: var(--gold-color);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--jade-black);
+      font-weight: bold;
+      margin-right: 15px;
+    }
+
+    /* Contact Float */
+    .contact-float {
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+      z-index: 1000;
+    }
+
+    .contact-float a {
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: var(--jade-black);
+      font-size: 24px;
+      text-decoration: none;
+      box-shadow: 0 6px 20px rgba(255, 215, 0, 0.3);
+      transition: all 0.3s ease;
+    }
+
+    .contact-float a:hover {
+      transform: scale(1.15);
+      box-shadow: 0 8px 25px rgba(255, 215, 0, 0.5);
+    }
+
+    .hotline { 
+      background: linear-gradient(135deg, var(--gold-color), var(--dark-gold));
+    }
+
+    .facebook { 
+      background: linear-gradient(135deg, var(--accent-gold), var(--gold-color));
+    }
+
+    /* Footer */
+    footer {
+      background: var(--jade-dark) !important;
+      border-top: 3px solid var(--gold-color);
+    }
+
+    footer h5 {
+      color: var(--gold-color);
+    }
+
+    footer p {
+      margin-bottom: 8px;
+      opacity: 0.9;
+      color: var(--text-light);
+    }
+
+    /* User Info */
+    .user-info {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .user-avatar {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: var(--gold-color);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--jade-black);
+      font-weight: bold;
+    }
+
+    .user-dropdown {
+      background: var(--jade-black);
+      border: 2px solid var(--gold-color);
+      border-radius: 10px;
+      box-shadow: 0 8px 30px rgba(255, 215, 0, 0.2);
+    }
+
+    .user-dropdown .dropdown-item {
+      color: var(--text-light);
+      padding: 10px 20px;
+      transition: all 0.3s ease;
+    }
+
+    .user-dropdown .dropdown-item:hover {
+      background: linear-gradient(135deg, var(--gold-color), var(--dark-gold));
+      color: var(--jade-black);
+    }
+
+    /* Toast Notification */
+    .toast-container {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      z-index: 1055;
+    }
+
+    .custom-toast {
+      background: var(--jade-black);
+      border: 2px solid var(--gold-color);
+      border-radius: 10px;
+      color: var(--text-light);
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .hero h1 {
+        font-size: 2rem;
+      }
+      
+      .slide-track {
+        width: calc(280px * 10);
+      }
+      
+      .slide {
+        width: 260px;
+      }
+      
+      .contact-float {
+        bottom: 20px;
+        right: 20px;
+      }
+      
+      .contact-float a {
+        width: 50px;
+        height: 50px;
+        font-size: 20px;
+      }
+
+      .product-card-actions {
+        flex-direction: column;
+      }
+
+      .modal-actions {
+        flex-direction: column;
+      }
+      
+      .product-gallery img {
+        height: 200px;
+      }
+      
+      .product-price {
+        font-size: 1.5rem;
+      }
+    }
+
+    /* Loading animation */
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .fade-in-up {
+      animation: fadeInUp 0.6s ease;
+    }
+  </style>
+</head>
+<body>
+  <!-- Navigation -->
+  <nav class="navbar navbar-expand-lg shadow-lg">
+    <div class="container">
+      <a class="navbar-brand d-flex align-items-center" href="index.html">
+        <img src="https://preview.redd.it/petition-to-make-this-the-new-pic-of-the-sub-v0-x8o3qf29ah5f1.png?width=640&crop=smart&auto=webp&s=d04da2f01be93af3cba092e71c636a1c3bf61749" 
+             alt="Logo" 
+             style="height:40px; margin-right:10px; border-radius:50%; background-color:#000; padding:2px;"
+             onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAiIGhlaWdodD0iNDAiIHZpZXdCb3g9IjAgMCA0MCA0MCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHJlY3Qgd2lkdGg9IjQwIiBoZWlnaHQ9IjQwIiByeD0iMjAiIGZpbGw9IiNGRkQ3MDAiLz4KPHN2ZyB4PSI4IiB5PSI4IiB3aWR0aD0iMjQiIGhlaWdodD0iMjQiIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHBhdGggZD0iTTEyIDJMMTUuMDkgOC4yNkwxMiA0LjgyTDguOTEgOC4yNkwxMiAyWiIgZmlsbD0iIzBEMUIyQSIvPgo8cGF0aCBkPSJNMTIgMjJMMTUuMDkgMTUuNzRMMTIgMTkuMThMOC45MSAxNS43NEwxMiAyMloiIGZpbGw9IiMwREUxQjIiLz4KPHBhdGggZD0iTTIgMTJMOD4yNiAxNS4wOUw0LjgyIDEyTDguMjYgOC45MUwyIDEyWiIgZmlsbD0iIzBEMUIyQSIvPgo8cGF0aCBkPSJNMjIgMTJMMTUuNzQgOC45MUwxOS4xOCAxMkwxNS43NCAxNS4wOUwyMiAxMloiIGZpbGw9IiMwREUxQjIiLz4KPC9zdmc+Cjwvc3ZnPgo='">
+        <span class="brand-text">OTOTHESIU</span>
+      </a>
+      
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <!-- Mua xe Dropdown -->
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              <i class="fas fa-shopping-cart me-1"></i>Mua xe
+            </a>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item" href="mua-xe/lamborghini.html"><i class="fas fa-car me-2"></i>Lamborghini</a></li>
+              <li><a class="dropdown-item" href="mua-xe/ferrari.html"><i class="fas fa-car me-2"></i>Ferrari</a></li>
+              <li><a class="dropdown-item" href="mua-xe/bugatti.html"><i class="fas fa-car me-2"></i>Bugatti</a></li>
+              <li><a class="dropdown-item" href="mua-xe/koenigsegg.html"><i class="fas fa-car me-2"></i>Koenigsegg</a></li>
+              <li><a class="dropdown-item" href="mua-xe/mclaren.html"><i class="fas fa-car me-2"></i>McLaren</a></li>
+              <li><a class="dropdown-item" href="mua-xe/pagani.html"><i class="fas fa-car me-2"></i>Pagani</a></li>
+              <li><a class="dropdown-item" href="mua-xe/porsche.html"><i class="fas fa-car me-2"></i>Porsche (thể thao)</a></li>
+              <li><a class="dropdown-item" href="mua-xe/mercedes.html"><i class="fas fa-car me-2"></i>Mercedes-Benz (thể thao)</a></li>
+              <li><a class="dropdown-item" href="mua-xe/bmw.html"><i class="fas fa-car me-2"></i>BMW (thể thao)</a></li>
+            </ul>
+          </li>
+        </ul>
+        
+        <ul class="navbar-nav mb-2 mb-lg-0">
+          <li class="nav-item">
+            <a class="nav-link" href="login.html">
+              <i class="fas fa-user me-1"></i>Đăng nhập
+            </a>
+          </li>
+          
+          <li class="nav-item">
+            <a class="nav-link" href="cart.html">
+              <i class="fas fa-shopping-bag me-1"></i>Giỏ hàng
+            </a>
+          </li>
+        </ul>
+        
+        <!-- Search Bar -->
+        <form class="d-flex ms-3" role="search">
+          <input class="form-control me-2" type="search" placeholder="Tìm kiếm siêu xe..." aria-label="Search">
+          <button class="btn btn-outline-light" type="submit">
+            <i class="fas fa-search"></i>
+          </button>
+        </form>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Login Section -->
+  <section class="login-hero">
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-md-6 col-lg-5">
+          <div class="login-container fade-in-up">
+            <div class="login-header">
+              <h2><i class="fas fa-user me-2"></i>Đăng nhập</h2>
+            </div>
+            
+            <div class="login-body">
+              <form id="loginForm">
+                <div class="mb-3">
+                  <label for="email" class="form-label">Email</label>
+                  <input type="email" class="form-control" id="email" placeholder="Nhập email của bạn" required>
+                </div>
+                
+                <div class="mb-3">
+                  <label for="password" class="form-label">Mật khẩu</label>
+                  <input type="password" class="form-control" id="password" placeholder="Nhập mật khẩu" required>
+                </div>
+                
+                <div class="mb-3 form-check">
+                  <input type="checkbox" class="form-check-input" id="rememberMe">
+                  <label class="form-check-label" for="rememberMe">Ghi nhớ đăng nhập</label>
+                </div>
+                
+                <button type="submit" class="btn btn-login">
+                  <i class="fas fa-sign-in-alt me-2"></i>Đăng nhập
+                </button>
+              </form>
+            </div>
+            
+            <div class="login-footer">
+              <p>Chưa có tài khoản? <a href="register.html">Đăng ký ngay</a></p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="py-4">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-6">
+          <h5 class="mb-3">
+            <i class="fas fa-phone-alt me-2"></i>Thông tin liên hệ
+          </h5>
+          <p class="mb-2"><i class="fas fa-envelope me-2"></i>thanhhoa13052006@gmail.com</p>
+          <p class="mb-2"><i class="fas fa-phone me-2"></i>0983 XXX XXX</p>
+        </div>
+        <div class="col-md-6">
+          <h5 class="mb-3">
+            <i class="fas fa-map-marker-alt me-2"></i>Địa chỉ
+          </h5>
+          <p class="mb-2"><i class="fas fa-building me-2"></i>123XYZ quận 1, TP.HCM</p>
+          <p class="mb-2"><i class="fas fa-user-tie me-2"></i>Liên hệ: Trần Văn Thiện</p>
+        </div>
+      </div>
+      <hr class="my-4" style="border-color: var(--gold-color);">
+      <div class="text-center">
+        <p class="mb-0">&copy; 2024 OTOTHESIU. Tất cả quyền được bảo lưu.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  
+  <script>
+    document.getElementById('loginForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      
+      const email = document.getElementById('email').value;
+      const password = document.getElementById('password').value;
+      
+      // Kiểm tra thông tin đăng nhập (trong thực tế sẽ gửi request đến server)
+      // Ở đây chỉ mô phỏng đăng nhập thành công
+      
+      // Lưu thông tin người dùng vào localStorage
+      const user = {
+        name: email.split('@')[0], // Lấy phần trước @ của email làm tên
+        email: email
+      };
+      
+      localStorage.setItem('loggedInUser', JSON.stringify(user));
+      
+      // Hiển thị thông báo thành công
+      alert('Đăng nhập thành công!');
+      
+      // Chuyển hướng đến trang thông tin khách hàng
+      window.location.href = 'customer-info.html';
+    });
+
+    // Thêm hiệu ứng fade-in cho các phần tử khi cuộn trang
+    document.addEventListener('DOMContentLoaded', function() {
+      const fadeElements = document.querySelectorAll('.fade-in-up');
+      
+      const fadeInOnScroll = function() {
+        fadeElements.forEach(element => {
+          const elementTop = element.getBoundingClientRect().top;
+          const elementVisible = 150;
+          
+          if (elementTop < window.innerHeight - elementVisible) {
+            element.style.opacity = 1;
+            element.style.transform = 'translateY(0)';
+          }
+        });
+      };
+      
+      // Kích hoạt ngay lập tức
+      fadeInOnScroll();
+    });
+  </script>
+</body>
+</html>
