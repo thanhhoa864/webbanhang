@@ -1,0 +1,1261 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Quản lý Tồn kho - Admin Panel | OTOTHESIU</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    :root {
+      --gold-color: #FFD700;
+      --dark-gold: #B8860B;
+      --jade-black: #0D1B2A;
+      --jade-dark: #041E42;
+      --accent-gold: #F4E27C;
+      --text-light: #E8E8E8;
+      --card-bg: #1A2A3A;
+      --border-radius: 10px;
+      --box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: var(--jade-black);
+      color: var(--text-light);
+      overflow-x: hidden;
+    }
+
+    /* Navigation */
+    .navbar {
+      background: linear-gradient(135deg, var(--gold-color), var(--dark-gold)) !important;
+      box-shadow: 0 4px 20px rgba(255, 215, 0, 0.3);
+      padding: 10px 0;
+    }
+
+    .navbar-brand .brand-text {
+      font-weight: bold;
+      font-size: 1.5rem;
+      background: linear-gradient(45deg, var(--jade-black), var(--jade-dark));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+    }
+
+    .navbar-nav .nav-link {
+      color: var(--jade-black) !important;
+      font-weight: 600;
+      position: relative;
+      transition: all 0.3s ease;
+      padding: 8px 16px;
+      margin: 0 5px;
+      border-radius: 6px;
+    }
+
+    .navbar-nav .nav-link:hover {
+      background: rgba(255, 215, 0, 0.1);
+      color: var(--jade-dark) !important;
+      transform: translateY(-2px);
+    }
+
+    .navbar-nav .nav-link.active {
+      background: var(--jade-dark);
+      color: var(--gold-color) !important;
+      font-weight: 600;
+    }
+
+    /* Main Content */
+    .main-content {
+      padding: 30px 20px;
+      min-height: 100vh;
+    }
+
+    /* Page Header */
+    .page-header {
+      background: var(--card-bg);
+      border-radius: var(--border-radius);
+      padding: 20px;
+      margin-bottom: 25px;
+      border: 1px solid var(--gold-color);
+      box-shadow: var(--box-shadow);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 15px;
+    }
+
+    .page-header h2 {
+      color: var(--gold-color);
+      margin: 0;
+      font-weight: 600;
+    }
+
+    /* Search and Filter */
+    .search-filter-container {
+      display: flex;
+      gap: 15px;
+      flex-wrap: wrap;
+    }
+
+    .search-box {
+      position: relative;
+      min-width: 250px;
+    }
+
+    .search-box input {
+      background: var(--jade-dark);
+      border: 1px solid var(--gold-color);
+      border-radius: 50px;
+      color: var(--text-light);
+      padding: 10px 20px 10px 45px;
+      width: 100%;
+      transition: all 0.3s ease;
+    }
+
+    .search-box input:focus {
+      box-shadow: 0 0 0 3px rgba(255, 215, 0, 0.3);
+      outline: none;
+    }
+
+    .search-box i {
+      position: absolute;
+      left: 20px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--gold-color);
+    }
+
+    /* Brand Filter */
+    .brand-filter {
+      min-width: 200px;
+    }
+
+    .brand-filter select {
+      background: var(--jade-dark);
+      border: 1px solid var(--gold-color);
+      border-radius: 50px;
+      color: var(--text-light);
+      padding: 10px 20px;
+      width: 100%;
+      transition: all 0.3s ease;
+    }
+
+    .brand-filter select:focus {
+      box-shadow: 0 0 0 3px rgba(255, 215, 0, 0.3);
+      outline: none;
+    }
+
+    /* Date Filter */
+    .date-filter {
+      display: flex;
+      gap: 10px;
+      align-items: center;
+    }
+
+    .date-input {
+      background: var(--jade-dark);
+      border: 1px solid var(--gold-color);
+      border-radius: 5px;
+      color: var(--text-light);
+      padding: 8px 12px;
+      transition: all 0.3s ease;
+    }
+
+    .date-input:focus {
+      box-shadow: 0 0 0 3px rgba(255, 215, 0, 0.3);
+      outline: none;
+    }
+
+    /* Action Buttons */
+    .action-btn {
+      background: linear-gradient(135deg, var(--gold-color), var(--dark-gold));
+      border: none;
+      color: var(--jade-black);
+      padding: 12px 20px;
+      font-weight: 600;
+      border-radius: 50px;
+      transition: all 0.3s ease;
+      margin-right: 10px;
+      margin-bottom: 10px;
+      box-shadow: 0 4px 10px rgba(255, 215, 0, 0.3);
+    }
+
+    .action-btn:hover {
+      background: linear-gradient(135deg, var(--dark-gold), var(--gold-color));
+      transform: translateY(-2px);
+      box-shadow: 0 8px 25px rgba(255, 215, 0, 0.4);
+    }
+
+    .action-btn.secondary {
+      background: var(--jade-dark);
+      color: var(--gold-color);
+      border: 1px solid var(--gold-color);
+    }
+
+    .action-btn.secondary:hover {
+      background: rgba(255, 215, 0, 0.1);
+    }
+
+    .action-btn.small {
+      padding: 8px 15px;
+      font-size: 0.9rem;
+    }
+
+    /* Stock Cards */
+    .stock-cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+      margin-bottom: 25px;
+    }
+
+    .stock-card {
+      background: var(--card-bg);
+      border-radius: var(--border-radius);
+      padding: 20px;
+      border: 1px solid var(--gold-color);
+      box-shadow: var(--box-shadow);
+      transition: all 0.3s ease;
+    }
+
+    .stock-card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 25px rgba(255, 215, 0, 0.2);
+    }
+
+    .stock-card.warning {
+      border-color: #ffc107;
+      background: linear-gradient(135deg, var(--card-bg), #332701);
+    }
+
+    .stock-card.danger {
+      border-color: #dc3545;
+      background: linear-gradient(135deg, var(--card-bg), #331a1d);
+    }
+
+    .stock-card-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 15px;
+    }
+
+    .stock-card-title {
+      color: var(--gold-color);
+      font-weight: 600;
+      font-size: 1.1rem;
+      margin: 0;
+    }
+
+    .stock-card-icon {
+      font-size: 1.5rem;
+      color: var(--accent-gold);
+    }
+
+    .stock-card-value {
+      color: var(--accent-gold);
+      font-weight: 700;
+      font-size: 2rem;
+      margin-bottom: 5px;
+    }
+
+    .stock-card-change {
+      color: #28a745;
+      font-size: 0.9rem;
+    }
+
+    .stock-card-change.negative {
+      color: #dc3545;
+    }
+
+    /* Stock Tables */
+    .stock-table {
+      background: var(--card-bg);
+      border-radius: var(--border-radius);
+      border: 1px solid var(--gold-color);
+      box-shadow: var(--box-shadow);
+      overflow: hidden;
+      margin-bottom: 25px;
+    }
+
+    .table {
+      margin-bottom: 0;
+      color: var(--text-light);
+    }
+
+    .table thead th {
+      background: var(--jade-dark);
+      color: var(--gold-color);
+      border-bottom: 2px solid var(--gold-color);
+      font-weight: 600;
+      padding: 15px;
+    }
+
+    .table tbody td {
+      padding: 15px;
+      border-bottom: 1px solid rgba(255, 215, 0, 0.1);
+      vertical-align: middle;
+    }
+
+    .table tbody tr:hover {
+      background: rgba(255, 215, 0, 0.05);
+    }
+
+    /* Stock Status */
+    .stock-status {
+      padding: 6px 12px;
+      border-radius: 20px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      text-align: center;
+    }
+
+    .stock-high {
+      background: rgba(40, 167, 69, 0.2);
+      color: #28a745;
+      border: 1px solid #28a745;
+    }
+
+    .stock-medium {
+      background: rgba(255, 193, 7, 0.2);
+      color: #ffc107;
+      border: 1px solid #ffc107;
+    }
+
+    .stock-low {
+      background: rgba(220, 53, 69, 0.2);
+      color: #dc3545;
+      border: 1px solid #dc3545;
+    }
+
+    .stock-out {
+      background: rgba(108, 117, 125, 0.2);
+      color: #6c757d;
+      border: 1px solid #6c757d;
+    }
+
+    /* Progress Bar */
+    .stock-progress {
+      height: 8px;
+      background: var(--jade-dark);
+      border-radius: 4px;
+      overflow: hidden;
+    }
+
+    .stock-progress-bar {
+      height: 100%;
+      border-radius: 4px;
+      transition: all 0.3s ease;
+    }
+
+    .progress-high {
+      background: linear-gradient(90deg, #28a745, #20c997);
+    }
+
+    .progress-medium {
+      background: linear-gradient(90deg, #ffc107, #fd7e14);
+    }
+
+    .progress-low {
+      background: linear-gradient(90deg, #dc3545, #e83e8c);
+    }
+
+    /* Tabs */
+    .stock-tabs {
+      background: var(--card-bg);
+      border-radius: var(--border-radius);
+      border: 1px solid var(--gold-color);
+      box-shadow: var(--box-shadow);
+      margin-bottom: 25px;
+      overflow: hidden;
+    }
+
+    .nav-tabs {
+      border-bottom: 1px solid var(--gold-color);
+      padding: 0;
+    }
+
+    .nav-tabs .nav-link {
+      background: var(--jade-dark);
+      color: var(--text-light);
+      border: none;
+      border-radius: 0;
+      padding: 15px 25px;
+      font-weight: 600;
+    }
+
+    .nav-tabs .nav-link.active {
+      background: linear-gradient(135deg, var(--gold-color), var(--dark-gold));
+      color: var(--jade-black);
+      border: none;
+    }
+
+    .nav-tabs .nav-link:hover {
+      background: rgba(255, 215, 0, 0.1);
+      color: var(--gold-color);
+    }
+
+    /* Modal Styles */
+    .modal-content {
+      background: var(--card-bg);
+      border: 1px solid var(--gold-color);
+      border-radius: var(--border-radius);
+    }
+
+    .modal-header {
+      border-bottom: 1px solid var(--gold-color);
+      padding: 20px;
+    }
+
+    .modal-title {
+      color: var(--gold-color);
+      font-weight: 600;
+    }
+
+    .modal-body {
+      padding: 20px;
+    }
+
+    .modal-footer {
+      border-top: 1px solid var(--gold-color);
+      padding: 20px;
+    }
+
+    .btn-close {
+      filter: invert(1);
+    }
+
+    /* Form Styles */
+    .form-group {
+      margin-bottom: 20px;
+    }
+
+    .form-label {
+      color: var(--text-light);
+      font-weight: 600;
+      margin-bottom: 8px;
+    }
+
+    .form-control {
+      background: var(--jade-dark);
+      border: 1px solid var(--gold-color);
+      border-radius: 5px;
+      color: var(--text-light);
+      padding: 10px 15px;
+      transition: all 0.3s ease;
+    }
+
+    .form-control:focus {
+      box-shadow: 0 0 0 3px rgba(255, 215, 0, 0.3);
+      outline: none;
+      background: var(--jade-dark);
+      color: var(--text-light);
+      border-color: var(--gold-color);
+    }
+
+    /* Loading animation */
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .fade-in-up {
+      animation: fadeInUp 0.6s ease;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .page-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 15px;
+      }
+      
+      .search-filter-container {
+        width: 100%;
+      }
+      
+      .search-box {
+        min-width: 100%;
+      }
+      
+      .brand-filter {
+        min-width: 100%;
+      }
+      
+      .date-filter {
+        flex-direction: column;
+        width: 100%;
+      }
+      
+      .table-responsive {
+        font-size: 0.9rem;
+      }
+      
+      .stock-cards {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    /* Custom scrollbar */
+    ::-webkit-scrollbar {
+      width: 8px;
+    }
+
+    ::-webkit-scrollbar-track {
+      background: var(--jade-dark);
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background: var(--gold-color);
+      border-radius: 4px;
+    }
+
+    ::-webkit-scrollbar-thumb:hover {
+      background: var(--dark-gold);
+    }
+  </style>
+</head>
+<body>
+  <!-- Navigation -->
+  <nav class="navbar navbar-expand-lg shadow-lg">
+    <div class="container">
+      <a class="navbar-brand d-flex align-items-center" href="#">
+        <img src="https://preview.redd.it/petition-to-make-this-the-new-pic-of-the-sub-v0-x8o3qf29ah5f1.png?width=640&crop=smart&auto=webp&s=d04da2f01be93af3cba092e71c636a1c3bf61749" 
+             alt="Logo" 
+             style="height:40px; margin-right:10px; border-radius:50%; background-color:#000; padding:2px;">
+        <span class="brand-text">OTOTHESIU - Admin</span>
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="dashboard.html"><i class="fas fa-tachometer-alt me-1"></i>Dashboard</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="products.html"><i class="fas fa-box me-1"></i>Sản phẩm</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="categories.html"><i class="fas fa-tags me-1"></i>Danh mục</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" href="stock.html"><i class="fas fa-warehouse me-1"></i>Tồn kho</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="prices.html"><i class="fas fa-tag me-1"></i>Giá cả</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="orders.html"><i class="fas fa-shopping-cart me-1"></i>Đơn hàng</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="import-products.html"><i class="fas fa-file-import me-1"></i>Nhập hàng</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="customers.html"><i class="fas fa-users me-1"></i>Khách hàng</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="../index.html"><i class="fas fa-sign-out-alt me-1"></i>Đăng xuất</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Main Content -->
+  <div class="main-content">
+    <!-- Page Header -->
+    <div class="page-header fade-in-up">
+      <h2><i class="fas fa-warehouse me-2"></i>Quản lý Tồn kho</h2>
+      <div class="search-filter-container">
+        <div class="search-box">
+          <i class="fas fa-search"></i>
+          <input type="text" id="searchInput" placeholder="Tìm kiếm sản phẩm...">
+        </div>
+        <div class="brand-filter">
+          <select id="brandFilter" onchange="filterByBrand(this.value)">
+            <option value="">Tất cả hãng xe</option>
+          </select>
+        </div>
+        <div class="date-filter">
+          <input type="date" id="startDate" class="date-input">
+          <span>đến</span>
+          <input type="date" id="endDate" class="date-input">
+          <button class="action-btn secondary small" onclick="filterByDate()">
+            <i class="fas fa-filter me-1"></i>Lọc
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Stock Summary Cards -->
+    <div class="stock-cards fade-in-up">
+      <div class="stock-card">
+        <div class="stock-card-header">
+          <h3 class="stock-card-title">Tổng tồn kho</h3>
+          <i class="fas fa-boxes stock-card-icon"></i>
+        </div>
+        <div class="stock-card-value" id="totalStock">0</div>
+        <div class="stock-card-change" id="stockChange">+0% so với tháng trước</div>
+      </div>
+      <div class="stock-card">
+        <div class="stock-card-header">
+          <h3 class="stock-card-title">Sản phẩm có sẵn</h3>
+          <i class="fas fa-check-circle stock-card-icon"></i>
+        </div>
+        <div class="stock-card-value" id="availableProducts">0</div>
+        <div class="stock-card-change">Tổng số sản phẩm</div>
+      </div>
+      <div class="stock-card warning">
+        <div class="stock-card-header">
+          <h3 class="stock-card-title">Sắp hết hàng</h3>
+          <i class="fas fa-exclamation-triangle stock-card-icon"></i>
+        </div>
+        <div class="stock-card-value" id="lowStockProducts">0</div>
+        <div class="stock-card-change negative">Cần nhập thêm</div>
+      </div>
+      <div class="stock-card danger">
+        <div class="stock-card-header">
+          <h3 class="stock-card-title">Hết hàng</h3>
+          <i class="fas fa-times-circle stock-card-icon"></i>
+        </div>
+        <div class="stock-card-value" id="outOfStockProducts">0</div>
+        <div class="stock-card-change negative">Cần bổ sung gấp</div>
+      </div>
+    </div>
+
+    <!-- Tabs -->
+    <div class="stock-tabs fade-in-up">
+      <ul class="nav nav-tabs" id="stockTabs" role="tablist">
+        <li class="nav-item" role="presentation">
+          <button class="nav-link active" id="current-tab" data-bs-toggle="tab" data-bs-target="#current" type="button" role="tab">
+            <i class="fas fa-box me-2"></i>Tồn kho hiện tại
+          </button>
+        </li>
+        <li class="nav-item" role="presentation">
+          <button class="nav-link" id="movement-tab" data-bs-toggle="tab" data-bs-target="#movement" type="button" role="tab">
+            <i class="fas fa-exchange-alt me-2"></i>Nhập - Xuất - Tồn
+          </button>
+        </li>
+        <li class="nav-item" role="presentation">
+          <button class="nav-link" id="alerts-tab" data-bs-toggle="tab" data-bs-target="#alerts" type="button" role="tab">
+            <i class="fas fa-bell me-2"></i>Cảnh báo
+          </button>
+        </li>
+      </ul>
+      <div class="tab-content" id="stockTabsContent">
+        <!-- Current Stock Tab -->
+        <div class="tab-pane fade show active" id="current" role="tabpanel">
+          <div class="stock-table">
+            <div class="table-responsive">
+              <table class="table table-hover">
+                <thead>
+                  <tr>
+                    <th>Tên sản phẩm</th>
+                    <th>Hãng</th>
+                    <th>Tồn kho</th>
+                    <th>Trạng thái</th>
+                    <th>Mức tồn</th>
+                    <th>Cập nhật</th>
+                    <th>Thao tác</th>
+                  </tr>
+                </thead>
+                <tbody id="currentStockContainer">
+                  <!-- Current stock data will be loaded here -->
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+        <!-- Movement Tab -->
+        <div class="tab-pane fade" id="movement" role="tabpanel">
+          <div class="stock-table">
+            <div class="table-responsive">
+              <table class="table table-hover">
+                <thead>
+                  <tr>
+                    <th>Thời gian</th>
+                    <th>Sản phẩm</th>
+                    <th>Hãng</th>
+                    <th>Nhập</th>
+                    <th>Xuất</th>
+                    <th>Tồn</th>
+                    <th>Loại</th>
+                    <th>Mã phiếu</th>
+                  </tr>
+                </thead>
+                <tbody id="stockMovementContainer">
+                  <!-- Stock movement data will be loaded here -->
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+        <!-- Alerts Tab -->
+        <div class="tab-pane fade" id="alerts" role="tabpanel">
+          <div class="stock-table">
+            <div class="table-responsive">
+              <table class="table table-hover">
+                <thead>
+                  <tr>
+                    <th>Sản phẩm</th>
+                    <th>Hãng</th>
+                    <th>Tồn kho</th>
+                    <th>Mức tối thiểu</th>
+                    <th>Trạng thái</th>
+                    <th>Đề xuất</th>
+                    <th>Thao tác</th>
+                  </tr>
+                </thead>
+                <tbody id="alertsContainer">
+                  <!-- Alerts data will be loaded here -->
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Stock Detail Modal -->
+  <div class="modal fade" id="stockDetailModal" tabindex="-1" aria-labelledby="stockDetailModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="stockDetailModalLabel">Chi tiết Tồn kho</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <div class="row mb-4">
+            <div class="col-md-6">
+              <strong>Tên sản phẩm:</strong> <span id="detailProductName"></span>
+            </div>
+            <div class="col-md-6">
+              <strong>Hãng:</strong> <span id="detailBrand"></span>
+            </div>
+          </div>
+          <div class="row mb-4">
+            <div class="col-md-4">
+              <div class="form-group text-center">
+                <label class="form-label">Tồn kho hiện tại</label>
+                <div class="stock-card-value" id="detailCurrentStock">0</div>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="form-group text-center">
+                <label class="form-label">Mức tối thiểu</label>
+                <div class="form-control" style="background: var(--jade-dark); text-align: center;" id="detailMinStock">0</div>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="form-group text-center">
+                <label class="form-label">Trạng thái</label>
+                <div id="detailStockStatus"></div>
+              </div>
+            </div>
+          </div>
+
+          <h5 class="text-gold mb-3">Lịch sử nhập xuất 30 ngày gần nhất</h5>
+          <div class="table-responsive">
+            <table class="table table-hover">
+              <thead>
+                <tr>
+                  <th>Ngày</th>
+                  <th>Loại</th>
+                  <th>Số lượng</th>
+                  <th>Mã phiếu</th>
+                  <th>Tồn sau</th>
+                </tr>
+              </thead>
+              <tbody id="detailMovementHistory">
+                <!-- Movement history will be loaded here -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="action-btn" data-bs-dismiss="modal">Đóng</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  
+  <script>
+    // Dữ liệu mẫu sản phẩm với tồn kho
+    let products = [
+      {
+        id: 1,
+        name: "BMW M8 Competition",
+        brand: "BMW",
+        currentStock: 5,
+        minStock: 3,
+        lastUpdated: "2024-01-20"
+      },
+      {
+        id: 2,
+        name: "BMW M5 CS",
+        brand: "BMW",
+        currentStock: 2,
+        minStock: 2,
+        lastUpdated: "2024-01-19"
+      },
+      {
+        id: 3,
+        name: "BMW M4 Competition",
+        brand: "BMW",
+        currentStock: 8,
+        minStock: 3,
+        lastUpdated: "2024-01-18"
+      },
+      {
+        id: 4,
+        name: "Bugatti Chiron Super Sport",
+        brand: "Bugatti",
+        currentStock: 1,
+        minStock: 1,
+        lastUpdated: "2024-01-15"
+      },
+      {
+        id: 5,
+        name: "Ferrari SF90 Stradale",
+        brand: "Ferrari",
+        currentStock: 4,
+        minStock: 2,
+        lastUpdated: "2024-01-17"
+      },
+      {
+        id: 6,
+        name: "Lamborghini Aventador SVJ",
+        brand: "Lamborghini",
+        currentStock: 0,
+        minStock: 1,
+        lastUpdated: "2024-01-16"
+      },
+      {
+        id: 7,
+        name: "Porsche 911 Turbo S",
+        brand: "Porsche",
+        currentStock: 6,
+        minStock: 3,
+        lastUpdated: "2024-01-14"
+      },
+      {
+        id: 8,
+        name: "McLaren 720S",
+        brand: "McLaren",
+        currentStock: 3,
+        minStock: 2,
+        lastUpdated: "2024-01-13"
+      }
+    ];
+
+    // Dữ liệu lịch sử nhập xuất
+    let stockMovements = [
+      { id: 1, productId: 1, date: "2024-01-20", type: "import", quantity: 2, reference: "PN-001", balance: 5 },
+      { id: 2, productId: 1, date: "2024-01-18", type: "export", quantity: 1, reference: "DH-045", balance: 3 },
+      { id: 3, productId: 2, date: "2024-01-19", type: "import", quantity: 3, reference: "PN-002", balance: 2 },
+      { id: 4, productId: 2, date: "2024-01-17", type: "export", quantity: 2, reference: "DH-044", balance: -1 },
+      { id: 5, productId: 3, date: "2024-01-18", type: "import", quantity: 5, reference: "PN-003", balance: 8 },
+      { id: 6, productId: 4, date: "2024-01-15", type: "import", quantity: 1, reference: "PN-004", balance: 1 },
+      { id: 7, productId: 5, date: "2024-01-17", type: "import", quantity: 2, reference: "PN-005", balance: 4 },
+      { id: 8, productId: 6, date: "2024-01-16", type: "export", quantity: 1, reference: "DH-043", balance: 0 },
+      { id: 9, productId: 7, date: "2024-01-14", type: "import", quantity: 3, reference: "PN-006", balance: 6 },
+      { id: 10, productId: 8, date: "2024-01-13", type: "import", quantity: 2, reference: "PN-007", balance: 3 }
+    ];
+
+    // Tải trang
+    document.addEventListener('DOMContentLoaded', function() {
+      // Giả lập kiểm tra đăng nhập admin
+      const adminUser = JSON.parse(localStorage.getItem('loggedInAdmin'));
+      if (!adminUser || adminUser.role !== 'admin') {
+        alert('Bạn cần đăng nhập admin để truy cập!');
+        window.location.href = 'admin-login.html';
+        return;
+      }
+
+      // Thiết lập ngày mặc định
+      const today = new Date();
+      const lastMonth = new Date(today.getFullYear(), today.getMonth() - 1, today.getDate());
+      
+      document.getElementById('startDate').valueAsDate = lastMonth;
+      document.getElementById('endDate').valueAsDate = today;
+
+      // Tải dữ liệu
+      loadCurrentStock();
+      loadStockMovement();
+      loadAlerts();
+      populateBrandFilter();
+      updateStatistics();
+      
+      // Thiết lập sự kiện tìm kiếm
+      setupSearch();
+    });
+
+    // Tải tồn kho hiện tại
+    function loadCurrentStock() {
+      const container = document.getElementById('currentStockContainer');
+      container.innerHTML = '';
+      
+      products.forEach(product => {
+        const stockLevel = getStockLevel(product.currentStock, product.minStock);
+        const progressPercent = Math.min((product.currentStock / (product.minStock * 2)) * 100, 100);
+        
+        const row = document.createElement('tr');
+        row.innerHTML = `
+          <td><strong>${product.name}</strong></td>
+          <td><span class="badge bg-warning text-dark">${product.brand}</span></td>
+          <td>${product.currentStock}</td>
+          <td>
+            <span class="stock-status ${getStockStatusClass(stockLevel)}">
+              ${getStockStatusText(stockLevel)}
+            </span>
+          </td>
+          <td>
+            <div class="stock-progress">
+              <div class="stock-progress-bar ${getProgressBarClass(stockLevel)}" 
+                   style="width: ${progressPercent}%"></div>
+            </div>
+            <small class="text-muted">${product.currentStock}/${product.minStock * 2}</small>
+          </td>
+          <td>${formatDate(product.lastUpdated)}</td>
+          <td>
+            <button class="action-btn small" onclick="viewStockDetail(${product.id})">
+              <i class="fas fa-eye me-1"></i>Chi tiết
+            </button>
+          </td>
+        `;
+        container.appendChild(row);
+      });
+    }
+
+    // Tải lịch sử nhập xuất
+    function loadStockMovement() {
+      const container = document.getElementById('stockMovementContainer');
+      container.innerHTML = '';
+      
+      stockMovements.forEach(movement => {
+        const product = products.find(p => p.id === movement.productId);
+        if (product) {
+          const row = document.createElement('tr');
+          row.innerHTML = `
+            <td>${formatDate(movement.date)}</td>
+            <td><strong>${product.name}</strong></td>
+            <td><span class="badge bg-warning text-dark">${product.brand}</span></td>
+            <td class="text-success">${movement.type === 'import' ? movement.quantity : '-'}</td>
+            <td class="text-danger">${movement.type === 'export' ? movement.quantity : '-'}</td>
+            <td>${movement.balance}</td>
+            <td>
+              <span class="badge ${movement.type === 'import' ? 'bg-success' : 'bg-danger'}">
+                ${movement.type === 'import' ? 'Nhập' : 'Xuất'}
+              </span>
+            </td>
+            <td><small class="text-muted">${movement.reference}</small></td>
+          `;
+          container.appendChild(row);
+        }
+      });
+    }
+
+    // Tải cảnh báo
+    function loadAlerts() {
+      const container = document.getElementById('alertsContainer');
+      container.innerHTML = '';
+      
+      const lowStockProducts = products.filter(product => 
+        product.currentStock <= product.minStock && product.currentStock > 0
+      );
+      
+      const outOfStockProducts = products.filter(product => 
+        product.currentStock === 0
+      );
+      
+      [...lowStockProducts, ...outOfStockProducts].forEach(product => {
+        const stockLevel = getStockLevel(product.currentStock, product.minStock);
+        const suggestion = getStockSuggestion(stockLevel, product.currentStock, product.minStock);
+        
+        const row = document.createElement('tr');
+        row.innerHTML = `
+          <td><strong>${product.name}</strong></td>
+          <td><span class="badge bg-warning text-dark">${product.brand}</span></td>
+          <td class="${product.currentStock === 0 ? 'text-danger' : 'text-warning'}">
+            <strong>${product.currentStock}</strong>
+          </td>
+          <td>${product.minStock}</td>
+          <td>
+            <span class="stock-status ${getStockStatusClass(stockLevel)}">
+              ${getStockStatusText(stockLevel)}
+            </span>
+          </td>
+          <td>${suggestion}</td>
+          <td>
+            <button class="action-btn small" onclick="createImportOrder(${product.id})">
+              <i class="fas fa-file-import me-1"></i>Nhập hàng
+            </button>
+          </td>
+        `;
+        container.appendChild(row);
+      });
+    }
+
+    // Điền dữ liệu vào bộ lọc hãng
+    function populateBrandFilter() {
+      const brandFilter = document.getElementById('brandFilter');
+      const brands = [...new Set(products.map(p => p.brand))];
+      
+      brands.forEach(brand => {
+        const option = document.createElement('option');
+        option.value = brand;
+        option.textContent = brand;
+        brandFilter.appendChild(option);
+      });
+    }
+
+    // Thiết lập tìm kiếm
+    function setupSearch() {
+      const searchInput = document.getElementById('searchInput');
+      searchInput.addEventListener('input', function() {
+        const searchTerm = this.value.toLowerCase();
+        const filteredProducts = products.filter(product => 
+          product.name.toLowerCase().includes(searchTerm) ||
+          product.brand.toLowerCase().includes(searchTerm)
+        );
+        
+        displayFilteredProducts(filteredProducts);
+      });
+    }
+
+    // Lọc theo hãng
+    function filterByBrand(brand) {
+      if (!brand) {
+        loadCurrentStock();
+      } else {
+        const filteredProducts = products.filter(product => product.brand === brand);
+        displayFilteredProducts(filteredProducts);
+      }
+    }
+
+    // Lọc theo ngày
+    function filterByDate() {
+      const startDate = document.getElementById('startDate').value;
+      const endDate = document.getElementById('endDate').value;
+      
+      if (startDate && endDate) {
+        const filteredMovements = stockMovements.filter(movement => 
+          movement.date >= startDate && movement.date <= endDate
+        );
+        displayFilteredMovements(filteredMovements);
+      }
+    }
+
+    // Hiển thị sản phẩm đã lọc
+    function displayFilteredProducts(filteredProducts) {
+      const container = document.getElementById('currentStockContainer');
+      container.innerHTML = '';
+      
+      filteredProducts.forEach(product => {
+        const stockLevel = getStockLevel(product.currentStock, product.minStock);
+        const progressPercent = Math.min((product.currentStock / (product.minStock * 2)) * 100, 100);
+        
+        const row = document.createElement('tr');
+        row.innerHTML = `
+          <td><strong>${product.name}</strong></td>
+          <td><span class="badge bg-warning text-dark">${product.brand}</span></td>
+          <td>${product.currentStock}</td>
+          <td>
+            <span class="stock-status ${getStockStatusClass(stockLevel)}">
+              ${getStockStatusText(stockLevel)}
+            </span>
+          </td>
+          <td>
+            <div class="stock-progress">
+              <div class="stock-progress-bar ${getProgressBarClass(stockLevel)}" 
+                   style="width: ${progressPercent}%"></div>
+            </div>
+            <small class="text-muted">${product.currentStock}/${product.minStock * 2}</small>
+          </td>
+          <td>${formatDate(product.lastUpdated)}</td>
+          <td>
+            <button class="action-btn small" onclick="viewStockDetail(${product.id})">
+              <i class="fas fa-eye me-1"></i>Chi tiết
+            </button>
+          </td>
+        `;
+        container.appendChild(row);
+      });
+    }
+
+    // Hiển thị lịch sử đã lọc
+    function displayFilteredMovements(filteredMovements) {
+      const container = document.getElementById('stockMovementContainer');
+      container.innerHTML = '';
+      
+      filteredMovements.forEach(movement => {
+        const product = products.find(p => p.id === movement.productId);
+        if (product) {
+          const row = document.createElement('tr');
+          row.innerHTML = `
+            <td>${formatDate(movement.date)}</td>
+            <td><strong>${product.name}</strong></td>
+            <td><span class="badge bg-warning text-dark">${product.brand}</span></td>
+            <td class="text-success">${movement.type === 'import' ? movement.quantity : '-'}</td>
+            <td class="text-danger">${movement.type === 'export' ? movement.quantity : '-'}</td>
+            <td>${movement.balance}</td>
+            <td>
+              <span class="badge ${movement.type === 'import' ? 'bg-success' : 'bg-danger'}">
+                ${movement.type === 'import' ? 'Nhập' : 'Xuất'}
+              </span>
+            </td>
+            <td><small class="text-muted">${movement.reference}</small></td>
+          `;
+          container.appendChild(row);
+        }
+      });
+    }
+
+    // Xem chi tiết tồn kho
+    function viewStockDetail(productId) {
+      const product = products.find(p => p.id === productId);
+      if (product) {
+        document.getElementById('detailProductName').textContent = product.name;
+        document.getElementById('detailBrand').textContent = product.brand;
+        document.getElementById('detailCurrentStock').textContent = product.currentStock;
+        document.getElementById('detailMinStock').textContent = product.minStock;
+        
+        const stockLevel = getStockLevel(product.currentStock, product.minStock);
+        document.getElementById('detailStockStatus').innerHTML = `
+          <span class="stock-status ${getStockStatusClass(stockLevel)}">
+            ${getStockStatusText(stockLevel)}
+          </span>
+        `;
+
+        // Hiển thị lịch sử nhập xuất
+        const movementHistory = stockMovements
+          .filter(m => m.productId === productId)
+          .sort((a, b) => new Date(b.date) - new Date(a.date))
+          .slice(0, 10);
+
+        const historyContainer = document.getElementById('detailMovementHistory');
+        historyContainer.innerHTML = '';
+        
+        movementHistory.forEach(movement => {
+          const row = document.createElement('tr');
+          row.innerHTML = `
+            <td>${formatDate(movement.date)}</td>
+            <td>
+              <span class="badge ${movement.type === 'import' ? 'bg-success' : 'bg-danger'}">
+                ${movement.type === 'import' ? 'Nhập' : 'Xuất'}
+              </span>
+            </td>
+            <td class="${movement.type === 'import' ? 'text-success' : 'text-danger'}">
+              ${movement.quantity}
+            </td>
+            <td><small class="text-muted">${movement.reference}</small></td>
+            <td>${movement.balance}</td>
+          `;
+          historyContainer.appendChild(row);
+        });
+
+        const modal = new bootstrap.Modal(document.getElementById('stockDetailModal'));
+        modal.show();
+      }
+    }
+
+    // Tạo phiếu nhập hàng
+    function createImportOrder(productId) {
+      const product = products.find(p => p.id === productId);
+      if (product) {
+        const suggestedQuantity = product.minStock * 2 - product.currentStock;
+        if (confirm(`Tạo phiếu nhập hàng cho ${product.name}?\nSố lượng đề xuất: ${Math.max(suggestedQuantity, 1)}`)) {
+          alert(`Đã tạo phiếu nhập hàng cho ${product.name}`);
+          // Trong thực tế, sẽ chuyển hướng đến trang nhập hàng
+        }
+      }
+    }
+
+    // Cập nhật thống kê
+    function updateStatistics() {
+      const totalStock = products.reduce((sum, p) => sum + p.currentStock, 0);
+      const availableProducts = products.filter(p => p.currentStock > 0).length;
+      const lowStockProducts = products.filter(p => p.currentStock <= p.minStock && p.currentStock > 0).length;
+      const outOfStockProducts = products.filter(p => p.currentStock === 0).length;
+      
+      document.getElementById('totalStock').textContent = totalStock;
+      document.getElementById('availableProducts').textContent = availableProducts;
+      document.getElementById('lowStockProducts').textContent = lowStockProducts;
+      document.getElementById('outOfStockProducts').textContent = outOfStockProducts;
+    }
+
+    // Helper functions
+    function getStockLevel(currentStock, minStock) {
+      if (currentStock === 0) return 'out';
+      if (currentStock <= minStock) return 'low';
+      if (currentStock <= minStock * 1.5) return 'medium';
+      return 'high';
+    }
+
+    function getStockStatusClass(level) {
+      switch(level) {
+        case 'high': return 'stock-high';
+        case 'medium': return 'stock-medium';
+        case 'low': return 'stock-low';
+        case 'out': return 'stock-out';
+        default: return 'stock-medium';
+      }
+    }
+
+    function getStockStatusText(level) {
+      switch(level) {
+        case 'high': return 'Cao';
+        case 'medium': return 'Trung bình';
+        case 'low': return 'Thấp';
+        case 'out': return 'Hết hàng';
+        default: return 'Trung bình';
+      }
+    }
+
+    function getProgressBarClass(level) {
+      switch(level) {
+        case 'high': return 'progress-high';
+        case 'medium': return 'progress-medium';
+        case 'low': return 'progress-low';
+        case 'out': return 'progress-low';
+        default: return 'progress-medium';
+      }
+    }
+
+    function getStockSuggestion(level, currentStock, minStock) {
+      switch(level) {
+        case 'high':
+          return 'Tồn kho ổn định';
+        case 'medium':
+          return 'Theo dõi thường xuyên';
+        case 'low':
+          return `Cần nhập thêm ${minStock * 2 - currentStock} sản phẩm`;
+        case 'out':
+          return `Cần nhập gấp ${minStock * 2} sản phẩm`;
+        default:
+          return 'Theo dõi thường xuyên';
+      }
+    }
+
+    function formatDate(dateString) {
+      const date = new Date(dateString);
+      return date.toLocaleDateString('vi-VN');
+    }
+  </script>
+</body>
+</html>
