@@ -1,2 +1,0 @@
-tk: admin@otothesiu.com
-mk: admin123
