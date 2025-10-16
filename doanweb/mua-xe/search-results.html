@@ -1,0 +1,576 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Kết quả tìm kiếm - OTOTHESIU</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    :root {
+      --gold-color: #FFD700;
+      --dark-gold: #B8860B;
+      --jade-black: #0D1B2A;
+      --jade-dark: #041E42;
+      --accent-gold: #F4E27C;
+      --text-light: #E8E8E8;
+      --mercedes-silver: #C0C0C0;
+      --mercedes-dark-silver: #808080;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: var(--jade-black);
+      color: var(--text-light);
+    }
+
+    .navbar {
+      background: linear-gradient(135deg, var(--gold-color), var(--dark-gold)) !important;
+      box-shadow: 0 4px 20px rgba(255, 215, 0, 0.3);
+    }
+
+    .navbar-brand .brand-text {
+      font-weight: bold;
+      font-size: 1.5rem;
+      background: linear-gradient(45deg, var(--jade-black), var(--jade-dark));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+    }
+
+    .navbar-nav .nav-link {
+      color: var(--jade-black) !important;
+      font-weight: 600;
+      position: relative;
+      transition: all 0.3s ease;
+    }
+
+    .navbar-nav .nav-link:hover {
+      color: var(--jade-dark) !important;
+      transform: translateY(-2px);
+    }
+
+    .navbar-nav .dropdown-menu {
+      background: var(--jade-black);
+      border: 2px solid var(--gold-color);
+      border-radius: 10px;
+      box-shadow: 0 8px 30px rgba(255, 215, 0, 0.2);
+    }
+
+    .navbar-nav .dropdown-item {
+      color: var(--text-light);
+      padding: 10px 20px;
+      transition: all 0.3s ease;
+    }
+
+    .navbar-nav .dropdown-item:hover {
+      background: linear-gradient(135deg, var(--gold-color), var(--dark-gold));
+      color: var(--jade-black);
+    }
+
+    .navbar .d-flex.ms-3 {
+      min-width: 250px;
+    }
+
+    .navbar .d-flex.ms-3 .form-control {
+      width: 200px;
+      height: 40px;
+      background: #ffffff;
+      border: 2px solid var(--jade-black);
+      color: var(--jade-black);
+      transition: all 0.3s ease;
+      font-size: 14px;
+    }
+
+    .navbar .d-flex.ms-3 .form-control:focus {
+      background: #ffffff;
+      border-color: var(--jade-black);
+      color: var(--jade-black);
+      box-shadow: 0 0 0 0.25rem rgba(13, 27, 42, 0.25);
+      width: 220px;
+    }
+
+    .navbar .d-flex.ms-3 .form-control::placeholder {
+      color: rgba(13, 27, 42, 0.5);
+      font-size: 14px;
+    }
+
+    .navbar .d-flex.ms-3 .btn-outline-light {
+      height: 40px;
+      width: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-color: var(--jade-black);
+      color: var(--jade-black);
+      background: transparent;
+      transition: all 0.3s ease;
+    }
+
+    .navbar .d-flex.ms-3 .btn-outline-light:hover {
+      background: var(--jade-black);
+      border-color: var(--jade-black);
+      color: var(--gold-color);
+    }
+
+    @media (max-width: 768px) {
+      .navbar .d-flex.ms-3 {
+        min-width: 200px;
+        margin-top: 10px;
+      }
+      
+      .navbar .d-flex.ms-3 .form-control {
+        width: 150px;
+        height: 35px;
+      }
+      
+      .navbar .d-flex.ms-3 .btn-outline-light {
+        height: 35px;
+        width: 35px;
+      }
+    }
+
+    .btn-outline-light {
+      border-color: var(--jade-black);
+      color: var(--jade-black);
+    }
+
+    .btn-outline-light:hover {
+      background: var(--jade-black);
+      border-color: var(--jade-black);
+    }
+
+    .results-section {
+      padding: 80px 0;
+      background: var(--jade-dark);
+    }
+
+    .results-section h2 {
+      text-align: center;
+      margin-bottom: 50px;
+      color: var(--mercedes-silver);
+      font-weight: bold;
+      font-size: 2.5rem;
+      text-shadow: 2px 2px 8px rgba(0,0,0,0.5);
+    }
+
+    .car-card {
+      background: var(--jade-black);
+      border: 2px solid var(--mercedes-silver);
+      border-radius: 15px;
+      overflow: hidden;
+      transition: all 0.3s ease;
+      margin-bottom: 30px;
+      height: 100%;
+    }
+
+    .car-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 15px 40px rgba(192, 192, 192, 0.3);
+      border-color: var(--mercedes-dark-silver);
+    }
+
+    .car-card img {
+      width: 100%;
+      height: 250px;
+      object-fit: cover;
+      transition: transform 0.5s ease;
+    }
+
+    .car-card:hover img {
+      transform: scale(1.05);
+    }
+
+    .car-card-body {
+      padding: 20px;
+    }
+
+    .car-card-title {
+      color: var(--mercedes-silver);
+      font-size: 1.5rem;
+      font-weight: bold;
+      margin-bottom: 10px;
+    }
+
+    .car-card-price {
+      color: var(--gold-color);
+      font-size: 1.3rem;
+      font-weight: 600;
+      margin-bottom: 15px;
+    }
+
+    .car-card-features {
+      list-style: none;
+      padding: 0;
+      margin-bottom: 20px;
+    }
+
+    .car-card-features li {
+      margin-bottom: 5px;
+      color: var(--text-light);
+      opacity: 0.9;
+    }
+
+    .car-card-features li i {
+      color: var(--mercedes-silver);
+      margin-right: 8px;
+    }
+
+    .car-card-actions {
+      display: flex;
+      gap: 10px;
+    }
+
+    .btn-mercedes {
+      background: linear-gradient(135deg, var(--mercedes-silver), var(--mercedes-dark-silver));
+      border: none;
+      color: var(--jade-black);
+      padding: 12px 30px;
+      font-size: 1.1rem;
+      font-weight: 600;
+      border-radius: 50px;
+      transition: all 0.3s ease;
+    }
+
+    .btn-mercedes:hover {
+      background: linear-gradient(135deg, var(--mercedes-dark-silver), var(--mercedes-silver));
+      transform: translateY(-2px);
+      box-shadow: 0 8px 25px rgba(192, 192, 192, 0.4);
+      color: var(--jade-black);
+    }
+
+    .btn-outline-mercedes {
+      border: 2px solid var(--mercedes-silver);
+      color: var(--mercedes-silver);
+      background: transparent;
+      padding: 12px 30px;
+      font-size: 1.1rem;
+      font-weight: 600;
+      border-radius: 50px;
+      transition: all 0.3s ease;
+    }
+
+    .btn-outline-mercedes:hover {
+      background: var(--mercedes-silver);
+      color: var(--jade-black);
+      transform: translateY(-2px);
+    }
+
+    .pagination-container {
+      display: flex;
+      justify-content: center;
+      margin-top: 30px;
+    }
+
+    .pagination-btn {
+      background: var(--jade-dark);
+      color: var(--text-light);
+      border: 2px solid var(--mercedes-silver);
+      padding: 8px 16px;
+      margin: 0 5px;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .pagination-btn:hover,
+    .pagination-btn.active {
+      background: var(--mercedes-silver);
+      color: var(--jade-black);
+    }
+
+    @media (max-width: 768px) {
+      .results-section h2 {
+        font-size: 2rem;
+      }
+
+      .car-card-actions {
+        flex-direction: column;
+      }
+    }
+
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .fade-in-up {
+      animation: fadeInUp 0.6s ease;
+    }
+
+    .car-image-placeholder {
+      width: 100%;
+      height: 250px;
+      background: var(--jade-dark);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--mercedes-silver);
+      font-size: 3rem;
+    }
+  </style>
+</head>
+<body>
+  <nav class="navbar navbar-expand-lg shadow-lg">
+    <div class="container">
+      <a class="navbar-brand d-flex align-items-center" href="../index.html">
+        <img src="https://preview.redd.it/petition-to-make-this-the-new-pic-of-the-sub-v0-x8o3qf29ah5f1.png?width=640&crop=smart&auto=webp&s=d04da2f01be93af3cba092e71c636a1c3bf61749" 
+             alt="Logo" 
+             style="height:40px; margin-right:10px; border-radius:50%; background-color:#000; padding:2px;"
+             onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAiIGhlaWdodD0iNDAiIHZpZXdCb3g9IjAgMCA0MCA0MCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHJlY3Qgd2lkdGg9IjQwIiBoZWlnaHQ9IjQwIiByeD0iMjAiIGZpbGw9IiNDMEMwQzAiLz4KPHN2ZyB4PSI4IiB5PSI4IiB3aWR0aD0iMjQiIGhlaWdodD0iMjQiIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHBhdGggZD0iTTEyIDJMMTUuMDkgOC4yNkwxMiA0LjgyTDguOTEgOC4yNkwxMiAyWiIgZmlsbD0iIzBEMUIyQSIvPgo8cGF0aCBkPSJNMTIgMjJMMTUuMDkgMTUuNzRMMTIgMTkuMThMOC45MSAxNS43NEwxMiAyMloiIGZpbGw9IiMwRDFCMkEiLz4KPHBhdGggZD0iTTIgMTJMOC4yNiAxNS4wOUw0LjgyIDEyLDguMjYgOC45MUwyIDEyWiIgZmlsbD0iIzBEMUIyQSIvPgo8cGF0aCBkPSJNMjIgMTJMMTUuNzQgOC45MUwxOS4xOCAxMkwxNS43NCAxNS4wOUwyMiAxMloiIGZpbGw9IiMwRDFCMkEiLz4KPC9zdmc+Cjwvc3ZnPgo='">
+        <span class="brand-text">OTOTHESIU</span>
+      </a>
+      
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              <i class="fas fa-shopping-cart me-1"></i>Mua xe
+            </a>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item" href="lamborghini.html"><i class="fas fa-car me-2"></i>Lamborghini</a></li>
+              <li><a class="dropdown-item" href="ferrari.html"><i class="fas fa-car me-2"></i>Ferrari</a></li>
+              <li><a class="dropdown-item" href="bugatti.html"><i class="fas fa-car me-2"></i>Bugatti</a></li>
+              <li><a class="dropdown-item" href="koenigsegg.html"><i class="fas fa-car me-2"></i>Koenigsegg</a></li>
+              <li><a class="dropdown-item" href="mclaren.html"><i class="fas fa-car me-2"></i>McLaren</a></li>
+              <li><a class="dropdown-item" href="pagani.html"><i class="fas fa-car me-2"></i>Pagani</a></li>
+              <li><a class="dropdown-item" href="porsche.html"><i class="fas fa-car me-2"></i>Porsche (thể thao)</a></li>
+              <li><a class="dropdown-item" href="mercedes.html"><i class="fas fa-car me-2"></i>Mercedes-Benz (thể thao)</a></li>
+              <li><a class="dropdown-item" href="bmw.html"><i class="fas fa-car me-2"></i>BMW (thể thao)</a></li>
+            </ul>
+          </li>
+        </ul>
+        
+        <ul class="navbar-nav mb-2 mb-lg-0">
+          <li id="userInfo" class="nav-item dropdown" style="display: none;">
+            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              <div class="user-info">
+                <div class="user-avatar" id="userAvatar">U</div>
+                <span id="userName">Người dùng</span>
+              </div>
+            </a>
+            <ul class="dropdown-menu user-dropdown">
+              <li><a class="dropdown-item" href="../customer-info.html"><i class="fas fa-user me-2"></i>Thông tin cá nhân</a></li>
+              <li><a class="dropdown-item" href="#" id="logoutBtn"><i class="fas fa-sign-out-alt me-2"></i>Đăng xuất</a></li>
+            </ul>
+          </li>
+          
+          <li id="loginLink" class="nav-item">
+            <a class="nav-link" href="../login.html">
+              <i class="fas fa-user me-1"></i>Đăng nhập
+            </a>
+          </li>
+          
+          <li class="nav-item">
+            <a class="nav-link" href="../cart.html">
+              <i class="fas fa-shopping-bag me-1"></i>Giỏ hàng
+            </a>
+          </li>
+        </ul>
+        
+        <form class="d-flex ms-3" role="search">
+          <input class="form-control me-2" type="search" placeholder="Tìm kiếm siêu xe..." aria-label="Search">
+          <button class="btn btn-outline-light" type="submit">
+            <i class="fas fa-search"></i>
+          </button>
+        </form>
+      </div>
+    </div>
+  </nav>
+
+  <section class="results-section">
+    <div class="container">
+      <h2 class="fade-in-up">Kết quả tìm kiếm</h2>
+      
+      <div class="row" id="resultsContainer"></div>
+      
+      <div class="pagination-container fade-in-up" id="paginationContainer"></div>
+    </div>
+  </section>
+
+  <footer class="py-4">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-6">
+          <h5 class="mb-3">
+            <i class="fas fa-phone-alt me-2"></i>Thông tin liên hệ
+          </h5>
+          <p class="mb-2"><i class="fas fa-envelope me-2"></i>thanhhoa13052006@gmail.com</p>
+          <p class="mb-2"><i class="fas fa-phone me-2"></i>0983 XXX XXX</p>
+        </div>
+        <div class="col-md-6">
+          <h5 class="mb-3">
+            <i class="fas fa-map-marker-alt me-2"></i>Địa chỉ
+          </h5>
+          <p class="mb-2"><i class="fas fa-building me-2"></i>123XYZ quận 1, TP.HCM</p>
+          <p class="mb-2"><i class="fas fa-user-tie me-2"></i>Liên hệ: Trần Văn Thiện</p>
+        </div>
+      </div>
+      <hr class="my-4" style="border-color: var(--gold-color);">
+      <div class="text-center">
+        <p class="mb-0">&copy; 2025 OTOTHESIU. Tất cả quyền được bảo lưu.</p>
+      </div>
+    </div>
+  </footer>
+
+  <div class="contact-float">
+    <a href="tel:0838266864" class="hotline" title="Gọi ngay">
+      <i class="fas fa-phone"></i>
+    </a>
+    <a href="https://web.facebook.com/?_rdc=1&_rdr" class="facebook" title="Liên hệ qua Facebook" target="_blank">
+      <i class="fab fa-facebook-f"></i>
+    </a>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <script>
+    const cars = [
+      {
+        name: "Mercedes-AMG GT Black Series",
+        price: 45000000000,
+        features: [
+          "Tốc độ tối đa: 325 km/h",
+          "Công suất: 730 mã lực",
+          "0-100 km/h: 3.2 giây",
+          "Động cơ V8 Biturbo"
+        ],
+        image: "https://i.ytimg.com/vi/pS9B-z8UFK0/hq720.jpg?sqp=-oaymwEhCK4FEIIDSFryq4qpAxMIARUAAAAAGAElAADIQj0AgKJD&rs=AOn4CLDAlhw7cncv3-t9Wh3Ag3sZfKWVZQ"
+      },
+      {
+        name: "Mercedes-AMG ONE",
+        price: 250000000000,
+        features: [
+          "Tốc độ tối đa: 352 km/h",
+          "Công suất: 1,063 mã lực",
+          "0-100 km/h: 2.9 giây",
+          "Công nghệ F1 hybrid"
+        ],
+        image: "https://vcdn1-vnexpress.vnecdn.net/2022/06/02/2023-Mercedes-AMG-ONE-41-jpeg-5494-1654141031.jpg?w=460&h=0&q=100&dpr=2&fit=crop&s=SY5_wythQ0APR5qxa-zScA"
+      },
+      {
+        name: "Mercedes-AMG SL 63",
+        price: 28000000000,
+        features: [
+          "Tốc độ tối đa: 315 km/h",
+          "Công suất: 585 mã lực",
+          "0-100 km/h: 3.6 giây",
+          "Roadster 4 chỗ"
+        ],
+        image: "https://otohoangkim-storage.sgp1.cdn.digitaloceanspaces.com/mercedesamg-sl-63-phien-ban-motorsport-collectors-0-900x900.webp"
+      },
+      {
+        name: "Mercedes-AMG C 63 S E Performance",
+        price: 18000000000,
+        features: [
+          "Tốc độ tối đa: 280 km/h",
+          "Công suất: 680 mã lực",
+          "0-100 km/h: 3.4 giây",
+          "Sedan hybrid hiệu suất cao"
+        ],
+        image: "https://vcdn1-vnexpress.vnecdn.net/2024/04/11/top-1712811625-8555-1712812356.jpg?w=500&h=300&q=100&dpr=1&fit=crop&s=_faZ1aaaqRiOxBZyPz-TTQ"
+      },
+      {
+        name: "Mercedes-AMG E 63 S 4MATIC+",
+        price: 22000000000,
+        features: [
+          "Tốc độ tối đa: 300 km/h",
+          "Công suất: 612 mã lực",
+          "0-100 km/h: 3.4 giây",
+          "Sedan thể thao đa dụng"
+        ],
+        image: "https://hips.hearstapps.com/hmg-prod/images/2023-mercedes-amg-e63-s-4matic-103-1671563913.jpg?crop=0.554xw:0.467xh;0.274xw,0.396xh&resize=2048:*"
+      },
+      {
+        name: "Mercedes-AMG S 63 E Performance",
+        price: 35000000000,
+        features: [
+          "Tốc độ tối đa: 290 km/h",
+          "Công suất: 802 mã lực",
+          "0-100 km/h: 3.3 giây",
+          "Sedan sang trọng hiệu suất cao"
+        ],
+        image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQGWC3R0s7AWYgqqzUQUCZ86tNGbJFgsVy8Ew&s"
+      }
+    ];
+
+    let currentPage = 1;
+    const carsPerPage = 3;
+
+    function formatPrice(price) {
+      return new Intl.NumberFormat('vi-VN').format(price);
+    }
+
+    function displayResults(page = 1) {
+      const container = document.getElementById('resultsContainer');
+      container.innerHTML = '';
+
+      const startIndex = (page - 1) * carsPerPage;
+      const endIndex = startIndex + carsPerPage;
+      const carsToShow = cars.slice(startIndex, endIndex);
+
+      carsToShow.forEach(car => {
+        const carCard = `
+          <div class="col-lg-4 col-md-6">
+            <div class="car-card fade-in-up">
+              <img src="${car.image}" alt="${car.name}" onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iODAwIiBoZWlnaHQ9IjUwMCIgdmlld0JveD0iMCAwIDgwMCA1MDAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSI4MDAiIGhlaWdodD0iNTAwIiBmaWxsPSIjMDQxRTQyIi8+Cjx0ZXh0IHg9IjQwMCIgeT0iMzUwIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmaWxsPSIjQzBDMEMwIiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMjQiIGZvbnQtd2VpZ2h0PSJib2xkIj5NZXJjZWRlcy1CZW56PC90ZXh0Pgo8L3N2Zz4K'">
+              <div class="car-card-body">
+                <h3 class="car-card-title">${car.name}</h3>
+                <div class="car-card-price">${formatPrice(car.price)} VNĐ</div>
+                <ul class="car-card-features">
+                  ${car.features.map(feature => `<li><i class="fas fa-check"></i>${feature}</li>`).join('')}
+                </ul>
+                <div class="car-card-actions">
+                  <button class="btn btn-outline-mercedes w-100">
+                    <i class="fas fa-info-circle me-2"></i>Xem chi tiết
+                  </button>
+                  <button class="btn btn-mercedes w-100">
+                    <i class="fas fa-shopping-cart me-2"></i>Thêm vào giỏ
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        `;
+        container.innerHTML += carCard;
+      });
+
+      updatePagination(page);
+    }
+
+    function updatePagination(currentPage) {
+      const paginationContainer = document.getElementById('paginationContainer');
+      paginationContainer.innerHTML = '';
+
+      const totalPages = Math.ceil(cars.length / carsPerPage);
+
+      for (let i = 1; i <= totalPages; i++) {
+        const btn = document.createElement('button');
+        btn.className = `pagination-btn ${i === currentPage ? 'active' : ''}`;
+        btn.textContent = i;
+        btn.addEventListener('click', () => switchPage(i));
+        paginationContainer.appendChild(btn);
+      }
+    }
+
+    function switchPage(page) {
+      currentPage = page;
+      displayResults(page);
+    }
+
+    document.addEventListener('DOMContentLoaded', function() {
+      displayResults(currentPage);
+    });
+  </script>
+</body>
+</html>

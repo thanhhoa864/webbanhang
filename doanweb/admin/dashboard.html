@@ -1,0 +1,1113 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Dashboard - Admin Panel | OTOTHESIU</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+    :root {
+      --gold-color: #FFD700;
+      --dark-gold: #B8860B;
+      --jade-black: #0D1B2A;
+      --jade-dark: #041E42;
+      --accent-gold: #F4E27C;
+      --text-light: #E8E8E8;
+      --card-bg: #1A2A3A;
+      --border-radius: 10px;
+      --box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: var(--jade-black);
+      color: var(--text-light);
+      overflow-x: hidden;
+    }
+
+    /* Navigation */
+    .navbar {
+      background: linear-gradient(135deg, var(--gold-color), var(--dark-gold)) !important;
+      box-shadow: 0 4px 20px rgba(255, 215, 0, 0.3);
+      padding: 10px 0;
+    }
+
+    .navbar-brand .brand-text {
+      font-weight: bold;
+      font-size: 1.5rem;
+      background: linear-gradient(45deg, var(--jade-black), var(--jade-dark));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+    }
+
+    .navbar-nav .nav-link {
+      color: var(--jade-black) !important;
+      font-weight: 600;
+      position: relative;
+      transition: all 0.3s ease;
+      padding: 8px 16px;
+      margin: 0 5px;
+      border-radius: 6px;
+    }
+
+    .navbar-nav .nav-link:hover {
+      background: rgba(255, 215, 0, 0.1);
+      color: var(--jade-dark) !important;
+      transform: translateY(-2px);
+    }
+
+    .navbar-nav .nav-link.active {
+      background: var(--jade-dark);
+      color: var(--gold-color) !important;
+      font-weight: 600;
+    }
+
+    /* Main Content */
+    .main-content {
+      padding: 30px 20px;
+      min-height: 100vh;
+    }
+
+    /* Page Header */
+    .page-header {
+      background: var(--card-bg);
+      border-radius: var(--border-radius);
+      padding: 20px;
+      margin-bottom: 25px;
+      border: 1px solid var(--gold-color);
+      box-shadow: var(--box-shadow);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 15px;
+    }
+
+    .page-header h2 {
+      color: var(--gold-color);
+      margin: 0;
+      font-weight: 600;
+    }
+
+    /* Search and Filter */
+    .search-filter-container {
+      display: flex;
+      gap: 15px;
+      flex-wrap: wrap;
+    }
+
+    .search-box {
+      position: relative;
+      min-width: 250px;
+    }
+
+    .search-box input {
+      background: var(--jade-dark);
+      border: 1px solid var(--gold-color);
+      border-radius: 50px;
+      color: var(--text-light);
+      padding: 10px 20px 10px 45px;
+      width: 100%;
+      transition: all 0.3s ease;
+    }
+
+    .search-box input:focus {
+      box-shadow: 0 0 0 3px rgba(255, 215, 0, 0.3);
+      outline: none;
+    }
+
+    .search-box i {
+      position: absolute;
+      left: 20px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--gold-color);
+    }
+
+    .filter-dropdown {
+      position: relative;
+    }
+
+    .filter-btn {
+      background: var(--jade-dark);
+      border: 1px solid var(--gold-color);
+      border-radius: 50px;
+      color: var(--text-light);
+      padding: 10px 20px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      transition: all 0.3s ease;
+      cursor: pointer;
+    }
+
+    .filter-btn:hover {
+      background: rgba(255, 215, 0, 0.1);
+    }
+
+    /* Action Buttons */
+    .action-btn {
+      background: linear-gradient(135deg, var(--gold-color), var(--dark-gold));
+      border: none;
+      color: var(--jade-black);
+      padding: 12px 20px;
+      font-weight: 600;
+      border-radius: 50px;
+      transition: all 0.3s ease;
+      margin-right: 10px;
+      margin-bottom: 10px;
+      box-shadow: 0 4px 10px rgba(255, 215, 0, 0.3);
+    }
+
+    .action-btn:hover {
+      background: linear-gradient(135deg, var(--dark-gold), var(--gold-color));
+      transform: translateY(-2px);
+      box-shadow: 0 8px 25px rgba(255, 215, 0, 0.4);
+    }
+
+    /* Dashboard Stats */
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+      margin-bottom: 30px;
+    }
+
+    .stat-card {
+      background: var(--card-bg);
+      border-radius: var(--border-radius);
+      padding: 25px;
+      border: 1px solid var(--gold-color);
+      box-shadow: var(--box-shadow);
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .stat-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+      background: linear-gradient(90deg, var(--gold-color), var(--dark-gold));
+    }
+
+    .stat-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 25px rgba(255, 215, 0, 0.2);
+    }
+
+    .stat-icon {
+      font-size: 2.5rem;
+      color: var(--gold-color);
+      margin-bottom: 15px;
+    }
+
+    .stat-value {
+      font-size: 2rem;
+      font-weight: 700;
+      color: var(--accent-gold);
+      margin-bottom: 5px;
+    }
+
+    .stat-label {
+      color: var(--text-light);
+      font-size: 0.9rem;
+    }
+
+    .stat-change {
+      font-size: 0.85rem;
+      margin-top: 5px;
+    }
+
+    .stat-change.positive {
+      color: #28a745;
+    }
+
+    .stat-change.negative {
+      color: #dc3545;
+    }
+
+    /* Quick Actions */
+    .quick-actions {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 20px;
+      margin-bottom: 30px;
+    }
+
+    .quick-action-card {
+      background: var(--card-bg);
+      border-radius: var(--border-radius);
+      padding: 25px;
+      border: 1px solid var(--gold-color);
+      box-shadow: var(--box-shadow);
+      transition: all 0.3s ease;
+      text-align: center;
+      cursor: pointer;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .quick-action-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: linear-gradient(135deg, rgba(255,215,0,0.1), rgba(184,134,11,0.1));
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+
+    .quick-action-card:hover::before {
+      opacity: 1;
+    }
+
+    .quick-action-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 25px rgba(255, 215, 0, 0.3);
+    }
+
+    .quick-action-icon {
+      font-size: 2.5rem;
+      color: var(--gold-color);
+      margin-bottom: 15px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .quick-action-title {
+      font-weight: 600;
+      color: var(--text-light);
+      margin-bottom: 10px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .quick-action-desc {
+      font-size: 0.85rem;
+      color: var(--accent-gold);
+      position: relative;
+      z-index: 1;
+    }
+
+    /* Dashboard Layout */
+    .dashboard-layout {
+      display: grid;
+      grid-template-columns: 2fr 1fr;
+      gap: 25px;
+      margin-bottom: 30px;
+    }
+
+    @media (max-width: 992px) {
+      .dashboard-layout {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    /* Recent Activity */
+    .activity-card {
+      background: var(--card-bg);
+      border-radius: var(--border-radius);
+      padding: 25px;
+      border: 1px solid var(--gold-color);
+      box-shadow: var(--box-shadow);
+      margin-bottom: 30px;
+      height: 100%;
+    }
+
+    .activity-item {
+      padding: 15px 0;
+      border-bottom: 1px solid rgba(255, 215, 0, 0.2);
+      display: flex;
+      align-items: center;
+      transition: all 0.3s ease;
+    }
+
+    .activity-item:hover {
+      background: rgba(255, 215, 0, 0.05);
+      border-radius: 5px;
+      padding-left: 10px;
+      padding-right: 10px;
+    }
+
+    .activity-item:last-child {
+      border-bottom: none;
+    }
+
+    .activity-icon {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-right: 15px;
+      font-size: 1.2rem;
+      flex-shrink: 0;
+    }
+
+    .activity-icon.success {
+      background: rgba(40, 167, 69, 0.2);
+      color: #28a745;
+    }
+
+    .activity-icon.warning {
+      background: rgba(255, 193, 7, 0.2);
+      color: #ffc107;
+    }
+
+    .activity-icon.danger {
+      background: rgba(220, 53, 69, 0.2);
+      color: #dc3545;
+    }
+
+    .activity-icon.info {
+      background: rgba(23, 162, 184, 0.2);
+      color: #17a2b8;
+    }
+
+    .activity-content {
+      flex: 1;
+    }
+
+    .activity-title {
+      font-weight: 600;
+      margin-bottom: 5px;
+      color: var(--text-light);
+    }
+
+    .activity-time {
+      font-size: 0.85rem;
+      color: var(--accent-gold);
+    }
+
+    /* Charts Section */
+    .charts-section {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+      gap: 20px;
+      margin-bottom: 30px;
+    }
+
+    .chart-card {
+      background: var(--card-bg);
+      border-radius: var(--border-radius);
+      padding: 25px;
+      border: 1px solid var(--gold-color);
+      box-shadow: var(--box-shadow);
+    }
+
+    .chart-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 20px;
+    }
+
+    .chart-title {
+      color: var(--gold-color);
+      font-weight: 600;
+      margin: 0;
+    }
+
+    .chart-container {
+      height: 250px;
+      position: relative;
+    }
+
+    /* Performance Metrics */
+    .metrics-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 20px;
+      margin-bottom: 30px;
+    }
+
+    .metric-card {
+      background: var(--card-bg);
+      border-radius: var(--border-radius);
+      padding: 20px;
+      border: 1px solid var(--gold-color);
+      box-shadow: var(--box-shadow);
+      text-align: center;
+      transition: all 0.3s ease;
+    }
+
+    .metric-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 6px 20px rgba(255, 215, 0, 0.2);
+    }
+
+    .metric-value {
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: var(--accent-gold);
+      margin-bottom: 5px;
+    }
+
+    .metric-label {
+      color: var(--text-light);
+      font-size: 0.9rem;
+    }
+
+    /* Loading animation */
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .fade-in-up {
+      animation: fadeInUp 0.6s ease;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .page-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 15px;
+      }
+      
+      .search-filter-container {
+        width: 100%;
+      }
+      
+      .search-box {
+        min-width: 100%;
+      }
+      
+      .stats-grid {
+        grid-template-columns: 1fr;
+      }
+      
+      .quick-actions {
+        grid-template-columns: 1fr;
+      }
+      
+      .charts-section {
+        grid-template-columns: 1fr;
+      }
+      
+      .metrics-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 576px) {
+      .metrics-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    /* Custom scrollbar */
+    ::-webkit-scrollbar {
+      width: 8px;
+    }
+
+    ::-webkit-scrollbar-track {
+      background: var(--jade-dark);
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background: var(--gold-color);
+      border-radius: 4px;
+    }
+
+    ::-webkit-scrollbar-thumb:hover {
+      background: var(--dark-gold);
+    }
+  </style>
+</head>
+<body>
+  <!-- Navigation -->
+  <nav class="navbar navbar-expand-lg shadow-lg">
+    <div class="container">
+      <a class="navbar-brand d-flex align-items-center" href="#">
+        <img src="https://preview.redd.it/petition-to-make-this-the-new-pic-of-the-sub-v0-x8o3qf29ah5f1.png?width=640&crop=smart&auto=webp&s=d04da2f01be93af3cba092e71c636a1c3bf61749" 
+             alt="Logo" 
+             style="height:40px; margin-right:10px; border-radius:50%; background-color:#000; padding:2px;">
+        <span class="brand-text">OTOTHESIU - Admin</span>
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item">
+            <a class="nav-link active" href="dashboard.html"><i class="fas fa-tachometer-alt me-1"></i>Dashboard</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="products.html"><i class="fas fa-box me-1"></i>Sản phẩm</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="categories.html"><i class="fas fa-tags me-1"></i>Danh mục</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="stock.html"><i class="fas fa-warehouse me-1"></i>Tồn kho</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="prices.html"><i class="fas fa-tag me-1"></i>Giá cả</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="orders.html"><i class="fas fa-shopping-cart me-1"></i>Đơn hàng</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="import-products.html"><i class="fas fa-file-import me-1"></i>Nhập hàng</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="customers.html"><i class="fas fa-users me-1"></i>Khách hàng</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="../index.html"><i class="fas fa-sign-out-alt me-1"></i>Đăng xuất</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Main Content -->
+  <div class="main-content">
+    <!-- Page Header -->
+    <div class="page-header fade-in-up">
+      <h2><i class="fas fa-tachometer-alt me-2"></i>Dashboard Quản lý</h2>
+      <div class="search-filter-container">
+        <div class="search-box">
+          <i class="fas fa-search"></i>
+          <input type="text" id="searchInput" placeholder="Tìm kiếm...">
+        </div>
+        <div class="filter-dropdown">
+          <div class="filter-btn" id="filterBtn">
+            <i class="fas fa-filter"></i>
+            <span>Bộ lọc</span>
+            <i class="fas fa-chevron-down ms-1"></i>
+          </div>
+        </div>
+        <button class="action-btn" onclick="refreshData()">
+          <i class="fas fa-sync-alt me-1"></i>Làm mới
+        </button>
+      </div>
+    </div>
+
+    <!-- Stats Cards -->
+    <div class="stats-grid">
+      <div class="stat-card fade-in-up">
+        <div class="stat-icon">
+          <i class="fas fa-box"></i>
+        </div>
+        <div class="stat-value">54</div>
+        <div class="stat-label">Tổng Sản phẩm</div>
+        <div class="stat-change positive">
+          <i class="fas fa-arrow-up me-1"></i>12% so với tháng trước
+        </div>
+      </div>
+      
+      <div class="stat-card fade-in-up">
+        <div class="stat-icon">
+          <i class="fas fa-shopping-cart"></i>
+        </div>
+        <div class="stat-value">23</div>
+        <div class="stat-label">Đơn hàng Hôm nay</div>
+        <div class="stat-change positive">
+          <i class="fas fa-arrow-up me-1"></i>8% so với hôm qua
+        </div>
+      </div>
+      
+      <div class="stat-card fade-in-up">
+        <div class="stat-icon">
+          <i class="fas fa-users"></i>
+        </div>
+        <div class="stat-value">15</div>
+        <div class="stat-label">Khách hàng Mới</div>
+        <div class="stat-change positive">
+          <i class="fas fa-arrow-up me-1"></i>5% so với tuần trước
+        </div>
+      </div>
+      
+      <div class="stat-card fade-in-up">
+        <div class="stat-icon">
+          <i class="fas fa-chart-line"></i>
+        </div>
+        <div class="stat-value">285.5T VND</div>
+        <div class="stat-label">Doanh thu Tháng</div>
+        <div class="stat-change positive">
+          <i class="fas fa-arrow-up me-1"></i>15% so với tháng trước
+        </div>
+      </div>
+    </div>
+
+    <!-- Performance Metrics -->
+    <div class="metrics-grid">
+      <div class="metric-card fade-in-up">
+        <div class="metric-value">98.2%</div>
+        <div class="metric-label">Tỷ lệ Hoàn thành</div>
+      </div>
+      <div class="metric-card fade-in-up">
+        <div class="metric-value">4.8/5</div>
+        <div class="metric-label">Đánh giá Khách hàng</div>
+      </div>
+      <div class="metric-card fade-in-up">
+        <div class="metric-value">2.4h</div>
+        <div class="metric-label">Thời gian Xử lý TB</div>
+      </div>
+      <div class="metric-card fade-in-up">
+        <div class="metric-value">87%</div>
+        <div class="metric-label">Tỷ lệ Tái mua hàng</div>
+      </div>
+    </div>
+
+    <!-- Quick Actions -->
+    <div class="quick-actions">
+      <div class="quick-action-card fade-in-up" onclick="navigateTo('products.html')">
+        <div class="quick-action-icon">
+          <i class="fas fa-box"></i>
+        </div>
+        <div class="quick-action-title">Quản lý Sản phẩm</div>
+        <div class="quick-action-desc">Thêm, sửa, xóa sản phẩm</div>
+      </div>
+      
+      <div class="quick-action-card fade-in-up" onclick="navigateTo('categories.html')">
+        <div class="quick-action-icon">
+          <i class="fas fa-tags"></i>
+        </div>
+        <div class="quick-action-title">Danh mục</div>
+        <div class="quick-action-desc">Quản lý phân loại sản phẩm</div>
+      </div>
+      
+      <div class="quick-action-card fade-in-up" onclick="navigateTo('stock.html')">
+        <div class="quick-action-icon">
+          <i class="fas fa-warehouse"></i>
+        </div>
+        <div class="quick-action-title">Tồn kho</div>
+        <div class="quick-action-desc">Quản lý số lượng tồn kho</div>
+      </div>
+      
+      <div class="quick-action-card fade-in-up" onclick="navigateTo('prices.html')">
+        <div class="quick-action-icon">
+          <i class="fas fa-tag"></i>
+        </div>
+        <div class="quick-action-title">Giá cả</div>
+        <div class="quick-action-desc">Điều chỉnh giá sản phẩm</div>
+      </div>
+      
+      <div class="quick-action-card fade-in-up" onclick="navigateTo('orders.html')">
+        <div class="quick-action-icon">
+          <i class="fas fa-shopping-cart"></i>
+        </div>
+        <div class="quick-action-title">Đơn hàng</div>
+        <div class="quick-action-desc">Xử lý đơn hàng mới</div>
+      </div>
+      
+      <div class="quick-action-card fade-in-up" onclick="navigateTo('import-products.html')">
+        <div class="quick-action-icon">
+          <i class="fas fa-file-import"></i>
+        </div>
+        <div class="quick-action-title">Nhập hàng</div>
+        <div class="quick-action-desc">Nhập sản phẩm mới</div>
+      </div>
+    </div>
+
+    <!-- Charts Section -->
+    <div class="charts-section">
+      <div class="chart-card fade-in-up">
+        <div class="chart-header">
+          <h4 class="chart-title"><i class="fas fa-chart-bar me-2"></i>Doanh thu Theo Tháng</h4>
+        </div>
+        <div class="chart-container">
+          <canvas id="revenueChart"></canvas>
+        </div>
+      </div>
+
+      <div class="chart-card fade-in-up">
+        <div class="chart-header">
+          <h4 class="chart-title"><i class="fas fa-chart-pie me-2"></i>Phân loại Sản phẩm</h4>
+        </div>
+        <div class="chart-container">
+          <canvas id="categoryChart"></canvas>
+        </div>
+      </div>
+    </div>
+
+    <!-- Dashboard Layout: Recent Activity and Top Products -->
+    <div class="dashboard-layout">
+      <!-- Recent Activity -->
+      <div class="activity-card fade-in-up">
+        <h3 class="mb-4" style="color: var(--gold-color);">
+          <i class="fas fa-history me-2"></i>Hoạt động Gần đây
+        </h3>
+        <div id="recentActivities">
+          <div class="activity-item">
+            <div class="activity-icon success">
+              <i class="fas fa-check-circle"></i>
+            </div>
+            <div class="activity-content">
+              <div class="activity-title">Đã thêm sản phẩm mới: Porsche 718 Cayman GT4 RS</div>
+              <div class="activity-time">5 phút trước</div>
+            </div>
+          </div>
+          <div class="activity-item">
+            <div class="activity-icon info">
+              <i class="fas fa-info-circle"></i>
+            </div>
+            <div class="activity-content">
+              <div class="activity-title">Đã cập nhật giá: Lamborghini Aventador SVJ</div>
+              <div class="activity-time">15 phút trước</div>
+            </div>
+          </div>
+          <div class="activity-item">
+            <div class="activity-icon warning">
+              <i class="fas fa-exclamation-triangle"></i>
+            </div>
+            <div class="activity-content">
+              <div class="activity-title">Cảnh báo tồn kho thấp: Ferrari 488 Pista</div>
+              <div class="activity-time">1 giờ trước</div>
+            </div>
+          </div>
+          <div class="activity-item">
+            <div class="activity-icon success">
+              <i class="fas fa-check-circle"></i>
+            </div>
+            <div class="activity-content">
+              <div class="activity-title">Đã xử lý đơn hàng: #ORD-0012</div>
+              <div class="activity-time">2 giờ trước</div>
+            </div>
+          </div>
+          <div class="activity-item">
+            <div class="activity-icon info">
+              <i class="fas fa-info-circle"></i>
+            </div>
+            <div class="activity-content">
+              <div class="activity-title">Đã nhập hàng mới: 5 xe BMW M8 Competition</div>
+              <div class="activity-time">3 giờ trước</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Top Products -->
+      <div class="activity-card fade-in-up">
+        <h3 class="mb-4" style="color: var(--gold-color);">
+          <i class="fas fa-star me-2"></i>Sản phẩm Phổ biến
+        </h3>
+        <div id="topProducts">
+          <div class="activity-item">
+            <div class="activity-icon info">
+              <i class="fas fa-car"></i>
+            </div>
+            <div class="activity-content">
+              <div class="activity-title">Bugatti Chiron - 285 tỷ VND</div>
+              <div class="activity-time">Đã bán: 3 chiếc</div>
+            </div>
+          </div>
+          <div class="activity-item">
+            <div class="activity-icon info">
+              <i class="fas fa-car"></i>
+            </div>
+            <div class="activity-content">
+              <div class="activity-title">Porsche 911 Turbo S - 18.5 tỷ VND</div>
+              <div class="activity-time">Đã bán: 8 chiếc</div>
+            </div>
+          </div>
+          <div class="activity-item">
+            <div class="activity-icon info">
+              <i class="fas fa-car"></i>
+            </div>
+            <div class="activity-content">
+              <div class="activity-title">Mercedes-Benz S-Class - 8.5 tỷ VND</div>
+              <div class="activity-time">Đã bán: 12 chiếc</div>
+            </div>
+          </div>
+          <div class="activity-item">
+            <div class="activity-icon info">
+              <i class="fas fa-car"></i>
+            </div>
+            <div class="activity-content">
+              <div class="activity-title">BMW M8 Competition - 12.5 tỷ VND</div>
+              <div class="activity-time">Đã bán: 6 chiếc</div>
+            </div>
+          </div>
+          <div class="activity-item">
+            <div class="activity-icon info">
+              <i class="fas fa-car"></i>
+            </div>
+            <div class="activity-content">
+              <div class="activity-title">Porsche 718 Cayman GT4 RS - 11.5 tỷ VND</div>
+              <div class="activity-time">Đã bán: 4 chiếc</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <script>
+    // Biến lưu trữ biểu đồ
+    let revenueChart, categoryChart;
+
+    // Tải trang
+    document.addEventListener('DOMContentLoaded', function() {
+      // Giả lập kiểm tra đăng nhập admin
+      const adminUser = JSON.parse(localStorage.getItem('loggedInAdmin'));
+      if (!adminUser || adminUser.role !== 'admin') {
+        alert('Bạn cần đăng nhập admin để truy cập!');
+        window.location.href = 'admin-login.html';
+        return;
+      }
+
+      // Khởi tạo biểu đồ
+      initializeCharts();
+      
+      // Tải dữ liệu dashboard
+      loadDashboardData();
+      
+      // Thiết lập sự kiện tìm kiếm
+      setupSearch();
+    });
+
+    // Khởi tạo biểu đồ
+    function initializeCharts() {
+      // Biểu đồ doanh thu (Bar Chart)
+      const revenueCtx = document.getElementById('revenueChart').getContext('2d');
+      revenueChart = new Chart(revenueCtx, {
+        type: 'bar',
+        data: {
+          labels: ['Tháng 1', 'Tháng 2', 'Tháng 3', 'Tháng 4', 'Tháng 5', 'Tháng 6'],
+          datasets: [{
+            label: 'Doanh thu (Tỷ VND)',
+            data: [120, 150, 180, 220, 250, 285.5],
+            backgroundColor: [
+              'rgba(255, 215, 0, 0.7)',
+              'rgba(184, 134, 11, 0.7)',
+              'rgba(255, 215, 0, 0.7)',
+              'rgba(184, 134, 11, 0.7)',
+              'rgba(255, 215, 0, 0.7)',
+              'rgba(184, 134, 11, 0.7)'
+            ],
+            borderColor: [
+              'rgba(255, 215, 0, 1)',
+              'rgba(184, 134, 11, 1)',
+              'rgba(255, 215, 0, 1)',
+              'rgba(184, 134, 11, 1)',
+              'rgba(255, 215, 0, 1)',
+              'rgba(184, 134, 11, 1)'
+            ],
+            borderWidth: 2
+          }]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: {
+            legend: {
+              labels: {
+                color: '#E8E8E8'
+              }
+            }
+          },
+          scales: {
+            y: {
+              beginAtZero: true,
+              ticks: {
+                color: '#E8E8E8'
+              },
+              grid: {
+                color: 'rgba(255, 215, 0, 0.1)'
+              }
+            },
+            x: {
+              ticks: {
+                color: '#E8E8E8'
+              },
+              grid: {
+                color: 'rgba(255, 215, 0, 0.1)'
+              }
+            }
+          }
+        }
+      });
+
+      // Biểu đồ phân loại (Pie Chart)
+      const categoryCtx = document.getElementById('categoryChart').getContext('2d');
+      categoryChart = new Chart(categoryCtx, {
+        type: 'pie',
+        data: {
+          labels: ['Lamborghini', 'Ferrari', 'Porsche', 'BMW', 'Koenigsegg', 'Bugatti', 'McLaren', 'Mercedes-Benz', 'Pagani'],
+          datasets: [{
+            data: [15, 12, 10, 8, 3, 2, 2, 1, 1],
+            backgroundColor: [
+              'rgba(255, 215, 0, 0.8)',      // Lamborghini - Vàng đậm
+              'rgba(255, 193, 7, 0.8)',      // Ferrari - Vàng nhạt
+              'rgba(184, 134, 11, 0.8)',     // Porsche - Vàng nâu
+              'rgba(244, 226, 124, 0.8)',    // BMW - Vàng pastel
+              'rgba(255, 223, 0, 0.8)',      // Koenigsegg - Vàng chanh
+              'rgba(255, 215, 0, 0.6)',      // Bugatti - Vàng trong
+              'rgba(184, 134, 11, 0.6)',     // McLaren - Nâu trong
+              'rgba(255, 193, 7, 0.6)',      // Mercedes - Vàng nhạt trong
+              'rgba(244, 226, 124, 0.6)'     // Pagani - Pastel trong
+            ],
+            borderColor: [
+              'rgba(255, 215, 0, 1)',
+              'rgba(255, 193, 7, 1)',
+              'rgba(184, 134, 11, 1)',
+              'rgba(244, 226, 124, 1)',
+              'rgba(255, 223, 0, 1)',
+              'rgba(255, 215, 0, 0.8)',
+              'rgba(184, 134, 11, 0.8)',
+              'rgba(255, 193, 7, 0.8)',
+              'rgba(244, 226, 124, 0.8)'
+            ],
+            borderWidth: 2
+          }]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: {
+            legend: {
+              position: 'bottom',
+              labels: {
+                color: '#E8E8E8',
+                padding: 20
+              }
+            }
+          }
+        }
+      });
+    }
+
+    // Tải dữ liệu dashboard
+    function loadDashboardData() {
+      // Sử dụng dữ liệu từ biến Cars
+      console.log(`Tổng số sản phẩm: ${Cars.length}`);
+      
+      // Tính tổng giá trị sản phẩm (giả lập doanh thu)
+      const totalValue = Cars.reduce((sum, product) => sum + product.price, 0);
+      const revenue = totalValue * 0.1; // Giả lập 10% tổng giá trị
+      console.log(`Doanh thu ước tính: ${formatCurrency(revenue)} VND`);
+    }
+
+    // Định dạng tiền tệ
+    function formatCurrency(amount) {
+      return new Intl.NumberFormat('vi-VN').format(amount);
+    }
+
+    // Thiết lập tìm kiếm
+    function setupSearch() {
+      const searchInput = document.getElementById('searchInput');
+      searchInput.addEventListener('input', function() {
+        const searchTerm = this.value.toLowerCase();
+        
+        // Tìm kiếm trong hoạt động gần đây
+        const activityItems = document.querySelectorAll('#recentActivities .activity-item');
+        activityItems.forEach(item => {
+          const text = item.textContent.toLowerCase();
+          if (text.includes(searchTerm)) {
+            item.style.display = 'flex';
+          } else {
+            item.style.display = 'none';
+          }
+        });
+        
+        // Tìm kiếm trong sản phẩm phổ biến
+        const productItems = document.querySelectorAll('#topProducts .activity-item');
+        productItems.forEach(item => {
+          const text = item.textContent.toLowerCase();
+          if (text.includes(searchTerm)) {
+            item.style.display = 'flex';
+          } else {
+            item.style.display = 'none';
+          }
+        });
+      });
+    }
+
+    // Làm mới dữ liệu
+    function refreshData() {
+      // Cập nhật dữ liệu biểu đồ với số ngẫu nhiên
+      revenueChart.data.datasets[0].data = [
+        Math.floor(Math.random() * 100) + 100,
+        Math.floor(Math.random() * 100) + 150,
+        Math.floor(Math.random() * 100) + 180,
+        Math.floor(Math.random() * 100) + 220,
+        Math.floor(Math.random() * 100) + 250,
+        Math.floor(Math.random() * 100) + 280
+      ];
+      revenueChart.update();
+
+      // Cập nhật số liệu thống kê
+      document.querySelectorAll('.stat-value')[1].textContent = Math.floor(Math.random() * 10) + 20;
+      document.querySelectorAll('.stat-value')[2].textContent = Math.floor(Math.random() * 8) + 12;
+      
+      // Cập nhật metrics
+      document.querySelectorAll('.metric-value')[0].textContent = (Math.random() * 2 + 98).toFixed(1) + '%';
+      document.querySelectorAll('.metric-value')[1].textContent = (Math.random() * 0.4 + 4.6).toFixed(1) + '/5';
+      document.querySelectorAll('.metric-value')[2].textContent = (Math.random() * 0.8 + 2.0).toFixed(1) + 'h';
+      document.querySelectorAll('.metric-value')[3].textContent = Math.floor(Math.random() * 10 + 80) + '%';
+      
+      // Thêm hoạt động
+      addActivity({
+        type: 'info',
+        title: 'Đã làm mới dữ liệu',
+        description: 'Dữ liệu dashboard đã được cập nhật',
+        time: 'Vừa xong'
+      });
+      
+      alert('Dữ liệu đã được làm mới!');
+    }
+
+    // Điều hướng đến trang
+    function navigateTo(page) {
+      window.location.href = page;
+    }
+
+    // Thêm hoạt động mới
+    function addActivity(activity) {
+      const activitiesContainer = document.getElementById('recentActivities');
+      const activityItem = document.createElement('div');
+      activityItem.className = 'activity-item';
+      
+      activityItem.innerHTML = `
+        <div class="activity-icon ${activity.type}">
+          <i class="fas fa-${getActivityIcon(activity.type)}"></i>
+        </div>
+        <div class="activity-content">
+          <div class="activity-title">${activity.title}: ${activity.description}</div>
+          <div class="activity-time">${activity.time}</div>
+        </div>
+      `;
+      
+      activitiesContainer.insertBefore(activityItem, activitiesContainer.firstChild);
+      
+      // Giới hạn số lượng hoạt động hiển thị
+      if (activitiesContainer.children.length > 5) {
+        activitiesContainer.removeChild(activitiesContainer.lastChild);
+      }
+    }
+
+    // Lấy icon cho loại hoạt động
+    function getActivityIcon(type) {
+      switch(type) {
+        case 'success': return 'check-circle';
+        case 'warning': return 'exclamation-triangle';
+        case 'danger': return 'times-circle';
+        case 'info': return 'info-circle';
+        default: return 'circle';
+      }
+    }
+  </script>
+</body>
+</html>

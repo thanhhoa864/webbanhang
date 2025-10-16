@@ -1,0 +1,1368 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>BMW - OTOTHESIU</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    :root {
+      --gold-color: #FFD700;
+      --dark-gold: #B8860B;
+      --jade-black: #0D1B2A;
+      --jade-dark: #041E42;
+      --accent-gold: #F4E27C;
+      --text-light: #E8E8E8;
+      --bmw-blue: #0066B3;
+      --bmw-dark-blue: #003B6F;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: var(--jade-black);
+      color: var(--text-light);
+    }
+
+    /* Navigation */
+    .navbar {
+      background: linear-gradient(135deg, var(--gold-color), var(--dark-gold)) !important;
+      box-shadow: 0 4px 20px rgba(255, 215, 0, 0.3);
+    }
+
+    .navbar-brand .brand-text {
+      font-weight: bold;
+      font-size: 1.5rem;
+      background: linear-gradient(45deg, var(--jade-black), var(--jade-dark));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+    }
+
+    .navbar-nav .nav-link {
+      color: var(--jade-black) !important;
+      font-weight: 600;
+      position: relative;
+      transition: all 0.3s ease;
+    }
+
+    .navbar-nav .nav-link:hover {
+      color: var(--jade-dark) !important;
+      transform: translateY(-2px);
+    }
+
+    .navbar-nav .dropdown-menu {
+      background: var(--jade-black);
+      border: 2px solid var(--gold-color);
+      border-radius: 10px;
+      box-shadow: 0 8px 30px rgba(255, 215, 0, 0.2);
+    }
+
+    .navbar-nav .dropdown-item {
+      color: var(--text-light);
+      padding: 10px 20px;
+      transition: all 0.3s ease;
+    }
+
+    .navbar-nav .dropdown-item:hover {
+      background: linear-gradient(135deg, var(--gold-color), var(--dark-gold));
+      color: var(--jade-black);
+    }
+
+    .btn-outline-light {
+      border-color: var(--jade-black);
+      color: var(--jade-black);
+    }
+
+    .btn-outline-light:hover {
+      background: var(--jade-black);
+      border-color: var(--jade-black);
+    }
+
+    /* Hero Section */
+    .bmw-hero {
+      background: linear-gradient(rgba(13, 27, 42, 0.8), rgba(4, 30, 66, 0.9));
+      color: var(--text-light);
+      padding: 100px 0;
+      text-align: center;
+      border-bottom: 3px solid var(--bmw-blue);
+    }
+
+    .bmw-hero h1 {
+      font-size: 4rem;
+      margin-bottom: 1.5rem;
+      color: var(--bmw-blue);
+      text-shadow: 2px 2px 8px rgba(0,0,0,0.5);
+      font-weight: bold;
+    }
+
+    .bmw-hero p {
+      font-size: 1.3rem;
+      max-width: 800px;
+      margin: 0 auto 2rem;
+      opacity: 0.9;
+    }
+
+    .btn-bmw {
+      background: linear-gradient(135deg, var(--bmw-blue), var(--bmw-dark-blue));
+      border: none;
+      color: var(--text-light);
+      padding: 12px 30px;
+      font-size: 1.1rem;
+      font-weight: 600;
+      border-radius: 50px;
+      transition: all 0.3s ease;
+    }
+
+    .btn-bmw:hover {
+      background: linear-gradient(135deg, var(--bmw-dark-blue), var(--bmw-blue));
+      transform: translateY(-2px);
+      box-shadow: 0 8px 25px rgba(0, 102, 179, 0.4);
+      color: var(--text-light);
+    }
+
+    .btn-outline-bmw {
+      border: 2px solid var(--bmw-blue);
+      color: var(--bmw-blue);
+      background: transparent;
+      padding: 12px 30px;
+      font-size: 1.1rem;
+      font-weight: 600;
+      border-radius: 50px;
+      transition: all 0.3s ease;
+    }
+
+    .btn-outline-bmw:hover {
+      background: var(--bmw-blue);
+      color: var(--text-light);
+      transform: translateY(-2px);
+    }
+
+    /* Models Section */
+    .models-section {
+      padding: 80px 0;
+      background: var(--jade-dark);
+    }
+
+    .models-section h2 {
+      text-align: center;
+      margin-bottom: 50px;
+      color: var(--bmw-blue);
+      font-weight: bold;
+      font-size: 2.5rem;
+      text-shadow: 2px 2px 8px rgba(0,0,0,0.5);
+    }
+
+    .car-card {
+      background: var(--jade-black);
+      border: 2px solid var(--bmw-blue);
+      border-radius: 15px;
+      overflow: hidden;
+      transition: all 0.3s ease;
+      margin-bottom: 30px;
+      height: 100%;
+    }
+
+    .car-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 15px 40px rgba(0, 102, 179, 0.3);
+      border-color: var(--bmw-dark-blue);
+    }
+
+    .car-card img {
+      width: 100%;
+      height: 250px;
+      object-fit: cover;
+      transition: transform 0.5s ease;
+    }
+
+    .car-card:hover img {
+      transform: scale(1.05);
+    }
+
+    .car-card-body {
+      padding: 20px;
+    }
+
+    .car-card-title {
+      color: var(--bmw-blue);
+      font-size: 1.5rem;
+      font-weight: bold;
+      margin-bottom: 10px;
+    }
+
+    .car-card-price {
+      color: var(--gold-color);
+      font-size: 1.3rem;
+      font-weight: 600;
+      margin-bottom: 15px;
+    }
+
+    .car-card-features {
+      list-style: none;
+      padding: 0;
+      margin-bottom: 20px;
+    }
+
+    .car-card-features li {
+      margin-bottom: 5px;
+      color: var(--text-light);
+      opacity: 0.9;
+    }
+
+    .car-card-features li i {
+      color: var(--bmw-blue);
+      margin-right: 8px;
+    }
+
+    .car-card-actions {
+      display: flex;
+      gap: 10px;
+    }
+
+    /* About BMW */
+    .about-bmw {
+      padding: 80px 0;
+      background: var(--jade-black);
+    }
+
+    .about-bmw h2 {
+      text-align: center;
+      margin-bottom: 50px;
+      color: var(--bmw-blue);
+      font-weight: bold;
+      font-size: 2.5rem;
+    }
+
+    .about-content {
+      display: flex;
+      align-items: center;
+      gap: 40px;
+    }
+
+    .about-text {
+      flex: 1;
+    }
+
+    .about-image {
+      flex: 1;
+      border-radius: 15px;
+      overflow: hidden;
+      border: 2px solid var(--bmw-blue);
+      background: var(--jade-dark);
+      height: 400px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      padding: 20px;
+    }
+
+    .bmw-logo {
+      width: 200px;
+      height: 200px;
+      margin-bottom: 20px;
+    }
+
+    .about-image i {
+      font-size: 8rem;
+      color: var(--bmw-blue);
+    }
+
+    /* Footer */
+    footer {
+      background: var(--jade-dark) !important;
+      border-top: 3px solid var(--gold-color);
+    }
+
+    footer h5 {
+      color: var(--gold-color);
+    }
+
+    footer p {
+      margin-bottom: 8px;
+      opacity: 0.9;
+      color: var(--text-light);
+    }
+
+    /* Contact Float */
+    .contact-float {
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+      z-index: 1000;
+    }
+
+    .contact-float a {
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: var(--jade-black);
+      font-size: 24px;
+      text-decoration: none;
+      box-shadow: 0 6px 20px rgba(255, 215, 0, 0.3);
+      transition: all 0.3s ease;
+    }
+
+    .contact-float a:hover {
+      transform: scale(1.15);
+      box-shadow: 0 8px 25px rgba(255, 215, 0, 0.5);
+    }
+
+    .hotline { 
+      background: linear-gradient(135deg, var(--gold-color), var(--dark-gold));
+    }
+
+    .facebook { 
+      background: linear-gradient(135deg, var(--accent-gold), var(--gold-color));
+    }
+
+    /* User Info */
+    .user-info {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .user-avatar {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: var(--gold-color);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--jade-black);
+      font-weight: bold;
+    }
+
+    .user-dropdown {
+      background: var(--jade-black);
+      border: 2px solid var(--gold-color);
+      border-radius: 10px;
+      box-shadow: 0 8px 30px rgba(255, 215, 0, 0.2);
+    }
+
+    .user-dropdown .dropdown-item {
+      color: var(--text-light);
+      padding: 10px 20px;
+      transition: all 0.3s ease;
+    }
+
+    .user-dropdown .dropdown-item:hover {
+      background: linear-gradient(135deg, var(--gold-color), var(--dark-gold));
+      color: var(--jade-black);
+    }
+
+    /* Modal Custom Styles */
+    .car-modal .modal-content {
+      background: var(--jade-black);
+      border: 2px solid var(--bmw-blue);
+      border-radius: 15px;
+      color: var(--text-light);
+    }
+
+    .car-modal .modal-header {
+      border-bottom: 1px solid var(--bmw-blue);
+    }
+
+    .car-modal .modal-title {
+      color: var(--bmw-blue);
+      font-weight: bold;
+    }
+
+    .car-modal .btn-close {
+      filter: invert(1);
+    }
+
+    .car-modal .modal-body {
+      padding: 20px;
+    }
+
+    .car-modal .car-image {
+      width: 100%;
+      height: 300px;
+      object-fit: cover;
+      border-radius: 10px;
+      margin-bottom: 20px;
+    }
+
+    .car-modal .specs-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+      gap: 15px;
+      margin-top: 20px;
+    }
+
+    .car-modal .spec-item {
+      background: var(--jade-dark);
+      padding: 15px;
+      border-radius: 10px;
+      border-left: 4px solid var(--bmw-blue);
+    }
+
+    .car-modal .spec-label {
+      font-weight: bold;
+      color: var(--gold-color);
+      margin-bottom: 5px;
+    }
+
+    .car-modal .spec-value {
+      color: var(--text-light);
+    }
+
+    .car-modal .modal-footer {
+      border-top: 1px solid var(--bmw-blue);
+    }
+
+    /* Filter Section */
+    .filter-section {
+      background: var(--jade-black);
+      padding: 20px;
+      border-radius: 15px;
+      border: 2px solid var(--bmw-blue);
+      margin-bottom: 30px;
+    }
+
+    .filter-title {
+      color: var(--bmw-blue);
+      font-weight: bold;
+      margin-bottom: 15px;
+      text-align: center;
+    }
+
+    .filter-group {
+      margin-bottom: 20px;
+    }
+
+    .filter-group-title {
+      color: var(--gold-color);
+      font-weight: bold;
+      margin-bottom: 10px;
+      font-size: 1.1rem;
+    }
+
+    .filter-options {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .filter-option {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      cursor: pointer;
+      padding: 5px 0;
+      transition: all 0.2s ease;
+    }
+
+    .filter-option:hover {
+      color: var(--gold-color);
+    }
+
+    .filter-option input {
+      margin: 0;
+    }
+
+    .filter-option label {
+      margin: 0;
+      cursor: pointer;
+    }
+
+    /* Pagination */
+    .pagination-container {
+      display: flex;
+      justify-content: center;
+      margin-top: 30px;
+    }
+
+    .pagination-btn {
+      background: var(--jade-dark);
+      color: var(--text-light);
+      border: 2px solid var(--bmw-blue);
+      padding: 8px 16px;
+      margin: 0 5px;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .pagination-btn:hover,
+    .pagination-btn.active {
+      background: var(--bmw-blue);
+      color: var(--text-light);
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .bmw-hero h1 {
+        font-size: 2.5rem;
+      }
+      
+      .bmw-hero p {
+        font-size: 1.1rem;
+      }
+      
+      .about-content {
+        flex-direction: column;
+      }
+      
+      .contact-float {
+        bottom: 20px;
+        right: 20px;
+      }
+      
+      .contact-float a {
+        width: 50px;
+        height: 50px;
+        font-size: 20px;
+      }
+
+      .car-card-actions {
+        flex-direction: column;
+      }
+
+      .about-image {
+        height: 300px;
+      }
+
+      .about-image i {
+        font-size: 6rem;
+      }
+
+      .bmw-logo {
+        width: 150px;
+        height: 150px;
+      }
+      
+      .car-modal .specs-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .filter-section {
+        margin-bottom: 20px;
+      }
+    }
+
+    /* Loading animation */
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .fade-in-up {
+      animation: fadeInUp 0.6s ease;
+    }
+
+    /* Toast notification */
+    .toast-container {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      z-index: 1055;
+    }
+
+    .custom-toast {
+      background: var(--jade-black);
+      border: 2px solid var(--bmw-blue);
+      border-radius: 10px;
+      color: var(--text-light);
+    }
+
+    .car-image-placeholder {
+      width: 100%;
+      height: 250px;
+      background: var(--jade-dark);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--bmw-blue);
+      font-size: 3rem;
+    }
+
+    .img-fallback {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background-color: var(--jade-dark);
+      color: var(--bmw-blue);
+      font-size: 1.5rem;
+    }
+    
+.navbar .d-flex.ms-3 {
+    min-width: 250px;
+}
+
+.navbar .d-flex.ms-3 .form-control {
+    width: 200px;
+    height: 40px;
+    background: #ffffff;
+    border: 2px solid var(--jade-black);
+    color: var(--jade-black);
+    transition: all 0.3s ease;
+    font-size: 14px;
+}
+
+.navbar .d-flex.ms-3 .form-control:focus {
+    background: #ffffff;
+    border-color: var(--jade-black);
+    color: var(--jade-black);
+    box-shadow: 0 0 0 0.25rem rgba(13, 27, 42, 0.25);
+    width: 220px; /* Mở rộng nhẹ khi focus */
+}
+
+.navbar .d-flex.ms-3 .form-control::placeholder {
+    color: rgba(13, 27, 42, 0.5);
+    font-size: 14px;
+}
+
+.navbar .d-flex.ms-3 .btn-outline-light {
+    height: 40px;
+    width: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-color: var(--jade-black);
+    color: var(--jade-black);
+    background: transparent;
+    transition: all 0.3s ease;
+}
+
+.navbar .d-flex.ms-3 .btn-outline-light:hover {
+    background: var(--jade-black);
+    border-color: var(--jade-black);
+    color: var(--gold-color);
+}
+
+/* Responsive cho mobile */
+@media (max-width: 768px) {
+    .navbar .d-flex.ms-3 {
+        min-width: 200px;
+        margin-top: 10px;
+    }
+    
+    .navbar .d-flex.ms-3 .form-control {
+        width: 150px;
+        height: 35px;
+    }
+    
+    .navbar .d-flex.ms-3 .btn-outline-light {
+        height: 35px;
+        width: 35px;
+    }
+}
+  </style>
+</head>
+<body>
+  <!-- Navigation -->
+  <nav class="navbar navbar-expand-lg shadow-lg">
+    <div class="container">
+      <a class="navbar-brand d-flex align-items-center" href="../index.html">
+        <img src="https://preview.redd.it/petition-to-make-this-the-new-pic-of-the-sub-v0-x8o3qf29ah5f1.png?width=640&crop=smart&auto=webp&s=d04da2f01be93af3cba092e71c636a1c3bf61749" 
+             alt="Logo" 
+             style="height:40px; margin-right:10px; border-radius:50%; background-color:#000; padding:2px;"
+             onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAiIGhlaWdodD0iNDAiIHZpZXdCb3g9IjAgMCA0MCA0MCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHJlY3Qgd2lkdGg9IjQwIiBoZWlnaHQ9IjQwIiByeD0iMjAiIGZpbGw9IiMwMDY2QjMiLz4KPHN2ZyB4PSI4IiB5PSI4IiB3aWR0aD0iMjQiIGhlaWdodD0iMjQiIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHBhdGggZD0iTTEyIDJMMTUuMDkgOC4yNkwxMiA0LjgyTDguOTEgOC4yNkwxMiAyWiIgZmlsbD0id2hpdGUiLz4KPHBhdGggZD0iTTEyIDIyTDE1LjA5IDE1Ljc0TDEyIDE5LjE4TDguOTEgMTUuNzRMMTIgMjJaIiBmaWxsPSJ3aGl0ZSIvPgo8cGF0aCBkPSJNMiAxMkw4LjI2IDE1LjA5TDQuODIgMTJMOD4yNiA4LjkxTDIgMTJaIiBmaWxsPSJ3aGl0ZSIvPgo8cGF0aCBkPSJNMjIgMTJMMTUuNzQgOC45MUwxOS4xOCAxMkwxNS43NCAxNS4wOUwyMiAxMloiIGZmlsbD0id2hpdGUiLz4KPC9zdmc+Cjwvc3ZnPgo='">
+        <span class="brand-text">OTOTHESIU</span>
+      </a>
+      
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <!-- Mua xe Dropdown -->
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              <i class="fas fa-shopping-cart me-1"></i>Mua xe
+            </a>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item" href="lamborghini.html"><i class="fas fa-car me-2"></i>Lamborghini</a></li>
+              <li><a class="dropdown-item" href="ferrari.html"><i class="fas fa-car me-2"></i>Ferrari</a></li>
+              <li><a class="dropdown-item" href="bugatti.html"><i class="fas fa-car me-2"></i>Bugatti</a></li>
+              <li><a class="dropdown-item" href="koenigsegg.html"><i class="fas fa-car me-2"></i>Koenigsegg</a></li>
+              <li><a class="dropdown-item" href="mclaren.html"><i class="fas fa-car me-2"></i>McLaren</a></li>
+              <li><a class="dropdown-item" href="pagani.html"><i class="fas fa-car me-2"></i>Pagani</a></li>
+              <li><a class="dropdown-item" href="porsche.html"><i class="fas fa-car me-2"></i>Porsche (thể thao)</a></li>
+              <li><a class="dropdown-item" href="mercedes.html"><i class="fas fa-car me-2"></i>Mercedes-Benz (thể thao)</a></li>
+              <li><a class="dropdown-item active" href="bmw.html"><i class="fas fa-car me-2"></i>BMW (thể thao)</a></li>
+            </ul>
+          </li>
+        </ul>
+        
+        <ul class="navbar-nav mb-2 mb-lg-0">
+          <!-- Hiển thị thông tin người dùng nếu đã đăng nhập -->
+          <li id="userInfo" class="nav-item dropdown" style="display: none;">
+            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              <div class="user-info">
+                <div class="user-avatar" id="userAvatar">U</div>
+                <span id="userName">Người dùng</span>
+              </div>
+            </a>
+            <ul class="dropdown-menu user-dropdown">
+              <li><a class="dropdown-item" href="../customer-info.html"><i class="fas fa-user me-2"></i>Thông tin cá nhân</a></li>
+              <li><a class="dropdown-item" href="#" id="logoutBtn"><i class="fas fa-sign-out-alt me-2"></i>Đăng xuất</a></li>
+            </ul>
+          </li>
+          
+          <!-- Hiển thị nút đăng nhập nếu chưa đăng nhập -->
+          <li id="loginLink" class="nav-item">
+            <a class="nav-link" href="../login.html">
+              <i class="fas fa-user me-1"></i>Đăng nhập
+            </a>
+          </li>
+          
+          <li class="nav-item">
+            <a class="nav-link" href="../cart.html">
+              <i class="fas fa-shopping-bag me-1"></i>Giỏ hàng
+            </a>
+          </li>
+        </ul>
+        
+        <!-- Search Bar -->
+        <form class="d-flex ms-3" role="search">
+          <input class="form-control me-2" type="search" placeholder="Tìm kiếm siêu xe..." aria-label="Search">
+          <button class="btn btn-outline-light" type="submit">
+            <i class="fas fa-search"></i>
+          </button>
+        </form>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Toast Notification -->
+  <div class="toast-container">
+    <div id="successToast" class="toast custom-toast" role="alert" aria-live="assertive" aria-atomic="true">
+      <div class="toast-header">
+        <i class="fas fa-check-circle text-success me-2"></i>
+        <strong class="me-auto">Thành công</strong>
+        <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+      </div>
+      <div class="toast-body">
+        Đã thêm vào giỏ hàng thành công!
+      </div>
+    </div>
+  </div>
+
+  <!-- Car Details Modal -->
+  <div class="modal fade car-modal" id="carDetailsModal" tabindex="-1" aria-labelledby="carDetailsModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="carDetailsModalLabel">Chi tiết xe</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <img id="modalCarImage" class="car-image" src="" alt="BMW" onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIzMDAiIHZpZXdCb3g9IjAgMCA4MDAgNjAwIiBmaWxsPSJub25lIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPgo8cmVjdCB3aWR0aD0iODAwIiBoZWlnaHQ9IjYwMCIgZmlsbD0iIzA0MUU0MiIvPgo8cGF0aCBkPSJNMTUwIDE1MEwyMDAgMTAwTDI1MCAxNTBMMjAwIDIwMEwxNTAgMTUwWiIgZmlsbD0iIzAwNjZCMyIvPgo8dGV4dCB4PSIyMDAiIHk9IjE2MCIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZmlsbD0iIzAwNjZCMyIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXNpemU9IjE4Ij5CTVc8L3RleHQ+Cjwvc3ZnPgo='">
+          <h3 id="modalCarName" class="mb-3" style="color: var(--bmw-blue);"></h3>
+          <div id="modalCarPrice" class="mb-3" style="color: var(--gold-color); font-size: 1.5rem; font-weight: bold;"></div>
+          <p id="modalCarDescription" class="mb-4"></p>
+          
+          <h5 style="color: var(--bmw-blue); margin-bottom: 15px;">Thông số kỹ thuật</h5>
+          <div class="specs-grid" id="modalCarSpecs">
+            <!-- Specs will be dynamically added here -->
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-outline-bmw" data-bs-dismiss="modal">Đóng</button>
+          <button type="button" class="btn btn-bmw" id="modalAddToCartBtn">
+            <i class="fas fa-shopping-cart me-2"></i>Thêm vào giỏ hàng
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Hero Section -->
+  <section class="bmw-hero">
+    <div class="container">
+      <h1 class="fade-in-up">BMW</h1>
+      <div class="container my-5">
+        <div class="card shadow-lg border-0" style="background-color:#0a1a2f; color:white;">
+          <div class="card-body">
+            <h2 class="card-title text-center mb-4" style="color:#0066B3;">Thông tin về BMW</h2>
+            <ul class="list-group list-group-flush">
+              <li class="list-group-item" style="background-color:#0a1a2f; color:white; border-color:rgba(255,255,255,0.2);">
+                <strong>Quốc gia:</strong> Đức (Germany)
+              </li>
+              <li class="list-group-item" style="background-color:#0a1a2f; color:white; border-color:rgba(255,255,255,0.2);">
+                <strong>Trụ sở chính:</strong> Munich, Bavaria
+              </li>
+              <li class="list-group-item" style="background-color:#0a1a2f; color:white; border-color:rgba(255,255,255,0.2);">
+                <strong>Người sáng lập:</strong> Karl Rapp (1916)
+              </li>
+              <li class="list-group-item" style="background-color:#0a1a2f; color:white; border-color:rgba(255,255,255,0.2);">
+                <strong>Tiền thân:</strong> Bayerische Motoren Werke AG
+              </li>
+              <li class="list-group-item" style="background-color:#0a1a2f; color:white; border-color:rgba(255,255,255,0.2);">
+                <strong>Biểu tượng:</strong> Logo tròn với màu xanh-trắng
+              </li>
+              <li class="list-group-item" style="background-color:#0a1a2f; color:white; border-color:rgba(255,255,255,0.2);">
+                <strong>Sở hữu hiện tại:</strong> Gia đình Quandt
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <a class="btn btn-bmw btn-lg fade-in-up" href="#models">
+        <i class="fas fa-gem me-2"></i>Khám phá các dòng xe
+      </a>
+    </div>
+  </section>
+
+  <!-- Models Section -->
+  <section class="models-section" id="models">
+    <div class="container">
+      <h2 class="fade-in-up">Các dòng xe BMW thể thao</h2>
+      
+      <div class="row">
+        <!-- Filter Section - Bên trái -->
+        <div class="col-lg-3 col-md-4 mb-4">
+          <div class="filter-section fade-in-up">
+            <h4 class="filter-title">
+              <i class="fas fa-filter me-2"></i>Bộ lọc
+            </h4>
+            
+            <!-- Lọc theo động cơ -->
+            <div class="filter-group">
+              <h5 class="filter-group-title">Loại động cơ</h5>
+              <div class="filter-options">
+                <div class="filter-option">
+                  <input type="checkbox" id="engine-v8" name="engine" value="v8">
+                  <label for="engine-v8">Động cơ V8</label>
+                </div>
+                <div class="filter-option">
+                  <input type="checkbox" id="engine-v6" name="engine" value="v6">
+                  <label for="engine-v6">Động cơ V6</label>
+                </div>
+                <div class="filter-option">
+                  <input type="checkbox" id="engine-hybrid" name="engine" value="hybrid">
+                  <label for="engine-hybrid">Hybrid</label>
+                </div>
+              </div>
+            </div>
+            
+            <!-- Lọc theo giá -->
+            <div class="filter-group">
+              <h5 class="filter-group-title">Mức giá</h5>
+              <div class="filter-options">
+                <div class="filter-option">
+                  <input type="checkbox" id="price-under-10" name="price" value="under-10">
+                  <label for="price-under-10">Dưới 10 tỷ</label>
+                </div>
+                <div class="filter-option">
+                  <input type="checkbox" id="price-10-20" name="price" value="10-20">
+                  <label for="price-10-20">10 - 20 tỷ</label>
+                </div>
+                <div class="filter-option">
+                  <input type="checkbox" id="price-over-20" name="price" value="over-20">
+                  <label for="price-over-20">Trên 20 tỷ</label>
+                </div>
+              </div>
+            </div>
+            
+            <!-- Lọc theo tốc độ -->
+            <div class="filter-group">
+              <h5 class="filter-group-title">Tốc độ tối đa</h5>
+              <div class="filter-options">
+                <div class="filter-option">
+                  <input type="checkbox" id="speed-over-300" name="speed" value="over-300">
+                  <label for="speed-over-300">Trên 300 km/h</label>
+                </div>
+                <div class="filter-option">
+                  <input type="checkbox" id="speed-under-300" name="speed" value="under-300">
+                  <label for="speed-under-300">Dưới 300 km/h</label>
+                </div>
+              </div>
+            </div>
+
+            <!-- Tìm kiếm nâng cao -->
+            <div class="filter-group">
+              <h5 class="filter-group-title">Tìm kiếm nâng cao</h5>
+              <form id="advancedSearchForm">
+                <div class="filter-options">
+                  <input type="text" id="searchInput" name="query" class="form-control" placeholder="Tìm kiếm theo tên hoặc đặc điểm...">
+                  <button type="submit" class="btn btn-bmw w-100 mt-3">
+                    <i class="fas fa-search me-2"></i>Tìm kiếm
+                  </button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Cars Section - Bên phải -->
+        <div class="col-lg-9 col-md-8">
+          <div class="row" id="bmwCars">
+            <!-- Cars will be dynamically loaded here -->
+          </div>
+          
+          <!-- Pagination - Dưới ảnh xe -->
+          <div class="pagination-container fade-in-up">
+            <button class="pagination-btn active">1</button>
+            <button class="pagination-btn">2</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- About BMW -->
+  <section class="about-bmw">
+    <div class="container">
+      <h2 class="fade-in-up">Về thương hiệu BMW</h2>
+      <div class="about-content fade-in-up">
+        <div class="about-text">
+          <p>BMW - biểu tượng của sự sang trọng, hiệu suất và công nghệ tiên tiến. Được thành lập vào năm 1916, thương hiệu Đức này đã trở thành biểu tượng của xe hơi cao cấp với sự kết hợp hoàn hảo giữa hiệu suất và thiết kế.</p>
+          
+          <h4 style="color: var(--bmw-blue); margin-top: 20px;">Đặc điểm nổi bật:</h4>
+          <ul>
+            <li>Thiết kế thể thao với lưới tản nhiệt đặc trưng</li>
+            <li>Động cơ mạnh mẽ với công nghệ TwinPower Turbo</li>
+            <li>Công nghệ lái xe hiện đại với xDrive</li>
+            <li>Nội thất sang trọng với vật liệu cao cấp</li>
+            <li>Hiệu suất vượt trội với hệ thống treo thể thao</li>
+          </ul>
+          
+          <h4 style="color: var(--bmw-blue); margin-top: 20px;">Dịch vụ tại OTOTHESIU:</h4>
+          <ul>
+            <li>Bảo hành chính hãng toàn cầu</li>
+            <li>Dịch vụ bảo dưỡng chuyên nghiệp</li>
+            <li>Tư vấn tài chính linh hoạt</li>
+            <li>Giao xe tận nơi trên toàn quốc</li>
+          </ul>
+        </div>
+        <div class="about-image">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/44/BMW.svg/1200px-BMW.svg.png" 
+               alt="BMW Logo" 
+               class="bmw-logo">
+          <p class="text-center mt-3" style="color: var(--gold-color); font-weight: bold;">Bayerische Motoren Werke</p>
+          <p class="text-center" style="opacity: 0.8;">Biểu tượng của sự sang trọng và hiệu suất</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="py-4">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-6">
+          <h5 class="mb-3">
+            <i class="fas fa-phone-alt me-2"></i>Thông tin liên hệ
+          </h5>
+          <p class="mb-2"><i class="fas fa-envelope me-2"></i>thanhhoa13052006@gmail.com</p>
+          <p class="mb-2"><i class="fas fa-phone me-2"></i>0983 XXX XXX</p>
+        </div>
+        <div class="col-md-6">
+          <h5 class="mb-3">
+            <i class="fas fa-map-marker-alt me-2"></i>Địa chỉ
+          </h5>
+          <p class="mb-2"><i class="fas fa-building me-2"></i>123XYZ quận 1, TP.HCM</p>
+          <p class="mb-2"><i class="fas fa-user-tie me-2"></i>Liên hệ: Trần Văn Thiện</p>
+        </div>
+      </div>
+      <hr class="my-4" style="border-color: var(--gold-color);">
+      <div class="text-center">
+        <p class="mb-0">&copy; 2024 OTOTHESIU. Tất cả quyền được bảo lưu.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Floating Contact Buttons -->
+  <div class="contact-float">
+    <a href="tel:0838266864" class="hotline" title="Gọi ngay">
+      <i class="fas fa-phone"></i>
+    </a>
+    <a href="https://web.facebook.com/?_rdc=1&_rdr" class="facebook" title="Liên hệ qua Facebook" target="_blank">
+      <i class="fab fa-facebook-f"></i>
+    </a>
+  </div>
+
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  
+  <script>
+    // Dữ liệu xe BMW với hình ảnh thực tế
+    const bmwCars = [
+      {
+        id: 1,
+        name: "BMW M8 Competition",
+        price: 12500000000,
+        features: [
+          "Tốc độ tối đa: 305 km/h",
+          "Công suất: 625 mã lực",
+          "0-100 km/h: 3.2 giây",
+          "Động cơ V8 Twin-Turbo"
+        ],
+        image: "https://cdn.motor1.com/images/mgl/43kwJ/s1/bmw-m8-competition-coupe-by-manhart.webp",
+        description: "BMW M8 Competition là mẫu xe thể thao cao cấp nhất của BMW, kết hợp sự sang trọng với hiệu suất đáng kinh ngạc. Với động cơ V8 Twin-Turbo mạnh mẽ, đây là biểu tượng của sự hoàn hảo kỹ thuật Đức.",
+        specs: {
+          engine: "4.4L V8 Twin-Turbo",
+          power: "625 mã lực",
+          torque: "750 Nm",
+          acceleration: "0-100 km/h: 3.2 giây",
+          topspeed: "305 km/h",
+          transmission: "8-speed M Steptronic",
+          drivetrain: "All-wheel drive"
+        }
+      },
+      {
+        id: 2,
+        name: "BMW M5 CS",
+        price: 9800000000,
+        features: [
+          "Tốc độ tối đa: 305 km/h",
+          "Công suất: 635 mã lực",
+          "0-100 km/h: 3.0 giây",
+          "Sedan hiệu suất cao nhất"
+        ],
+        image: "https://giaxeoto.vn/admin/upload/images/resize/640-BMW-M5-CS-hinh-anh.jpg",
+        description: "BMW M5 CS là phiên bản đặc biệt của dòng M5, với trọng lượng nhẹ hơn và công suất cao hơn. Đây là sedan hiệu suất cao nhất từng được BMW sản xuất, kết hợp hoàn hảo giữa sự thoải mái và hiệu suất đua xe.",
+        specs: {
+          engine: "4.4L V8 Twin-Turbo",
+          power: "635 mã lực",
+          torque: "750 Nm",
+          acceleration: "0-100 km/h: 3.0 giây",
+          topspeed: "305 km/h",
+          transmission: "8-speed M Steptronic",
+          drivetrain: "All-wheel drive"
+        }
+      },
+      {
+        id: 3,
+        name: "BMW M4 Competition",
+        price: 6500000000,
+        features: [
+          "Tốc độ tối đa: 290 km/h",
+          "Công suất: 510 mã lực",
+          "0-100 km/h: 3.9 giây",
+          "Thiết kế thể thao mạnh mẽ"
+        ],
+        image: "https://carpassion.vn/wp-content/uploads/2024/02/2025-BMW-M4-Coupe-08.webp",
+        description: "BMW M4 Competition là mẫu xe coupe thể thao với thiết kế mới mẻ và hiệu suất ấn tượng. Với lưới tản nhiệt lớn đặc trưng và động cơ thẳng 6 Twin-Turbo, đây là sự lựa chọn hoàn hảo cho những người yêu thích tốc độ.",
+        specs: {
+          engine: "3.0L Straight-6 Twin-Turbo",
+          power: "510 mã lực",
+          torque: "650 Nm",
+          acceleration: "0-100 km/h: 3.9 giây",
+          topspeed: "290 km/h",
+          transmission: "8-speed M Steptronic",
+          drivetrain: "Rear-wheel drive"
+        }
+      },
+      {
+        id: 4,
+        name: "BMW i8",
+        price: 7500000000,
+        features: [
+          "Tốc độ tối đa: 250 km/h",
+          "Công suất: 374 mã lực",
+          "0-100 km/h: 4.4 giây",
+          "Hybrid thể thao tương lai"
+        ],
+        image: "https://giaxeoto.vn/admin/upload/images/resize/640-bmw-i8-coupe.jpg",
+        description: "BMW i8 là mẫu xe hybrid thể thao với thiết kế tương lai và công nghệ tiên tiến. Kết hợp động cơ xăng 3 xi-lanh với động cơ điện, i8 mang đến trải nghiệm lái xe độc đáo và thân thiện với môi trường.",
+        specs: {
+          engine: "1.5L 3-cylinder + động cơ điện",
+          power: "374 mã lực",
+          torque: "570 Nm",
+          acceleration: "0-100 km/h: 4.4 giây",
+          topspeed: "250 km/h",
+          transmission: "6-speed automatic",
+          drivetrain: "All-wheel drive"
+        }
+      },
+      {
+        id: 5,
+        name: "BMW Z4 M40i",
+        price: 4200000000,
+        features: [
+          "Tốc độ tối đa: 250 km/h",
+          "Công suất: 340 mã lực",
+          "0-100 km/h: 4.5 giây",
+          "Roadster thể thao"
+        ],
+        image: "https://giaxeoto.vn/admin/upload/images/resize/640-bmw-z4-2025-co-gi-moi.jpg",
+        description: "BMW Z4 M40i là mẫu xe roadster thể thao với thiết kế mở và hiệu suất ấn tượng. Với động cơ thẳng 6 Twin-Turbo và hệ thống treo thể thao, Z4 mang đến trải nghiệm lái xe phấn khích và tự do.",
+        specs: {
+          engine: "3.0L Straight-6 Twin-Turbo",
+          power: "340 mã lực",
+          torque: "500 Nm",
+          acceleration: "0-100 km/h: 4.5 giây",
+          topspeed: "250 km/h",
+          transmission: "8-speed automatic",
+          drivetrain: "Rear-wheel drive"
+        }
+      },
+      {
+        id: 6,
+        name: "BMW X6 M Competition",
+        price: 8500000000,
+        features: [
+          "Tốc độ tối đa: 290 km/h",
+          "Công suất: 625 mã lực",
+          "0-100 km/h: 3.8 giây",
+          "SUV thể thao hiệu suất cao"
+        ],
+        image: "https://autocarvietnam.vn/wp-content/uploads/2023/02/autocarvietnam-vn-BMW-X6-M-ngoai-that-1.jpg",
+        description: "BMW X6 M Competition là mẫu SUV Coupe thể thao với hiệu suất đáng kinh ngạc. Kết hợp sự linh hoạt của SUV với hiệu suất của xe thể thao, đây là sự lựa chọn hoàn hảo cho những ai muốn có cả hai.",
+        specs: {
+          engine: "4.4L V8 Twin-Turbo",
+          power: "625 mã lực",
+          torque: "750 Nm",
+          acceleration: "0-100 km/h: 3.8 giây",
+          topspeed: "290 km/h",
+          transmission: "8-speed M Steptronic",
+          drivetrain: "All-wheel drive"
+        }
+      }
+    ];
+
+    // Biến lưu trữ xe hiện tại được chọn
+    let currentCar = null;
+    let currentPage = 1;
+    const carsPerPage = 3;
+
+    // Hàm định dạng giá tiền
+    function formatPrice(price) {
+      return new Intl.NumberFormat('vi-VN').format(price);
+    }
+
+    // Hàm thêm vào giỏ hàng
+    function addToCart(car) {
+      // Lấy giỏ hàng từ localStorage
+      let cart = JSON.parse(localStorage.getItem('cart')) || [];
+      
+      // Kiểm tra xem xe đã có trong giỏ hàng chưa
+      const existingItem = cart.find(item => item.id === car.id);
+      
+      if (existingItem) {
+        existingItem.quantity += 1;
+      } else {
+        cart.push({
+          id: car.id,
+          name: car.name,
+          price: car.price,
+          image: car.image,
+          quantity: 1
+        });
+      }
+      
+      // Lưu giỏ hàng vào localStorage
+      localStorage.setItem('cart', JSON.stringify(cart));
+      
+      // Hiển thị thông báo
+      const toast = new bootstrap.Toast(document.getElementById('successToast'));
+      toast.show();
+    }
+
+    // Hàm hiển thị chi tiết xe trong modal
+    function showCarDetails(car) {
+      currentCar = car;
+      
+      // Cập nhật nội dung modal
+      document.getElementById('carDetailsModalLabel').textContent = car.name;
+      document.getElementById('modalCarName').textContent = car.name;
+      document.getElementById('modalCarPrice').textContent = formatPrice(car.price) + ' VNĐ';
+      document.getElementById('modalCarDescription').textContent = car.description;
+      document.getElementById('modalCarImage').src = car.image;
+      document.getElementById('modalCarImage').alt = car.name;
+      
+      // Xóa và thêm lại thông số kỹ thuật
+      const specsContainer = document.getElementById('modalCarSpecs');
+      specsContainer.innerHTML = '';
+      
+      for (const [key, value] of Object.entries(car.specs)) {
+        const specItem = document.createElement('div');
+        specItem.className = 'spec-item';
+        
+        const specLabel = document.createElement('div');
+        specLabel.className = 'spec-label';
+        specLabel.textContent = key.charAt(0).toUpperCase() + key.slice(1);
+        
+        const specValue = document.createElement('div');
+        specValue.className = 'spec-value';
+        specValue.textContent = value;
+        
+        specItem.appendChild(specLabel);
+        specItem.appendChild(specValue);
+        specsContainer.appendChild(specItem);
+      }
+      
+      // Hiển thị modal
+      const modal = new bootstrap.Modal(document.getElementById('carDetailsModal'));
+      modal.show();
+    }
+
+    // Hàm hiển thị xe BMW theo trang
+    function displayBmwCars(page = 1) {
+      const container = document.getElementById('bmwCars');
+      container.innerHTML = '';
+      
+      // Tính toán xe cần hiển thị
+      const startIndex = (page - 1) * carsPerPage;
+      const endIndex = startIndex + carsPerPage;
+      const carsToShow = bmwCars.slice(startIndex, endIndex);
+      
+      // Hiển thị các xe
+      carsToShow.forEach(car => {
+        const carCard = `
+          <div class="col-lg-4 col-md-6">
+            <div class="car-card fade-in-up">
+              <img src="${car.image}" alt="${car.name}" onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIyNTAiIHZpZXdCb3g9IjAgMCA4MDAgNTAwIiBmaWxsPSJub25lIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPgo8cmVjdCB3aWR0aD0iODAwIiBoZWlnaHQ9IjUwMCIgZmlsbD0iIzA0MUU0MiIvPgo8cGF0aCBkPSJNMTUwIDEyNUwyMDAgNzVMMjUwIDEyNUwyMDAgMTc1TDE1MCAxMjVaIiBmaWxsPSIjMDA2NkIzIi8+Cjx0ZXh0IHg9IjIwMCIgeT0iMTM1IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmaWxsPSIjMDA2NkIzIiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMTgiPkJNVzwvdGV4dD4KPC9zdmc+Cg=='">
+              <div class="car-card-body">
+                <h3 class="car-card-title">${car.name}</h3>
+                <div class="car-card-price">${formatPrice(car.price)} VNĐ</div>
+                <ul class="car-card-features">
+                  ${car.features.map(feature => `<li><i class="fas fa-check"></i>${feature}</li>`).join('')}
+                </ul>
+                <div class="car-card-actions">
+                  <button class="btn btn-outline-bmw w-100" onclick="showCarDetails(${JSON.stringify(car).replace(/"/g, '&quot;')})">
+                    <i class="fas fa-info-circle me-2"></i>Xem chi tiết
+                  </button>
+                  <button class="btn btn-bmw w-100" onclick="addToCart(${JSON.stringify(car).replace(/"/g, '&quot;')})">
+                    <i class="fas fa-shopping-cart me-2"></i>Thêm vào giỏ
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        `;
+        container.innerHTML += carCard;
+      });
+    }
+
+    // Hàm chuyển trang
+    function switchPage(page) {
+      currentPage = page;
+      
+      // Cập nhật trạng thái nút phân trang
+      document.querySelectorAll('.pagination-btn').forEach((btn, index) => {
+        btn.classList.toggle('active', index + 1 === page);
+      });
+      
+      // Hiển thị xe theo trang
+      displayBmwCars(page);
+    }
+
+    // Kiểm tra trạng thái đăng nhập
+    function checkLoginStatus() {
+      const userInfo = document.getElementById('userInfo');
+      const loginLink = document.getElementById('loginLink');
+      const userName = document.getElementById('userName');
+      const userAvatar = document.getElementById('userAvatar');
+      
+      // Kiểm tra xem có thông tin đăng nhập trong localStorage không
+      const loggedInUser = localStorage.getItem('loggedInUser');
+      
+      if (loggedInUser) {
+        const user = JSON.parse(loggedInUser);
+        userInfo.style.display = 'block';
+        loginLink.style.display = 'none';
+        userName.textContent = user.name;
+        userAvatar.textContent = user.name.charAt(0).toUpperCase();
+      } else {
+        userInfo.style.display = 'none';
+        loginLink.style.display = 'block';
+      }
+    }
+
+    // Xử lý tìm kiếm nâng cao
+    function handleAdvancedSearch(e) {
+      e.preventDefault();
+      
+      // Thu thập giá trị tìm kiếm và bộ lọc
+      const query = document.getElementById('searchInput').value;
+      const engines = Array.from(document.querySelectorAll('input[name="engine"]:checked')).map(cb => cb.value);
+      const prices = Array.from(document.querySelectorAll('input[name="price"]:checked')).map(cb => cb.value);
+      const speeds = Array.from(document.querySelectorAll('input[name="speed"]:checked')).map(cb => cb.value);
+      
+      // Lưu thông tin tìm kiếm vào localStorage
+      const searchParams = {
+        query: query,
+        engines: engines,
+        prices: prices,
+        speeds: speeds
+      };
+      localStorage.setItem('searchParams', JSON.stringify(searchParams));
+      
+      // Chuyển hướng đến trang kết quả tìm kiếm
+      window.location.href = 'search-results.html';
+    }
+
+    // Khởi tạo trang
+    document.addEventListener('DOMContentLoaded', function() {
+      checkLoginStatus();
+      
+      // Hiển thị trang đầu tiên
+      displayBmwCars(currentPage);
+      
+      // Thêm sự kiện cho các nút phân trang
+      document.querySelectorAll('.pagination-btn').forEach((btn, index) => {
+        btn.addEventListener('click', function() {
+          switchPage(index + 1);
+        });
+      });
+      
+      // Thêm sự kiện cho form tìm kiếm nâng cao
+      document.getElementById('advancedSearchForm').addEventListener('submit', handleAdvancedSearch);
+      
+      // Xử lý thêm vào giỏ hàng từ modal
+      document.getElementById('modalAddToCartBtn').addEventListener('click', function() {
+        if (currentCar) {
+          addToCart(currentCar);
+          const modal = bootstrap.Modal.getInstance(document.getElementById('carDetailsModal'));
+          modal.hide();
+        }
+      });
+      
+      // Xử lý đăng xuất
+      document.getElementById('logoutBtn').addEventListener('click', function(e) {
+        e.preventDefault();
+        localStorage.removeItem('loggedInUser');
+        checkLoginStatus();
+        alert('Đã đăng xuất thành công!');
+        window.location.href = '../index.html';
+      });
+      
+      // Thêm hiệu ứng fade-in cho các phần tử khi cuộn trang
+      const fadeElements = document.querySelectorAll('.fade-in-up');
+      
+      const fadeInOnScroll = function() {
+        fadeElements.forEach(element => {
+          const elementTop = element.getBoundingClientRect().top;
+          const elementVisible = 150;
+          
+          if (elementTop < window.innerHeight - elementVisible) {
+            element.style.opacity = 1;
+            element.style.transform = 'translateY(0)';
+          }
+        });
+      };
+      
+      // Kích hoạt ngay lập tức
+      fadeInOnScroll();
+      
+      // Và khi cuộn
+      window.addEventListener('scroll', fadeInOnScroll);
+    });
+  </script>
+</body>
+</html>
