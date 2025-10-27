@@ -78,7 +78,6 @@
       border-color: var(--jade-black);
     }
 
-
     /* Hero Section */
     .hero {
       background: linear-gradient(135deg, var(--jade-black) 0%, var(--jade-dark) 100%);
@@ -279,18 +278,6 @@
       gap: 10px;
     }
 
-    .user-avatar {
-      width: 40px;
-      height: 40px;
-      border-radius: 50%;
-      background: var(--gold-color);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: var(--jade-black);
-      font-weight: bold;
-    }
-
     .user-dropdown {
       background: var(--jade-black);
       border: 2px solid var(--gold-color);
@@ -348,68 +335,82 @@
     .fade-in-up {
       animation: fadeInUp 0.6s ease;
     }
-       .navbar .d-flex.ms-3 {
-    min-width: 250px;
-}
 
-.navbar .d-flex.ms-3 .form-control {
-    width: 200px;
-    height: 40px;
-    background: #ffffff;
-    border: 2px solid var(--jade-black);
-    color: var(--jade-black);
-    transition: all 0.3s ease;
-    font-size: 14px;
-}
-
-.navbar .d-flex.ms-3 .form-control:focus {
-    background: #ffffff;
-    border-color: var(--jade-black);
-    color: var(--jade-black);
-    box-shadow: 0 0 0 0.25rem rgba(13, 27, 42, 0.25);
-    width: 220px; /* Mở rộng nhẹ khi focus */
-}
-
-.navbar .d-flex.ms-3 .form-control::placeholder {
-    color: rgba(13, 27, 42, 0.5);
-    font-size: 14px;
-}
-
-.navbar .d-flex.ms-3 .btn-outline-light {
-    height: 40px;
-    width: 40px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-color: var(--jade-black);
-    color: var(--jade-black);
-    background: transparent;
-    transition: all 0.3s ease;
-}
-
-.navbar .d-flex.ms-3 .btn-outline-light:hover {
-    background: var(--jade-black);
-    border-color: var(--jade-black);
-    color: var(--gold-color);
-}
-
-/* Responsive cho mobile */
-@media (max-width: 768px) {
+    /* Search Bar Styles */
     .navbar .d-flex.ms-3 {
-        min-width: 200px;
-        margin-top: 10px;
+      min-width: 250px;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      margin-left: auto;
+      padding: 0;
     }
-    
+
     .navbar .d-flex.ms-3 .form-control {
-        width: 150px;
-        height: 35px;
+      width: 200px !important;
+      height: 40px !important;
+      background: #ffffff !important;
+      border: 2px solid var(--jade-black) !important;
+      color: var(--jade-black) !important;
+      transition: all 0.3s ease;
+      font-size: 14px;
+      border-radius: 10px !important;
+      margin: 0;
     }
-    
+
+    .navbar .d-flex.ms-3 .form-control:focus {
+      background: #ffffff !important;
+      border-color: var(--jade-black) !important;
+      color: var(--jade-black) !important;
+      box-shadow: 0 0 0 0.25rem rgba(13, 27, 42, 0.25) !important;
+      width: 220px !important;
+    }
+
+    .navbar .d-flex.ms-3 .form-control::placeholder {
+      color: rgba(13, 27, 42, 0.5) !important;
+      font-size: 14px;
+    }
+
     .navbar .d-flex.ms-3 .btn-outline-light {
-        height: 35px;
-        width: 35px;
+      height: 40px !important;
+      width: 40px !important;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-color: var(--jade-black) !important;
+      color: var(--jade-black) !important;
+      background: transparent !important;
+      transition: all 0.3s ease;
+      border-radius: 10px !important;
+      margin: 0;
     }
-}
+
+    .navbar .d-flex.ms-3 .btn-outline-light:hover {
+      background: var(--jade-black) !important;
+      border-color: var(--jade-black) !important;
+      color: var(--gold-color) !important;
+    }
+
+    /* Responsive cho mobile */
+    @media (max-width: 768px) {
+      .navbar .d-flex.ms-3 {
+        min-width: 100%;
+        margin-top: 0;
+        margin-left: 0;
+        justify-content: center;
+        padding: 5px 0;
+      }
+      
+      .navbar .d-flex.ms-3 .form-control {
+        width: 100% !important;
+        height: 35px !important;
+      }
+      
+      .navbar .d-flex.ms-3 .btn-outline-light {
+        height: 35px !important;
+        width: 35px !important;
+      }
+    }
   </style>
 </head>
 <body>
@@ -452,14 +453,12 @@
           <!-- Hiển thị thông tin người dùng nếu đã đăng nhập -->
           <li id="userInfo" class="nav-item dropdown" style="display: none;">
             <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-              <div class="user-info">
-                <div class="user-avatar" id="userAvatar">U</div>
-                <span id="userName">Người dùng</span>
-              </div>
+              <i class="fas fa-user me-1"></i><span id="userName">Người dùng</span>
             </a>
             <ul class="dropdown-menu user-dropdown">
               <li><a class="dropdown-item" href="customer-info.html"><i class="fas fa-user me-2"></i>Thông tin cá nhân</a></li>
-              <li><a class="dropdown-item" href="order-history.html"><i class="fas fa-history me-2"></i>Lịch sử đơn hàng</a></li>
+              <li><a class="dropdown-item" href="order-history.html"><i class="fas fa-history me-2"></i>Xem lịch sử đơn hàng</a></li>
+              <li><hr class="dropdown-divider" style="border-color: rgba(255, 215, 0, 0.3);"></li>
               <li><a class="dropdown-item" href="#" id="logoutBtn"><i class="fas fa-sign-out-alt me-2"></i>Đăng xuất</a></li>
             </ul>
           </li>
@@ -562,16 +561,33 @@
               </div>
               
               <div class="row">
-                <div class="col-md-6">
+                <div class="col-md-4">
                   <div class="mb-3">
-                    <label for="city" class="form-label">Thành phố</label>
-                    <input type="text" class="form-control" id="city" name="city" value="TP.HCM" required>
+                    <label for="province" class="form-label">Tỉnh/Thành phố</label>
+                    <select class="form-control" id="province" name="province" required>
+                      <option value="">Chọn tỉnh/thành phố</option>
+                      <option value="hcm" selected>TP. Hồ Chí Minh</option>
+                      <option value="hn">Hà Nội</option>
+                      <option value="dn">Đà Nẵng</option>
+                      <option value="hp">Hải Phòng</option>
+                      <option value="ct">Cần Thơ</option>
+                    </select>
                   </div>
                 </div>
-                <div class="col-md-6">
+                <div class="col-md-4">
                   <div class="mb-3">
                     <label for="district" class="form-label">Quận/Huyện</label>
-                    <input type="text" class="form-control" id="district" name="district" value="Quận 1" required>
+                    <select class="form-control" id="district" name="district" required>
+                      <option value="">Chọn quận/huyện</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="col-md-4">
+                  <div class="mb-3">
+                    <label for="ward" class="form-label">Phường/Xã</label>
+                    <select class="form-control" id="ward" name="ward" required>
+                      <option value="">Chọn phường/xã</option>
+                    </select>
                   </div>
                 </div>
               </div>
@@ -670,9 +686,7 @@
       const userInfo = document.getElementById('userInfo');
       const loginLink = document.getElementById('loginLink');
       const userName = document.getElementById('userName');
-      const userAvatar = document.getElementById('userAvatar');
       
-      // Kiểm tra xem có thông tin đăng nhập trong localStorage không
       const loggedInUser = localStorage.getItem('loggedInUser');
       
       if (loggedInUser) {
@@ -680,12 +694,10 @@
         userInfo.style.display = 'block';
         loginLink.style.display = 'none';
         userName.textContent = user.name;
-        userAvatar.textContent = user.name.charAt(0).toUpperCase();
         return user;
       } else {
         userInfo.style.display = 'none';
         loginLink.style.display = 'block';
-        // Nếu chưa đăng nhập, chuyển hướng về trang đăng nhập
         window.location.href = 'login.html';
         return null;
       }
@@ -703,35 +715,35 @@
     // Tải thông tin người dùng
     function loadUserProfile() {
       const loggedInUser = localStorage.getItem('loggedInUser');
-      const defaultEmail = 'thanhhoa13052006@gmail.com'; // Email mặc định
+      const defaultEmail = 'thanhhoa13052006@gmail.com';
       
       if (loggedInUser) {
         const user = JSON.parse(loggedInUser);
         
-        // Đảm bảo email không bao giờ là undefined
         if (!user.email || user.email === 'undefined') {
           user.email = defaultEmail;
         }
         
-        // Cập nhật thông tin trên giao diện
         document.getElementById('profileName').textContent = user.name;
         document.getElementById('profileEmail').textContent = user.email;
         document.getElementById('profileAvatar').textContent = user.name.charAt(0).toUpperCase();
         
-        // Điền thông tin vào form
-        document.getElementById('fullName').value = user.name;
+        document.getElementById('fullName').value = user.name || 'Trần Văn Thiện';
         document.getElementById('phone').value = user.phone || '0983XXXXXX';
         document.getElementById('email').value = user.email;
         document.getElementById('birthday').value = user.birthday || '2006-05-13';
         document.getElementById('gender').value = user.gender || 'male';
         document.getElementById('address').value = user.address || '123XYZ';
-        document.getElementById('city').value = user.city || 'TP.HCM';
-        document.getElementById('district').value = user.district || 'Quận 1';
+        document.getElementById('province').value = user.province || 'hcm';
+        document.getElementById('district').value = user.district || '';
+        document.getElementById('ward').value = user.ward || '';
         document.getElementById('language').value = user.language || 'vi';
         document.getElementById('currency').value = user.currency || 'vnd';
-        document.getElementById('newsletter').checked = user.newsletter || true;
+        document.getElementById('newsletter').checked = user.newsletter !== false;
+        
+        updateDistricts(user.province || 'hcm');
+        updateWards(user.district || '');
       } else {
-        // Nếu không có dữ liệu trong localStorage, sử dụng giá trị mặc định
         document.getElementById('profileName').textContent = 'Trần Văn Thiện';
         document.getElementById('profileEmail').textContent = defaultEmail;
         document.getElementById('profileAvatar').textContent = 'T';
@@ -742,18 +754,15 @@
         document.getElementById('birthday').value = '2006-05-13';
         document.getElementById('gender').value = 'male';
         document.getElementById('address').value = '123XYZ';
-        document.getElementById('city').value = 'TP.HCM';
-        document.getElementById('district').value = 'Quận 1';
+        document.getElementById('province').value = 'hcm';
+        document.getElementById('district').value = '';
+        document.getElementById('ward').value = '';
         document.getElementById('language').value = 'vi';
         document.getElementById('currency').value = 'vnd';
         document.getElementById('newsletter').checked = true;
+        
+        updateDistricts('hcm');
       }
-    }
-    
-    // Lấy thông tin người dùng từ localStorage
-    function getUserProfile() {
-      const loggedInUser = localStorage.getItem('loggedInUser');
-      return loggedInUser ? JSON.parse(loggedInUser) : null;
     }
     
     // Lưu thông tin người dùng
@@ -761,24 +770,21 @@
       localStorage.setItem('loggedInUser', JSON.stringify(userData));
     }
     
-    // Function to save changes
+    // Lưu thay đổi
     function saveChanges() {
       const email = document.getElementById('email').value;
       const phone = document.getElementById('phone').value;
       
-      // Simple email validation
       if (!email || !email.includes('@')) {
         alert('Vui lòng nhập địa chỉ email hợp lệ!');
         return;
       }
       
-      // Simple phone validation
       if (!phone || phone.length < 10) {
         alert('Số điện thoại phải có ít nhất 10 ký tự!');
         return;
       }
       
-      // Lấy thông tin từ form
       const userData = {
         name: document.getElementById('fullName').value,
         email: email,
@@ -786,39 +792,81 @@
         birthday: document.getElementById('birthday').value,
         gender: document.getElementById('gender').value,
         address: document.getElementById('address').value,
-        city: document.getElementById('city').value,
+        province: document.getElementById('province').value,
         district: document.getElementById('district').value,
+        ward: document.getElementById('ward').value,
         language: document.getElementById('language').value,
         currency: document.getElementById('currency').value,
         newsletter: document.getElementById('newsletter').checked
       };
       
-      // Lưu thông tin vào localStorage
       saveUserProfile(userData);
       
-      // Cập nhật thông tin trên navigation
-      const userAvatar = document.getElementById('userAvatar');
-      const userName = document.getElementById('userName');
-      userAvatar.textContent = userData.name.charAt(0).toUpperCase();
-      userName.textContent = userData.name;
-      
-      // Cập nhật profile header
+      document.getElementById('userName').textContent = userData.name;
       document.getElementById('profileName').textContent = userData.name;
       document.getElementById('profileEmail').textContent = userData.email;
       document.getElementById('profileAvatar').textContent = userData.name.charAt(0).toUpperCase();
       
-      // Show success message and redirect
       alert('Thông tin đã được cập nhật thành công!');
       window.location.href = 'customer-info.html';
     }
     
-    // Thêm hiệu ứng fade-in cho các phần tử khi cuộn trang
+    // Cập nhật danh sách quận/huyện
+    function updateDistricts(provinceId) {
+      const districtSelect = document.getElementById('district');
+      districtSelect.innerHTML = '<option value="">Chọn quận/huyện</option>';
+      
+      if (provinceId) {
+        const districts = {
+          'hcm': ['Quận 1', 'Quận 2', 'Quận 3', 'Quận 4', 'Quận 5'],
+          'hn': ['Quận Ba Đình', 'Quận Hoàn Kiếm', 'Quận Hai Bà Trưng', 'Quận Đống Đa', 'Quận Tây Hồ'],
+          'dn': ['Quận Hải Châu', 'Quận Thanh Khê', 'Quận Sơn Trà', 'Quận Ngũ Hành Sơn', 'Quận Liên Chiểu'],
+          'hp': ['Quận Hồng Bàng', 'Quận Ngô Quyền', 'Quận Lê Chân', 'Quận Hải An', 'Quận Kiến An'],
+          'ct': ['Quận Ninh Kiều', 'Quận Bình Thủy', 'Quận Cái Răng', 'Quận Ô Môn', 'Quận Thốt Nốt']
+        };
+        
+        districts[provinceId].forEach(district => {
+          const option = document.createElement('option');
+          option.value = district;
+          option.textContent = district;
+          districtSelect.appendChild(option);
+        });
+        
+        if (districts[provinceId].length > 0) {
+          districtSelect.value = districts[provinceId][0];
+          updateWards(districtSelect.value);
+        }
+      } else {
+        document.getElementById('ward').innerHTML = '<option value="">Chọn phường/xã</option>';
+      }
+    }
+    
+    // Cập nhật danh sách phường/xã
+    function updateWards(district) {
+      const wardSelect = document.getElementById('ward');
+      wardSelect.innerHTML = '<option value="">Chọn phường/xã</option>';
+      
+      if (district) {
+        const wards = ['Phường 1', 'Phường 2', 'Phường 3', 'Phường 4', 'Phường 5'];
+        
+        wards.forEach(ward => {
+          const option = document.createElement('option');
+          option.value = ward;
+          option.textContent = ward;
+          wardSelect.appendChild(option);
+        });
+        
+        if (wards.length > 0) {
+          wardSelect.value = wards[0];
+        }
+      }
+    }
+    
+    // Khởi tạo trang
     document.addEventListener('DOMContentLoaded', function() {
-      // Kiểm tra đăng nhập
       const user = checkLoginStatus();
       
       if (user) {
-        // Tải thông tin người dùng
         loadUserProfile();
       }
       
@@ -835,11 +883,16 @@
         });
       };
       
-      // Kích hoạt ngay lập tức
       fadeInOnScroll();
-      
-      // Và khi cuộn
       window.addEventListener('scroll', fadeInOnScroll);
+      
+      document.getElementById('province').addEventListener('change', function() {
+        updateDistricts(this.value);
+      });
+      
+      document.getElementById('district').addEventListener('change', function() {
+        updateWards(this.value);
+      });
     });
   </script>
 </body>

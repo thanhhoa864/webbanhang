@@ -594,6 +594,7 @@
       font-size: 3rem;
     }
 
+    /* Image fallback styles */
     .img-fallback {
       width: 100%;
       height: 100%;
@@ -604,69 +605,6 @@
       color: var(--porsche-red);
       font-size: 1.5rem;
     }
-    
-.navbar .d-flex.ms-3 {
-    min-width: 250px;
-}
-
-.navbar .d-flex.ms-3 .form-control {
-    width: 200px;
-    height: 40px;
-    background: #ffffff;
-    border: 2px solid var(--jade-black);
-    color: var(--jade-black);
-    transition: all 0.3s ease;
-    font-size: 14px;
-}
-
-.navbar .d-flex.ms-3 .form-control:focus {
-    background: #ffffff;
-    border-color: var(--jade-black);
-    color: var(--jade-black);
-    box-shadow: 0 0 0 0.25rem rgba(13, 27, 42, 0.25);
-    width: 220px; /* Mở rộng nhẹ khi focus */
-}
-
-.navbar .d-flex.ms-3 .form-control::placeholder {
-    color: rgba(13, 27, 42, 0.5);
-    font-size: 14px;
-}
-
-.navbar .d-flex.ms-3 .btn-outline-light {
-    height: 40px;
-    width: 40px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-color: var(--jade-black);
-    color: var(--jade-black);
-    background: transparent;
-    transition: all 0.3s ease;
-}
-
-.navbar .d-flex.ms-3 .btn-outline-light:hover {
-    background: var(--jade-black);
-    border-color: var(--jade-black);
-    color: var(--gold-color);
-}
-
-/* Responsive cho mobile */
-@media (max-width: 768px) {
-    .navbar .d-flex.ms-3 {
-        min-width: 200px;
-        margin-top: 10px;
-    }
-    
-    .navbar .d-flex.ms-3 .form-control {
-        width: 150px;
-        height: 35px;
-    }
-    
-    .navbar .d-flex.ms-3 .btn-outline-light {
-        height: 35px;
-        width: 35px;
-    }
-}
   </style>
 </head>
 <body>
@@ -687,6 +625,8 @@
       
       <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          
+          <!-- Mua xe Dropdown -->
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
               <i class="fas fa-shopping-cart me-1"></i>Mua xe
@@ -706,6 +646,7 @@
         </ul>
         
         <ul class="navbar-nav mb-2 mb-lg-0">
+          <!-- Hiển thị thông tin người dùng nếu đã đăng nhập -->
           <li id="userInfo" class="nav-item dropdown" style="display: none;">
             <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
               <div class="user-info">
@@ -719,6 +660,7 @@
             </ul>
           </li>
           
+          <!-- Hiển thị nút đăng nhập nếu chưa đăng nhập -->
           <li id="loginLink" class="nav-item">
             <a class="nav-link" href="../login.html">
               <i class="fas fa-user me-1"></i>Đăng nhập
@@ -732,6 +674,7 @@
           </li>
         </ul>
         
+        <!-- Search Bar -->
         <form class="d-flex ms-3" role="search">
           <input class="form-control me-2" type="search" placeholder="Tìm kiếm siêu xe..." aria-label="Search">
           <button class="btn btn-outline-light" type="submit">
@@ -765,13 +708,13 @@
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
-          <img id="modalCarImage" class="car-image" src="" alt="Porsche" 
-               onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iODAwIiBoZWlnaHQ9IjYwMCIgdmlld0JveD0iMCAwIDgwMCA2MDAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSI4MDAiIGhlaWdodD0iNjAwIiBmaWxsPSIjMDQxRTQyIi8+CjxwYXRoIGQ9Ik0zMDAgMjUwTDM1MCAxNzVMMzUwIDMyNUwzMDAgMjUwWk01MDAgMjUwTDM1MCAxNzVMMzUwIDMyNUw1MDAgMjUwWiIgZmlsbD0iI0NDMDAwMCIvPgo8dGV4dCB4PSI0MDAiIHk9IjQwMCIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZmlsbD0iI0NDMDAwMCIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXNpemU9IjI0IiBmb250LXdlaWdodD0iYm9sZCI+UG9yc2NoZTwvdGV4dD4KPC9zdmc+Cg=='">
           <h3 id="modalCarName" class="mb-3" style="color: var(--porsche-red);"></h3>
           <div id="modalCarPrice" class="mb-3" style="color: var(--gold-color); font-size: 1.5rem; font-weight: bold;"></div>
           <p id="modalCarDescription" class="mb-4"></p>
           <h5 style="color: var(--porsche-red); margin-bottom: 15px;">Thông số kỹ thuật</h5>
-          <div class="specs-grid" id="modalCarSpecs"></div>
+          <div class="specs-grid" id="modalCarSpecs">
+            <!-- Specs will be dynamically added here -->
+          </div>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-outline-porsche" data-bs-dismiss="modal">Đóng</button>
@@ -826,12 +769,14 @@
       <h2 class="fade-in-up">Các dòng xe Porsche thể thao</h2>
       
       <div class="row">
+        <!-- Filter Section - Bên trái -->
         <div class="col-lg-3 col-md-4 mb-4">
           <div class="filter-section fade-in-up">
             <h4 class="filter-title">
               <i class="fas fa-filter me-2"></i>Bộ lọc
             </h4>
             
+            <!-- Lọc theo động cơ -->
             <div class="filter-group">
               <h5 class="filter-group-title">Loại động cơ</h5>
               <div class="filter-options">
@@ -850,6 +795,7 @@
               </div>
             </div>
             
+            <!-- Lọc theo giá -->
             <div class="filter-group">
               <h5 class="filter-group-title">Mức giá</h5>
               <div class="filter-options">
@@ -868,6 +814,7 @@
               </div>
             </div>
             
+            <!-- Lọc theo tốc độ -->
             <div class="filter-group">
               <h5 class="filter-group-title">Tốc độ tối đa</h5>
               <div class="filter-options">
@@ -881,24 +828,16 @@
                 </div>
               </div>
             </div>
-            
-            <div class="filter-group">
-              <h5 class="filter-group-title">Tìm kiếm nâng cao</h5>
-              <form id="advancedSearchForm">
-                <div class="filter-options">
-                  <input type="text" id="searchInput" name="query" class="form-control" placeholder="Tìm kiếm theo tên hoặc đặc điểm...">
-                  <button type="submit" class="btn btn-porsche w-100 mt-3">
-                    <i class="fas fa-search me-2"></i>Tìm kiếm
-                  </button>
-                </div>
-              </form>
-            </div>
           </div>
         </div>
         
+        <!-- Cars Section - Bên phải -->
         <div class="col-lg-9 col-md-8">
-          <div class="row" id="porscheCars"></div>
+          <div class="row" id="porscheCars">
+            <!-- Cars will be dynamically loaded here -->
+          </div>
           
+          <!-- Pagination - Dưới ảnh xe -->
           <div class="pagination-container fade-in-up">
             <button class="pagination-btn active">1</button>
             <button class="pagination-btn">2</button>
@@ -984,6 +923,7 @@
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
   
   <script>
+    // Dữ liệu xe Porsche với hình ảnh thực tế
     const porscheCars = [
       {
         id: 1,
@@ -1119,16 +1059,22 @@
       }
     ];
 
+    // Biến lưu trữ xe hiện tại được chọn
     let currentCar = null;
     let currentPage = 1;
     const carsPerPage = 3;
 
+    // Hàm định dạng giá tiền
     function formatPrice(price) {
       return new Intl.NumberFormat('vi-VN').format(price);
     }
 
+    // Hàm thêm vào giỏ hàng
     function addToCart(car) {
+      // Lấy giỏ hàng từ localStorage
       let cart = JSON.parse(localStorage.getItem('cart')) || [];
+      
+      // Kiểm tra xem xe đã có trong giỏ hàng chưa
       const existingItem = cart.find(item => item.id === car.id);
       
       if (existingItem) {
@@ -1143,14 +1089,19 @@
         });
       }
       
+      // Lưu giỏ hàng vào localStorage
       localStorage.setItem('cart', JSON.stringify(cart));
+      
+      // Hiển thị thông báo
       const toast = new bootstrap.Toast(document.getElementById('successToast'));
       toast.show();
     }
 
+    // Hàm hiển thị chi tiết xe trong modal
     function showCarDetails(car) {
       currentCar = car;
       
+      // Cập nhật nội dung modal
       document.getElementById('carDetailsModalLabel').textContent = car.name;
       document.getElementById('modalCarName').textContent = car.name;
       document.getElementById('modalCarPrice').textContent = formatPrice(car.price) + ' VNĐ';
@@ -1158,6 +1109,7 @@
       document.getElementById('modalCarImage').src = car.image;
       document.getElementById('modalCarImage').alt = car.name;
       
+      // Xóa và thêm lại thông số kỹ thuật
       const specsContainer = document.getElementById('modalCarSpecs');
       specsContainer.innerHTML = '';
       
@@ -1178,24 +1130,27 @@
         specsContainer.appendChild(specItem);
       }
       
+      // Hiển thị modal
       const modal = new bootstrap.Modal(document.getElementById('carDetailsModal'));
       modal.show();
     }
 
+    // Hàm hiển thị xe Porsche theo trang
     function displayPorscheCars(page = 1) {
       const container = document.getElementById('porscheCars');
       container.innerHTML = '';
       
+      // Tính toán xe cần hiển thị
       const startIndex = (page - 1) * carsPerPage;
       const endIndex = startIndex + carsPerPage;
       const carsToShow = porscheCars.slice(startIndex, endIndex);
       
+      // Hiển thị các xe
       carsToShow.forEach(car => {
         const carCard = `
           <div class="col-lg-4 col-md-6">
             <div class="car-card fade-in-up">
-              <img src="${car.image}" alt="${car.name}" 
-                   onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iODAwIiBoZWlnaHQ9IjUwMCIgdmlld0JveD0iMCAwIDgwMCA1MDAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSI4MDAiIGhlaWdodD0iNTAwIiBmaWxsPSIjMDQxRTQyIi8+CjxwYXRoIGQ9Ik0zMDAgMjAwTDM1MCAxMjVMMzUwIDI3NUwzMDAgMjAwWk01MDAgMjAwTDQzMCAxMzBMMzUwIDI3NUw1MDAgMjAwWiIgZmlsbD0iI0NDMDAwMCIvPgo8dGV4dCB4PSI0MDAiIHk9IjM1MCIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZmlsbD0iI0NDMDAwMCIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXNpemU9IjI0IiBmb250LXdlaWdodD0iYm9sZCI+UG9yc2NoZTwvdGV4dD4KPC9zdmc+Cg=='">
+              <img src="${car.image}" alt="${car.name}" onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIyNTAiIHZpZXdCb3g9IjAgMCA0MDAgMjUwIiBmaWxsPSJub25lIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPgo8cmVjdCB3aWR0aD0iNDAwIiBoZWlnaHQ9IjI1MCIgZmlsbD0iIzA0MUU0MiIvPgo8cGF0aCBkPSJNMTUwIDEyNUwyMDAgNzVMMjUwIDEyNUwyMDAgMTc1TDE1MCAxMjVaIiBmaWxsPSIjQ0MwMDAwIi8+Cjx0ZXh0IHg9IjIwMCIgeT0iMTM1IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmaWxsPSIjQ0MwMDAwIiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMTgiPlBvcnNjaGU8L3RleHQ+Cjwvc3ZnPg==';">
               <div class="car-card-body">
                 <h3 class="car-card-title">${car.name}</h3>
                 <div class="car-card-price">${formatPrice(car.price)} VNĐ</div>
@@ -1218,22 +1173,27 @@
       });
     }
 
+    // Hàm chuyển trang
     function switchPage(page) {
       currentPage = page;
       
+      // Cập nhật trạng thái nút phân trang
       document.querySelectorAll('.pagination-btn').forEach((btn, index) => {
         btn.classList.toggle('active', index + 1 === page);
       });
       
+      // Hiển thị xe theo trang
       displayPorscheCars(page);
     }
 
+    // Kiểm tra trạng thái đăng nhập
     function checkLoginStatus() {
       const userInfo = document.getElementById('userInfo');
       const loginLink = document.getElementById('loginLink');
       const userName = document.getElementById('userName');
       const userAvatar = document.getElementById('userAvatar');
       
+      // Kiểm tra xem có thông tin đăng nhập trong localStorage không
       const loggedInUser = localStorage.getItem('loggedInUser');
       
       if (loggedInUser) {
@@ -1248,25 +1208,7 @@
       }
     }
 
-    function handleAdvancedSearch(e) {
-      e.preventDefault();
-      
-      const query = document.getElementById('searchInput').value;
-      const engines = Array.from(document.querySelectorAll('input[name="engine"]:checked')).map(cb => cb.value);
-      const prices = Array.from(document.querySelectorAll('input[name="price"]:checked')).map(cb => cb.value);
-      const speeds = Array.from(document.querySelectorAll('input[name="speed"]:checked')).map(cb => cb.value);
-      
-      const searchParams = {
-        query: query,
-        engines: engines,
-        prices: prices,
-        speeds: speeds
-      };
-      localStorage.setItem('searchParams', JSON.stringify(searchParams));
-      
-      window.location.href = 'search-results.html';
-    }
-
+    // Xử lý đăng xuất
     document.getElementById('logoutBtn').addEventListener('click', function(e) {
       e.preventDefault();
       localStorage.removeItem('loggedInUser');
@@ -1275,6 +1217,7 @@
       window.location.href = '../index.html';
     });
 
+    // Xử lý thêm vào giỏ hàng từ modal
     document.getElementById('modalAddToCartBtn').addEventListener('click', function() {
       if (currentCar) {
         addToCart(currentCar);
@@ -1283,19 +1226,23 @@
       }
     });
 
+    // Khởi tạo trang
     document.addEventListener('DOMContentLoaded', function() {
       checkLoginStatus();
+      
+      // Hiển thị trang đầu tiên
       displayPorscheCars(currentPage);
       
+      // Thêm sự kiện cho các nút phân trang
       document.querySelectorAll('.pagination-btn').forEach((btn, index) => {
         btn.addEventListener('click', function() {
           switchPage(index + 1);
         });
       });
       
-      document.getElementById('advancedSearchForm').addEventListener('submit', handleAdvancedSearch);
-      
+      // Thêm hiệu ứng fade-in cho các phần tử khi cuộn trang
       const fadeElements = document.querySelectorAll('.fade-in-up');
+      
       const fadeInOnScroll = function() {
         fadeElements.forEach(element => {
           const elementTop = element.getBoundingClientRect().top;
@@ -1308,7 +1255,10 @@
         });
       };
       
+      // Kích hoạt ngay lập tức
       fadeInOnScroll();
+      
+      // Và khi cuộn
       window.addEventListener('scroll', fadeInOnScroll);
     });
   </script>

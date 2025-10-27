@@ -297,6 +297,28 @@
       border-radius: 10px;
       color: var(--text-light);
       min-width: 250px;
+      padding: 15px;
+    }
+
+    /* Demo credentials */
+    .demo-credentials {
+      background: var(--jade-dark);
+      border: 1px solid var(--gold-color);
+      border-radius: 10px;
+      padding: 15px;
+      margin-bottom: 20px;
+    }
+
+    .demo-credentials h6 {
+      color: var(--gold-color);
+      margin-bottom: 10px;
+      font-weight: bold;
+    }
+
+    .demo-credentials p {
+      margin: 5px 0;
+      font-size: 0.9rem;
+      color: var(--text-light);
     }
 
     /* Responsive */
@@ -358,6 +380,44 @@
       margin-bottom: 0;
       color: var(--text-light);
     }
+
+    /* Contact Float */
+    .contact-float {
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+      z-index: 1000;
+    }
+
+    .contact-float a {
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: var(--jade-black);
+      font-size: 24px;
+      text-decoration: none;
+      box-shadow: 0 6px 20px rgba(255, 215, 0, 0.3);
+      transition: all 0.3s ease;
+    }
+
+    .contact-float a:hover {
+      transform: scale(1.15);
+      box-shadow: 0 8px 25px rgba(255, 215, 0, 0.5);
+    }
+
+    .hotline { 
+      background: linear-gradient(135deg, var(--gold-color), var(--dark-gold));
+    }
+
+    .facebook { 
+      background: linear-gradient(135deg, var(--accent-gold), var(--gold-color));
+    }
   </style>
 </head>
 <body>
@@ -398,13 +458,10 @@
         </ul>
         
         <ul class="navbar-nav mb-2 mb-lg-0">
-          <!-- Hiển thị thông tin người dùng nếu đã đăng nhập -->
+                <!-- Hiển thị thông tin người dùng nếu đã đăng nhập -->
           <li id="userInfo" class="nav-item dropdown" style="display: none;">
             <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-              <div class="user-info">
-                <div class="user-avatar" id="userAvatar">U</div>
-                <span id="userName">Người dùng</span>
-              </div>
+              <i class="fas fa-user me-1"></i><span id="userName">Người dùng</span>
             </a>
             <ul class="dropdown-menu user-dropdown">
               <li><a class="dropdown-item" href="customer-info.html"><i class="fas fa-user me-2"></i>Thông tin cá nhân</a></li>
@@ -460,16 +517,17 @@
             </div>
             
             <div class="login-body">
+
               <form id="loginForm">
                 <div class="mb-3">
                   <label for="username" class="form-label">Tên đăng nhập</label>
-                  <input type="text" class="form-control" id="username" placeholder="Nhập tên đăng nhập" required>
+                  <input type="text" class="form-control" id="username" placeholder="Nhập tên đăng nhập" value="Đặng Minh " required>
                   <div class="error-message" id="usernameError">Tên đăng nhập không được để trống</div>
                 </div>
                 
                 <div class="mb-3">
                   <label for="password" class="form-label">Mật khẩu</label>
-                  <input type="password" class="form-control" id="password" placeholder="Nhập mật khẩu" required>
+                  <input type="password" class="form-control" id="password" placeholder="Nhập mật khẩu" value="123456" required>
                   <div class="error-message" id="passwordError">Mật khẩu không được để trống</div>
                 </div>
                 
@@ -539,7 +597,6 @@
       const userInfo = document.getElementById('userInfo');
       const loginLink = document.getElementById('loginLink');
       const userName = document.getElementById('userName');
-      const userAvatar = document.getElementById('userAvatar');
       
       const loggedInUser = localStorage.getItem('loggedInUser');
       
@@ -548,7 +605,6 @@
         userInfo.style.display = 'block';
         loginLink.style.display = 'none';
         userName.textContent = user.name;
-        userAvatar.textContent = user.name.charAt(0).toUpperCase();
       } else {
         userInfo.style.display = 'none';
         loginLink.style.display = 'block';

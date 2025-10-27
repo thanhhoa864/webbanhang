@@ -548,6 +548,58 @@
       color: var(--jade-black);
     }
 
+    /* Search Bar */
+    .navbar .d-flex.ms-3 {
+      min-width: 250px;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      margin-left: auto;
+    }
+
+    .navbar .d-flex.ms-3 .form-control {
+      width: 200px !important;
+      height: 40px !important;
+      background: #ffffff !important;
+      border: 2px solid var(--jade-black) !important;
+      color: var(--jade-black) !important;
+      transition: all 0.3s ease;
+      font-size: 14px;
+      border-radius: 10px !important;
+    }
+
+    .navbar .d-flex.ms-3 .form-control:focus {
+      background: #ffffff !important;
+      border-color: var(--jade-black) !important;
+      color: var(--jade-black) !important;
+      box-shadow: 0 0 0 0.25rem rgba(13, 27, 42, 0.25) !important;
+      width: 220px !important;
+    }
+
+    .navbar .d-flex.ms-3 .form-control::placeholder {
+      color: rgba(13, 27, 42, 0.5) !important;
+      font-size: 14px;
+    }
+
+    .navbar .d-flex.ms-3 .btn-outline-light {
+      height: 40px !important;
+      width: 40px !important;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-color: var(--jade-black) !important;
+      color: var(--jade-black) !important;
+      background: transparent !important;
+      transition: all 0.3s ease;
+      border-radius: 10px !important;
+    }
+
+    .navbar .d-flex.ms-3 .btn-outline-light:hover {
+      background: var(--jade-black) !important;
+      border-color: var(--jade-black) !important;
+      color: var(--gold-color) !important;
+    }
+
     /* Responsive */
     @media (max-width: 768px) {
       .order-card-header, .order-card-footer {
@@ -583,6 +635,23 @@
       .filter-options {
         justify-content: center;
       }
+
+      .navbar .d-flex.ms-3 {
+        min-width: 100%;
+        margin-top: 10px;
+        margin-left: 0;
+        justify-content: center;
+      }
+      
+      .navbar .d-flex.ms-3 .form-control {
+        width: 100% !important;
+        height: 35px !important;
+      }
+      
+      .navbar .d-flex.ms-3 .btn-outline-light {
+        height: 35px !important;
+        width: 35px !important;
+      }
     }
 
     /* Loading animation */
@@ -599,70 +668,6 @@
 
     .fade-in-up {
       animation: fadeInUp 0.6s ease;
-    }
-    
-    /* Search Bar */
-    .navbar .d-flex.ms-3 {
-      min-width: 250px;
-    }
-
-    .navbar .d-flex.ms-3 .form-control {
-      width: 200px;
-      height: 40px;
-      background: #ffffff;
-      border: 2px solid var(--jade-black);
-      color: var(--jade-black);
-      transition: all 0.3s ease;
-      font-size: 14px;
-    }
-
-    .navbar .d-flex.ms-3 .form-control:focus {
-      background: #ffffff;
-      border-color: var(--jade-black);
-      color: var(--jade-black);
-      box-shadow: 0 0 0 0.25rem rgba(13, 27, 42, 0.25);
-      width: 220px;
-    }
-
-    .navbar .d-flex.ms-3 .form-control::placeholder {
-      color: rgba(13, 27, 42, 0.5);
-      font-size: 14px;
-    }
-
-    .navbar .d-flex.ms-3 .btn-outline-light {
-      height: 40px;
-      width: 40px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      border-color: var(--jade-black);
-      color: var(--jade-black);
-      background: transparent;
-      transition: all 0.3s ease;
-    }
-
-    .navbar .d-flex.ms-3 .btn-outline-light:hover {
-      background: var(--jade-black);
-      border-color: var(--jade-black);
-      color: var(--gold-color);
-    }
-
-    /* Responsive cho mobile */
-    @media (max-width: 768px) {
-      .navbar .d-flex.ms-3 {
-        min-width: 200px;
-        margin-top: 10px;
-      }
-      
-      .navbar .d-flex.ms-3 .form-control {
-        width: 150px;
-        height: 35px;
-      }
-      
-      .navbar .d-flex.ms-3 .btn-outline-light {
-        height: 35px;
-        width: 35px;
-      }
     }
   </style>
 </head>
@@ -704,21 +709,18 @@
         </ul>
         
         <ul class="navbar-nav mb-2 mb-lg-0">
-          <!-- Hiển thị thông tin người dùng nếu đã đăng nhập -->
+        <!-- Hiển thị thông tin người dùng nếu đã đăng nhập -->
           <li id="userInfo" class="nav-item dropdown" style="display: none;">
             <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-              <div class="user-info">
-                <div class="user-avatar" id="userAvatar">U</div>
-                <span id="userName">Người dùng</span>
-              </div>
+              <i class="fas fa-user me-1"></i><span id="userName">Người dùng</span>
             </a>
             <ul class="dropdown-menu user-dropdown">
               <li><a class="dropdown-item" href="customer-info.html"><i class="fas fa-user me-2"></i>Thông tin cá nhân</a></li>
-              <li><a class="dropdown-item active" href="order-history.html"><i class="fas fa-history me-2"></i>Lịch sử đơn hàng</a></li>
+              <li><a class="dropdown-item" href="order-history.html"><i class="fas fa-history me-2"></i>Xem lịch sử đơn hàng</a></li>
+              <li><hr class="dropdown-divider" style="border-color: rgba(255, 215, 0, 0.3);"></li>
               <li><a class="dropdown-item" href="#" id="logoutBtn"><i class="fas fa-sign-out-alt me-2"></i>Đăng xuất</a></li>
             </ul>
           </li>
-          
           <!-- Hiển thị nút đăng nhập nếu chưa đăng nhập -->
           <li id="loginLink" class="nav-item">
             <a class="nav-link" href="login.html">
@@ -895,7 +897,6 @@
       const userInfo = document.getElementById('userInfo');
       const loginLink = document.getElementById('loginLink');
       const userName = document.getElementById('userName');
-      const userAvatar = document.getElementById('userAvatar');
       
       // Kiểm tra xem có thông tin đăng nhập trong localStorage không
       const loggedInUser = localStorage.getItem('loggedInUser');
@@ -905,7 +906,6 @@
         userInfo.style.display = 'block';
         loginLink.style.display = 'none';
         userName.textContent = user.name;
-        userAvatar.textContent = user.name.charAt(0).toUpperCase();
         return true;
       } else {
         userInfo.style.display = 'none';
@@ -930,7 +930,7 @@
           id: 'ORD001',
           date: '15/06/2024',
           status: 'completed',
-          total: 12500000000,
+          total: 33000000000,
           address: {
             fullName: 'Nguyễn Văn A',
             phone: '0987654321',
@@ -946,13 +946,13 @@
           items: [
             {
               id: 1,
-              name: 'BMW M8 Competition',
-              price: 12500000000,
-              image: 'https://cdn.motor1.com/images/mgl/43kwJ/s1/bmw-m8-competition-coupe-by-manhart.webp',
+              name: 'Ferrari LaFerrari',
+              price: 33000000000,
+              image: 'https://media.vov.vn/sites/default/files/styles/large/public/2021-07/ferrari-laferrari.jpg',
               quantity: 1,
-              engine: '4.4L V8 Twin-Turbo',
-              power: '625 mã lực',
-              speed: '305 km/h'
+              engine: '6.3L V12 Hybrid',
+              power: '950 mã lực',
+              speed: '350 km/h'
             }
           ]
         },
@@ -960,7 +960,7 @@
           id: 'ORD002',
           date: '10/06/2024',
           status: 'delivered',
-          total: 6500000000,
+          total: 36000000000,
           address: {
             fullName: 'Trần Thị B',
             phone: '0912345678',
@@ -975,14 +975,14 @@
           },
           items: [
             {
-              id: 3,
-              name: 'BMW M4 Competition',
-              price: 6500000000,
-              image: 'https://carpassion.vn/wp-content/uploads/2024/02/2025-BMW-M4-Coupe-08.webp',
+              id: 2,
+              name: 'Pagani Huayra',
+              price: 36000000000,
+              image: 'https://media.vov.vn/sites/default/files/styles/large/public/2021-07/pagani-huayra.jpg',
               quantity: 1,
-              engine: '3.0L Straight-6 Twin-Turbo',
-              power: '510 mã lực',
-              speed: '290 km/h'
+              engine: '6.0L V12 Twin-Turbo',
+              power: '791 mã lực',
+              speed: '383 km/h'
             }
           ]
         }

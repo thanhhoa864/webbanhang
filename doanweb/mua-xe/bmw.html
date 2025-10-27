@@ -71,13 +71,27 @@
     }
 
     .btn-outline-light {
-      border-color: var(--jade-black);
-      color: var(--jade-black);
+      border: 2px solid var(--jade-black) !important;
+      color: var(--jade-black) !important;
+      background: transparent;
+      transition: all 0.3s ease;
     }
 
     .btn-outline-light:hover {
-      background: var(--jade-black);
-      border-color: var(--jade-black);
+      background: var(--jade-black) !important;
+      color: var(--text-light) !important;
+      border-color: var(--jade-black) !important;
+    }
+
+    .form-control {
+      border: 2px solid var(--jade-black) !important;
+      background: var(--text-light);
+      color: var(--jade-black);
+    }
+
+    .form-control:focus {
+      border-color: var(--gold-color) !important;
+      box-shadow: 0 0 5px rgba(255, 215, 0, 0.5);
     }
 
     /* Hero Section */
@@ -108,10 +122,10 @@
       background: linear-gradient(135deg, var(--bmw-blue), var(--bmw-dark-blue));
       border: none;
       color: var(--text-light);
-      padding: 12px 30px;
-      font-size: 1.1rem;
+      padding: 8px 16px; /* Nhỏ lại */
+      font-size: 0.9rem; /* Nhỏ lại */
       font-weight: 600;
-      border-radius: 50px;
+      border-radius: 5px; /* Hình chữ nhật */
       transition: all 0.3s ease;
     }
 
@@ -126,10 +140,10 @@
       border: 2px solid var(--bmw-blue);
       color: var(--bmw-blue);
       background: transparent;
-      padding: 12px 30px;
-      font-size: 1.1rem;
+      padding: 8px 16px; /* Nhỏ lại */
+      font-size: 0.9rem; /* Nhỏ lại */
       font-weight: 600;
-      border-radius: 50px;
+      border-radius: 5px; /* Hình chữ nhật */
       transition: all 0.3s ease;
     }
 
@@ -324,25 +338,7 @@
       background: linear-gradient(135deg, var(--accent-gold), var(--gold-color));
     }
 
-    /* User Info */
-    .user-info {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
-
-    .user-avatar {
-      width: 40px;
-      height: 40px;
-      border-radius: 50%;
-      background: var(--gold-color);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: var(--jade-black);
-      font-weight: bold;
-    }
-
+    /* User Dropdown */
     .user-dropdown {
       background: var(--jade-black);
       border: 2px solid var(--gold-color);
@@ -477,6 +473,32 @@
       cursor: pointer;
     }
 
+    /* Advanced Search Bar */
+    .advanced-search-form .form-control {
+      border: 2px solid var(--jade-black) !important;
+      background: var(--text-light);
+      color: var(--jade-black);
+      border-radius: 5px !important; /* Hình chữ nhật */
+    }
+
+    .advanced-search-form .form-control:focus {
+      border-color: var(--gold-color) !important;
+      box-shadow: 0 0 5px rgba(255, 215, 0, 0.5);
+    }
+
+    .advanced-search-form .btn-outline-light {
+      border: 2px solid var(--jade-black) !important;
+      color: var(--jade-black) !important;
+      background: transparent;
+      border-radius: 5px !important; /* Hình chữ nhật */
+    }
+
+    .advanced-search-form .btn-outline-light:hover {
+      background: var(--jade-black) !important;
+      color: var(--text-light) !important;
+      border-color: var(--jade-black) !important;
+    }
+
     /* Pagination */
     .pagination-container {
       display: flex;
@@ -604,69 +626,6 @@
       color: var(--bmw-blue);
       font-size: 1.5rem;
     }
-    
-.navbar .d-flex.ms-3 {
-    min-width: 250px;
-}
-
-.navbar .d-flex.ms-3 .form-control {
-    width: 200px;
-    height: 40px;
-    background: #ffffff;
-    border: 2px solid var(--jade-black);
-    color: var(--jade-black);
-    transition: all 0.3s ease;
-    font-size: 14px;
-}
-
-.navbar .d-flex.ms-3 .form-control:focus {
-    background: #ffffff;
-    border-color: var(--jade-black);
-    color: var(--jade-black);
-    box-shadow: 0 0 0 0.25rem rgba(13, 27, 42, 0.25);
-    width: 220px; /* Mở rộng nhẹ khi focus */
-}
-
-.navbar .d-flex.ms-3 .form-control::placeholder {
-    color: rgba(13, 27, 42, 0.5);
-    font-size: 14px;
-}
-
-.navbar .d-flex.ms-3 .btn-outline-light {
-    height: 40px;
-    width: 40px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-color: var(--jade-black);
-    color: var(--jade-black);
-    background: transparent;
-    transition: all 0.3s ease;
-}
-
-.navbar .d-flex.ms-3 .btn-outline-light:hover {
-    background: var(--jade-black);
-    border-color: var(--jade-black);
-    color: var(--gold-color);
-}
-
-/* Responsive cho mobile */
-@media (max-width: 768px) {
-    .navbar .d-flex.ms-3 {
-        min-width: 200px;
-        margin-top: 10px;
-    }
-    
-    .navbar .d-flex.ms-3 .form-control {
-        width: 150px;
-        height: 35px;
-    }
-    
-    .navbar .d-flex.ms-3 .btn-outline-light {
-        height: 35px;
-        width: 35px;
-    }
-}
   </style>
 </head>
 <body>
@@ -677,7 +636,7 @@
         <img src="https://preview.redd.it/petition-to-make-this-the-new-pic-of-the-sub-v0-x8o3qf29ah5f1.png?width=640&crop=smart&auto=webp&s=d04da2f01be93af3cba092e71c636a1c3bf61749" 
              alt="Logo" 
              style="height:40px; margin-right:10px; border-radius:50%; background-color:#000; padding:2px;"
-             onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAiIGhlaWdodD0iNDAiIHZpZXdCb3g9IjAgMCA0MCA0MCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHJlY3Qgd2lkdGg9IjQwIiBoZWlnaHQ9IjQwIiByeD0iMjAiIGZpbGw9IiMwMDY2QjMiLz4KPHN2ZyB4PSI4IiB5PSI4IiB3aWR0aD0iMjQiIGhlaWdodD0iMjQiIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHBhdGggZD0iTTEyIDJMMTUuMDkgOC4yNkwxMiA0LjgyTDguOTEgOC4yNkwxMiAyWiIgZmlsbD0id2hpdGUiLz4KPHBhdGggZD0iTTEyIDIyTDE1LjA5IDE1Ljc0TDEyIDE5LjE4TDguOTEgMTUuNzRMMTIgMjJaIiBmaWxsPSJ3aGl0ZSIvPgo8cGF0aCBkPSJNMiAxMkw4LjI2IDE1LjA5TDQuODIgMTJMOD4yNiA4LjkxTDIgMTJaIiBmaWxsPSJ3aGl0ZSIvPgo8cGF0aCBkPSJNMjIgMTJMMTUuNzQgOC45MUwxOS4xOCAxMkwxNS43NCAxNS4wOUwyMiAxMloiIGZmlsbD0id2hpdGUiLz4KPC9zdmc+Cjwvc3ZnPgo='">
+             onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAiIGhlaWdodD0iNDAiIHZpZXdCb3g9IjAgMCA4MCA4MCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHJlY3Qgd2lkdGg9IjgwIiBoZWlnaHQ9IjgwIiByeD0iNDAiIGZpbGw9IiMwMDY2QjMiLz4KPHN2ZyB4PSIxNiIgeT0iMTYiIHdpZHRoPSI0OCIgaGVpZ2h0PSI0OCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJub25lIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPgo8cGF0aCBkPSJNMTIgMkwxNS4wOSA4LjI2TDEyIDQuODJMOC45MSA4LjI2TDEyIDJaIiBmaWxsPSJ3aGl0ZSIvPgo8cGF0aCBkPSJNMTIgMjJMMTUuMDkgMTUuNzRMMTIgMTkuMThMOC45MSAxNS43NEwxMiAyMloiIGZpbGw9IndoaXRlIi8+CjxwYXRoIGQ9Ik0yIDEyTDguMjYgMTUuMDlMNC44MiAxMkw4LjI2IDguOTFMMiAxMloiIGZpbGw9IndoaXRlIi8+CjxwYXRoIGQ9Ik0yMiAxMkwxNS43NCA4LjkxTDE5LjE4IDEyTDE1Ljc0IDE1LjA5TDIyIDEyWiIgZmlsbD0id2hpdGUiLz4KPC9zdmc+Cjwvc3ZnPgo='">
         <span class="brand-text">OTOTHESIU</span>
       </a>
       
@@ -710,10 +669,7 @@
           <!-- Hiển thị thông tin người dùng nếu đã đăng nhập -->
           <li id="userInfo" class="nav-item dropdown" style="display: none;">
             <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-              <div class="user-info">
-                <div class="user-avatar" id="userAvatar">U</div>
-                <span id="userName">Người dùng</span>
-              </div>
+              <i class="fas fa-user me-1"></i><span id="userName">Người dùng</span>
             </a>
             <ul class="dropdown-menu user-dropdown">
               <li><a class="dropdown-item" href="../customer-info.html"><i class="fas fa-user me-2"></i>Thông tin cá nhân</a></li>
@@ -769,7 +725,7 @@
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
-          <img id="modalCarImage" class="car-image" src="" alt="BMW" onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIzMDAiIHZpZXdCb3g9IjAgMCA4MDAgNjAwIiBmaWxsPSJub25lIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPgo8cmVjdCB3aWR0aD0iODAwIiBoZWlnaHQ9IjYwMCIgZmlsbD0iIzA0MUU0MiIvPgo8cGF0aCBkPSJNMTUwIDE1MEwyMDAgMTAwTDI1MCAxNTBMMjAwIDIwMEwxNTAgMTUwWiIgZmlsbD0iIzAwNjZCMyIvPgo8dGV4dCB4PSIyMDAiIHk9IjE2MCIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZmlsbD0iIzAwNjZCMyIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXNpemU9IjE4Ij5CTVc8L3RleHQ+Cjwvc3ZnPgo='">
+          <img id="modalCarImage" class="car-image" src="" alt="BMW" onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIzMDAiIHZpZXdCb3g9IjAgMCA0MDAgMzAwIiBmaWxsPSJub25lIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPgo8cmVjdCB3aWR0aD0iNDAwIiBoZWlnaHQ9IjMwMCIgZmlsbD0iIzA0MUU0MiIvPgo8cGF0aCBkPSJNMTUwIDE1MEwyMDAgMTAwTDI1MCAxNTBMMjAwIDIwMEwxNTAgMTUwWiIgZmlsbD0iIzAwNjZCMyIvPgo8dGV4dCB4PSIyMDAiIHk9IjE2MCIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZmlsbD0iIzAwNjZCMyIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXNpemU9IjE4Ij5CTVc8L3RleHQ+Cjwvc3ZnPgo='">
           <h3 id="modalCarName" class="mb-3" style="color: var(--bmw-blue);"></h3>
           <div id="modalCarPrice" class="mb-3" style="color: var(--gold-color); font-size: 1.5rem; font-weight: bold;"></div>
           <p id="modalCarDescription" class="mb-4"></p>
@@ -892,18 +848,13 @@
               </div>
             </div>
 
-            <!-- Tìm kiếm nâng cao -->
-            <div class="filter-group">
-              <h5 class="filter-group-title">Tìm kiếm nâng cao</h5>
-              <form id="advancedSearchForm">
-                <div class="filter-options">
-                  <input type="text" id="searchInput" name="query" class="form-control" placeholder="Tìm kiếm theo tên hoặc đặc điểm...">
-                  <button type="submit" class="btn btn-bmw w-100 mt-3">
-                    <i class="fas fa-search me-2"></i>Tìm kiếm
-                  </button>
-                </div>
-              </form>
-            </div>
+            <!-- Thanh tìm kiếm nâng cao dưới bộ lọc -->
+            <form class="d-flex mt-3 advanced-search-form" id="advancedSearchForm" role="search">
+              <input class="form-control me-2" type="search" id="searchQuery" placeholder="Tìm kiếm theo tên xe..." aria-label="Search">
+              <button class="btn btn-outline-light" type="submit">
+                <i class="fas fa-search"></i>
+              </button>
+            </form>
           </div>
         </div>
         
@@ -980,7 +931,7 @@
       </div>
       <hr class="my-4" style="border-color: var(--gold-color);">
       <div class="text-center">
-        <p class="mb-0">&copy; 2024 OTOTHESIU. Tất cả quyền được bảo lưu.</p>
+        <p class="mb-0">&copy; 2025 OTOTHESIU. Tất cả quyền được bảo lưu.</p>
       </div>
     </div>
   </footer>
@@ -1211,22 +1162,74 @@
       modal.show();
     }
 
+    // Hàm lọc xe dựa trên bộ lọc
+    function filterCars() {
+      const engineFilters = Array.from(document.querySelectorAll('input[name="engine"]:checked')).map(input => input.value);
+      const priceFilters = Array.from(document.querySelectorAll('input[name="price"]:checked')).map(input => input.value);
+      const speedFilters = Array.from(document.querySelectorAll('input[name="speed"]:checked')).map(input => input.value);
+
+      let filteredCars = bmwCars;
+
+      // Lọc theo động cơ
+      if (engineFilters.length > 0) {
+        filteredCars = filteredCars.filter(car => {
+          const engine = car.specs.engine.toLowerCase();
+          return engineFilters.some(filter => {
+            if (filter === 'v8') return engine.includes('v8');
+            if (filter === 'v6') return engine.includes('straight-6');
+            if (filter === 'hybrid') return engine.includes('động cơ điện');
+            return false;
+          });
+        });
+      }
+
+      // Lọc theo giá
+      if (priceFilters.length > 0) {
+        filteredCars = filteredCars.filter(car => {
+          const price = car.price / 1000000000; // Chuyển sang tỷ
+          return priceFilters.some(filter => {
+            if (filter === 'under-10') return price < 10;
+            if (filter === '10-20') return price >= 10 && price <= 20;
+            if (filter === 'over-20') return price > 20;
+            return false;
+          });
+        });
+      }
+
+      // Lọc theo tốc độ
+      if (speedFilters.length > 0) {
+        filteredCars = filteredCars.filter(car => {
+          const speed = parseInt(car.specs.topspeed);
+          return speedFilters.some(filter => {
+            if (filter === 'over-300') return speed >= 300;
+            if (filter === 'under-300') return speed < 300;
+            return false;
+          });
+        });
+      }
+
+      return filteredCars;
+    }
+
     // Hàm hiển thị xe BMW theo trang
     function displayBmwCars(page = 1) {
       const container = document.getElementById('bmwCars');
       container.innerHTML = '';
       
+      // Lấy danh sách xe đã lọc
+      const filteredCars = filterCars();
+      
       // Tính toán xe cần hiển thị
       const startIndex = (page - 1) * carsPerPage;
       const endIndex = startIndex + carsPerPage;
-      const carsToShow = bmwCars.slice(startIndex, endIndex);
+      const carsToShow = filteredCars.slice(startIndex, endIndex);
       
       // Hiển thị các xe
       carsToShow.forEach(car => {
         const carCard = `
           <div class="col-lg-4 col-md-6">
             <div class="car-card fade-in-up">
-              <img src="${car.image}" alt="${car.name}" onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIyNTAiIHZpZXdCb3g9IjAgMCA4MDAgNTAwIiBmaWxsPSJub25lIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPgo8cmVjdCB3aWR0aD0iODAwIiBoZWlnaHQ9IjUwMCIgZmlsbD0iIzA0MUU0MiIvPgo8cGF0aCBkPSJNMTUwIDEyNUwyMDAgNzVMMjUwIDEyNUwyMDAgMTc1TDE1MCAxMjVaIiBmaWxsPSIjMDA2NkIzIi8+Cjx0ZXh0IHg9IjIwMCIgeT0iMTM1IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmaWxsPSIjMDA2NkIzIiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMTgiPkJNVzwvdGV4dD4KPC9zdmc+Cg=='">
+              <img src="${car.image}" alt="${car.name}" onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIyNTAiIHZpZXdCb3g9IjAgMCA0MDAgMjUwIiBmaWxsPSJub25lIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPgo8cmVjdCB3aWR0aD0iNDAwIiBoZWlnaHQ9IjI1MCIgZmlsbD0iIzA0MUU0MiIvPgo8cGF0aCBkPSJNMTUwIDEyNUwyMDAgNzVMMjUwIDEyNUwyMDAgMTc1TDE1MCAxMjVaIiBmaWxsPSIjMDA2NkIzIi8+Cjx0ZXh0IHg9IjIwMCIgeT0iMTM1IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmaWxsPSIjMDA2NkIzIiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMTgiPkJNVzwvdGV4dD4KPC9zdmc+Cg=='">
               <div class="car-card-body">
                 <h3 class="car-card-title">${car.name}</h3>
                 <div class="car-card-price">${formatPrice(car.price)} VNĐ</div>
@@ -1247,6 +1250,24 @@
         `;
         container.innerHTML += carCard;
       });
+
+      // Cập nhật phân trang
+      updatePagination(filteredCars.length);
+    }
+
+    // Hàm cập nhật phân trang
+    function updatePagination(totalCars) {
+      const totalPages = Math.ceil(totalCars / carsPerPage);
+      const paginationContainer = document.querySelector('.pagination-container');
+      paginationContainer.innerHTML = '';
+
+      for (let i = 1; i <= totalPages; i++) {
+        const btn = document.createElement('button');
+        btn.className = `pagination-btn ${i === currentPage ? 'active' : ''}`;
+        btn.textContent = i;
+        btn.addEventListener('click', () => switchPage(i));
+        paginationContainer.appendChild(btn);
+      }
     }
 
     // Hàm chuyển trang
@@ -1267,7 +1288,6 @@
       const userInfo = document.getElementById('userInfo');
       const loginLink = document.getElementById('loginLink');
       const userName = document.getElementById('userName');
-      const userAvatar = document.getElementById('userAvatar');
       
       // Kiểm tra xem có thông tin đăng nhập trong localStorage không
       const loggedInUser = localStorage.getItem('loggedInUser');
@@ -1277,35 +1297,41 @@
         userInfo.style.display = 'block';
         loginLink.style.display = 'none';
         userName.textContent = user.name;
-        userAvatar.textContent = user.name.charAt(0).toUpperCase();
       } else {
         userInfo.style.display = 'none';
         loginLink.style.display = 'block';
       }
     }
 
-    // Xử lý tìm kiếm nâng cao
-    function handleAdvancedSearch(e) {
+    // Xử lý đăng xuất
+    document.getElementById('logoutBtn').addEventListener('click', function(e) {
       e.preventDefault();
-      
-      // Thu thập giá trị tìm kiếm và bộ lọc
-      const query = document.getElementById('searchInput').value;
-      const engines = Array.from(document.querySelectorAll('input[name="engine"]:checked')).map(cb => cb.value);
-      const prices = Array.from(document.querySelectorAll('input[name="price"]:checked')).map(cb => cb.value);
-      const speeds = Array.from(document.querySelectorAll('input[name="speed"]:checked')).map(cb => cb.value);
-      
-      // Lưu thông tin tìm kiếm vào localStorage
-      const searchParams = {
-        query: query,
-        engines: engines,
-        prices: prices,
-        speeds: speeds
-      };
-      localStorage.setItem('searchParams', JSON.stringify(searchParams));
-      
-      // Chuyển hướng đến trang kết quả tìm kiếm
-      window.location.href = 'search-results.html';
-    }
+      localStorage.removeItem('loggedInUser');
+      checkLoginStatus();
+      alert('Đã đăng xuất thành công!');
+      window.location.href = '../index.html';
+    });
+
+    // Xử lý thêm vào giỏ hàng từ modal
+    document.getElementById('modalAddToCartBtn').addEventListener('click', function() {
+      if (currentCar) {
+        addToCart(currentCar);
+        const modal = bootstrap.Modal.getInstance(document.getElementById('carDetailsModal'));
+        modal.hide();
+      }
+    });
+
+    // Xử lý tìm kiếm nâng cao
+    document.getElementById('advancedSearchForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      const searchQuery = document.getElementById('searchQuery').value.trim();
+      if (searchQuery) {
+        // Lưu từ khóa tìm kiếm vào localStorage
+        localStorage.setItem('searchQuery', searchQuery);
+        // Chuyển hướng sang trang search-result.html
+        window.location.href = '../search-result.html';
+      }
+    });
 
     // Khởi tạo trang
     document.addEventListener('DOMContentLoaded', function() {
@@ -1320,26 +1346,13 @@
           switchPage(index + 1);
         });
       });
-      
-      // Thêm sự kiện cho form tìm kiếm nâng cao
-      document.getElementById('advancedSearchForm').addEventListener('submit', handleAdvancedSearch);
-      
-      // Xử lý thêm vào giỏ hàng từ modal
-      document.getElementById('modalAddToCartBtn').addEventListener('click', function() {
-        if (currentCar) {
-          addToCart(currentCar);
-          const modal = bootstrap.Modal.getInstance(document.getElementById('carDetailsModal'));
-          modal.hide();
-        }
-      });
-      
-      // Xử lý đăng xuất
-      document.getElementById('logoutBtn').addEventListener('click', function(e) {
-        e.preventDefault();
-        localStorage.removeItem('loggedInUser');
-        checkLoginStatus();
-        alert('Đã đăng xuất thành công!');
-        window.location.href = '../index.html';
+
+      // Thêm sự kiện cho các checkbox bộ lọc
+      document.querySelectorAll('.filter-option input').forEach(checkbox => {
+        checkbox.addEventListener('change', () => {
+          currentPage = 1; // Reset về trang 1 khi thay đổi bộ lọc
+          displayBmwCars(currentPage);
+        });
       });
       
       // Thêm hiệu ứng fade-in cho các phần tử khi cuộn trang

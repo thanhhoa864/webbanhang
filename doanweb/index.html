@@ -908,27 +908,19 @@
         </ul>
         
         <ul class="navbar-nav mb-2 mb-lg-0">
-          <!-- Hiển thị thông tin người dùng nếu đã đăng nhập -->
+                 <!-- Hiển thị thông tin người dùng nếu đã đăng nhập -->
           <li id="userInfo" class="nav-item dropdown" style="display: none;">
             <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-              <div class="user-info">
-                <div class="user-avatar" id="userAvatar">U</div>
-                <span id="userName">Người dùng</span>
-              </div>
+              <i class="fas fa-user me-1"></i><span id="userName">Người dùng</span>
             </a>
             <ul class="dropdown-menu user-dropdown">
               <li><a class="dropdown-item" href="customer-info.html"><i class="fas fa-user me-2"></i>Thông tin cá nhân</a></li>
+              <li><a class="dropdown-item" href="order-history.html"><i class="fas fa-history me-2"></i>Xem lịch sử đơn hàng</a></li>
+              <li><hr class="dropdown-divider" style="border-color: rgba(255, 215, 0, 0.3);"></li>
               <li><a class="dropdown-item" href="#" id="logoutBtn"><i class="fas fa-sign-out-alt me-2"></i>Đăng xuất</a></li>
             </ul>
           </li>
 
-          <!-- Thêm nav-item mới cho Order History (chỉ hiển thị khi đăng nhập) -->
-           <li id="orderHistoryLink" class="nav-item" style="display: none;">
-          <a class="nav-link" href="order-history.html">
-          <i class="fas fa-history me-1"></i>Xem lịch sử đơn hàng
-          </a>
-          </li>
-          
           <!-- Hiển thị nút đăng nhập nếu chưa đăng nhập -->
           <li id="loginLink" class="nav-item">
             <a class="nav-link" href="login.html">
@@ -1508,6 +1500,93 @@
       fadeInOnScroll();
       window.addEventListener('scroll', fadeInOnScroll);
     });
+    // Hàm khởi tạo toàn bộ trang
+function initializePage() {
+  checkLoginStatus();
+  createSlideshow();
+  displayProducts(1);
+  
+  // Thêm hiệu ứng fade-in khi cuộn trang
+  const fadeElements = document.querySelectorAll('.fade-in-up');
+  
+  const fadeInOnScroll = function() {
+    fadeElements.forEach(element => {
+      const elementTop = element.getBoundingClientRect().top;
+      const elementVisible = 150;
+      
+      if (elementTop < window.innerHeight - elementVisible) {
+        element.style.opacity = 1;
+        element.style.transform = 'translateY(0)';
+      }
+    });
+  };
+  
+  fadeInOnScroll();
+  window.addEventListener('scroll', fadeInOnScroll);
+}
+
+// Kiểm tra nếu quay lại từ trang đăng nhập
+function checkRedirectFromLogin() {
+  const urlParams = new URLSearchParams(window.location.search);
+  const fromLogin = urlParams.get('fromLogin');
+  
+  if (fromLogin === 'true') {
+    // Xóa tham số URL
+    window.history.replaceState({}, document.title, window.location.pathname);
+    
+    // Khởi tạo lại trang
+    initializePage();
+    
+    // Hiển thị thông báo
+    alert('Đăng nhập thành công!');
+  }
+}
+
+// Cập nhật hàm checkLoginStatus
+function checkLoginStatus() {
+  const userInfo = document.getElementById('userInfo');
+  const loginLink = document.getElementById('loginLink');
+  const orderHistoryLink = document.getElementById('orderHistoryLink');
+  const userName = document.getElementById('userName');
+  const userAvatar = document.getElementById('userAvatar');
+  
+  const loggedInUser = localStorage.getItem('loggedInUser');
+  
+  if (loggedInUser) {
+    try {
+      const user = JSON.parse(loggedInUser);
+      if (userInfo) userInfo.style.display = 'block';
+      if (orderHistoryLink) orderHistoryLink.style.display = 'block';
+      if (loginLink) loginLink.style.display = 'none';
+      if (userName) userName.textContent = user.name;
+      if (userAvatar) userAvatar.textContent = user.name.charAt(0).toUpperCase();
+    } catch (e) {
+      console.error('Lỗi parse user data:', e);
+      localStorage.removeItem('loggedInUser');
+    }
+  } else {
+    if (userInfo) userInfo.style.display = 'none';
+    if (orderHistoryLink) orderHistoryLink.style.display = 'none';
+    if (loginLink) loginLink.style.display = 'block';
+  }
+}
+
+// Cập nhật hàm logout
+document.getElementById('logoutBtn').addEventListener('click', function(e) {
+  e.preventDefault();
+  localStorage.removeItem('loggedInUser');
+  localStorage.removeItem('cart'); // Xóa cả giỏ hàng nếu cần
+  checkLoginStatus();
+  alert('Đã đăng xuất thành công!');
+  // Không cần reload trang, chỉ cần cập nhật trạng thái
+  window.location.href = "index.html";
+});
+
+// Khởi tạo trang
+document.addEventListener('DOMContentLoaded', function() {
+  initializePage();
+  checkRedirectFromLogin();
+});
   </script>
 </body>
 </html>

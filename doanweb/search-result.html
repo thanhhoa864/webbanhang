@@ -1,0 +1,1158 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Kết quả tìm kiếm - OTOTHESIU</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    :root {
+      --gold-color: #FFD700;
+      --dark-gold: #B8860B;
+      --jade-black: #0D1B2A;
+      --jade-dark: #041E42;
+      --accent-gold: #F4E27C;
+      --text-light: #E8E8E8;
+      --bmw-blue: #0066B3;
+      --bmw-dark-blue: #003B6F;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: var(--jade-black);
+      color: var(--text-light);
+    }
+
+    /* Navigation */
+    .navbar {
+      background: linear-gradient(135deg, var(--gold-color), var(--dark-gold)) !important;
+      box-shadow: 0 4px 20px rgba(255, 215, 0, 0.3);
+    }
+
+    .navbar-brand .brand-text {
+      font-weight: bold;
+      font-size: 1.5rem;
+      background: linear-gradient(45deg, var(--jade-black), var(--jade-dark));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+    }
+
+    .navbar-nav .nav-link {
+      color: var(--jade-black) !important;
+      font-weight: 600;
+      position: relative;
+      transition: all 0.3s ease;
+    }
+
+    .navbar-nav .nav-link:hover {
+      color: var(--jade-dark) !important;
+      transform: translateY(-2px);
+    }
+
+    .navbar-nav .dropdown-menu {
+      background: var(--jade-black);
+      border: 2px solid var(--gold-color);
+      border-radius: 10px;
+      box-shadow: 0 8px 30px rgba(255, 215, 0, 0.2);
+    }
+
+    .navbar-nav .dropdown-item {
+      color: var(--text-light);
+      padding: 10px 20px;
+      transition: all 0.3s ease;
+    }
+
+    .navbar-nav .dropdown-item:hover {
+      background: linear-gradient(135deg, var(--gold-color), var(--dark-gold));
+      color: var(--jade-black);
+    }
+
+    .btn-outline-light {
+      border: 2px solid var(--jade-black) !important;
+      color: var(--jade-black) !important;
+      background: transparent;
+      transition: all 0.3s ease;
+    }
+
+    .btn-outline-light:hover {
+      background: var(--jade-black) !important;
+      color: var(--text-light) !important;
+      border-color: var(--jade-black) !important;
+    }
+
+    .form-control {
+      border: 2px solid var(--jade-black) !important;
+      background: var(--text-light);
+      color: var(--jade-black);
+    }
+
+    .form-control:focus {
+      border-color: var(--gold-color) !important;
+      box-shadow: 0 0 5px rgba(255, 215, 0, 0.5);
+    }
+
+    /* Hero Section */
+    .search-hero {
+      background: linear-gradient(rgba(13, 27, 42, 0.8), rgba(4, 30, 66, 0.9));
+      color: var(--text-light);
+      padding: 100px 0;
+      text-align: center;
+      border-bottom: 3px solid var(--bmw-blue);
+    }
+
+    .search-hero h1 {
+      font-size: 4rem;
+      margin-bottom: 1.5rem;
+      color: var(--bmw-blue);
+      text-shadow: 2px 2px 8px rgba(0,0,0,0.5);
+      font-weight: bold;
+    }
+
+    .search-hero p {
+      font-size: 1.3rem;
+      max-width: 800px;
+      margin: 0 auto 2rem;
+      opacity: 0.9;
+    }
+
+    .btn-bmw {
+      background: linear-gradient(135deg, var(--bmw-blue), var(--bmw-dark-blue));
+      border: none;
+      color: var(--text-light);
+      padding: 8px 16px;
+      font-size: 0.9rem;
+      font-weight: 600;
+      border-radius: 5px;
+      transition: all 0.3s ease;
+    }
+
+    .btn-bmw:hover {
+      background: linear-gradient(135deg, var(--bmw-dark-blue), var(--bmw-blue));
+      transform: translateY(-2px);
+      box-shadow: 0 8px 25px rgba(0, 102, 179, 0.4);
+      color: var(--text-light);
+    }
+
+    .btn-outline-bmw {
+      border: 2px solid var(--bmw-blue);
+      color: var(--bmw-blue);
+      background: transparent;
+      padding: 8px 16px;
+      font-size: 0.9rem;
+      font-weight: 600;
+      border-radius: 5px;
+      transition: all 0.3s ease;
+    }
+
+    .btn-outline-bmw:hover {
+      background: var(--bmw-blue);
+      color: var(--text-light);
+      transform: translateY(-2px);
+    }
+
+    /* Results Section */
+    .results-section {
+      padding: 80px 0;
+      background: var(--jade-dark);
+    }
+
+    .results-section h2 {
+      text-align: center;
+      margin-bottom: 50px;
+      color: var(--bmw-blue);
+      font-weight: bold;
+      font-size: 2.5rem;
+      text-shadow: 2px 2px 8px rgba(0,0,0,0.5);
+    }
+
+    .car-card {
+      background: var(--jade-black);
+      border: 2px solid var(--bmw-blue);
+      border-radius: 15px;
+      overflow: hidden;
+      transition: all 0.3s ease;
+      margin-bottom: 30px;
+      height: 100%;
+    }
+
+    .car-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 15px 40px rgba(0, 102, 179, 0.3);
+      border-color: var(--bmw-dark-blue);
+    }
+
+    .car-card img {
+      width: 100%;
+      height: 250px;
+      object-fit: cover;
+      transition: transform 0.5s ease;
+    }
+
+    .car-card:hover img {
+      transform: scale(1.05);
+    }
+
+    .car-card-body {
+      padding: 20px;
+    }
+
+    .car-card-title {
+      color: var(--bmw-blue);
+      font-size: 1.5rem;
+      font-weight: bold;
+      margin-bottom: 10px;
+    }
+
+    .car-card-price {
+      color: var(--gold-color);
+      font-size: 1.3rem;
+      font-weight: 600;
+      margin-bottom: 15px;
+    }
+
+    .car-card-features {
+      list-style: none;
+      padding: 0;
+      margin-bottom: 20px;
+    }
+
+    .car-card-features li {
+      margin-bottom: 5px;
+      color: var(--text-light);
+      opacity: 0.9;
+    }
+
+    .car-card-features li i {
+      color: var(--bmw-blue);
+      margin-right: 8px;
+    }
+
+    .car-card-actions {
+      display: flex;
+      gap: 10px;
+    }
+
+    /* Filter Section */
+    .filter-section {
+      background: var(--jade-black);
+      padding: 20px;
+      border-radius: 15px;
+      border: 2px solid var(--bmw-blue);
+      margin-bottom: 30px;
+    }
+
+    .filter-title {
+      color: var(--bmw-blue);
+      font-weight: bold;
+      margin-bottom: 15px;
+      text-align: center;
+    }
+
+    .filter-group {
+      margin-bottom: 20px;
+    }
+
+    .filter-group-title {
+      color: var(--gold-color);
+      font-weight: bold;
+      margin-bottom: 10px;
+      font-size: 1.1rem;
+    }
+
+    .filter-options {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .filter-option {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      cursor: pointer;
+      padding: 5px 0;
+      transition: all 0.2s ease;
+    }
+
+    .filter-option:hover {
+      color: var(--gold-color);
+    }
+
+    .filter-option input {
+      margin: 0;
+    }
+
+    .filter-option label {
+      margin: 0;
+      cursor: pointer;
+    }
+
+    /* Advanced Search Bar */
+    .advanced-search-form .form-control {
+      border: 2px solid var(--jade-black) !important;
+      background: var(--text-light);
+      color: var(--jade-black);
+      border-radius: 5px !important;
+    }
+
+    .advanced-search-form .form-control:focus {
+      border-color: var(--gold-color) !important;
+      box-shadow: 0 0 5px rgba(255, 215, 0, 0.5);
+    }
+
+    .advanced-search-form .btn-outline-light {
+      border: 2px solid var(--jade-black) !important;
+      color: var(--jade-black) !important;
+      background: transparent;
+      border-radius: 5px !important;
+    }
+
+    .advanced-search-form .btn-outline-light:hover {
+      background: var(--jade-black) !important;
+      color: var(--text-light) !important;
+      border-color: var(--jade-black) !important;
+    }
+
+    /* Modal Custom Styles */
+    .car-modal .modal-content {
+      background: var(--jade-black);
+      border: 2px solid var(--bmw-blue);
+      border-radius: 15px;
+      color: var(--text-light);
+    }
+
+    .car-modal .modal-header {
+      border-bottom: 1px solid var(--bmw-blue);
+    }
+
+    .car-modal .modal-title {
+      color: var(--bmw-blue);
+      font-weight: bold;
+    }
+
+    .car-modal .btn-close {
+      filter: invert(1);
+    }
+
+    .car-modal .modal-body {
+      padding: 20px;
+    }
+
+    .car-modal .car-image {
+      width: 100%;
+      height: 300px;
+      object-fit: cover;
+      border-radius: 10px;
+      margin-bottom: 20px;
+    }
+
+    .car-modal .specs-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+      gap: 15px;
+      margin-top: 20px;
+    }
+
+    .car-modal .spec-item {
+      background: var(--jade-dark);
+      padding: 15px;
+      border-radius: 10px;
+      border-left: 4px solid var(--bmw-blue);
+    }
+
+    .car-modal .spec-label {
+      font-weight: bold;
+      color: var(--gold-color);
+      margin-bottom: 5px;
+    }
+
+    .car-modal .spec-value {
+      color: var(--text-light);
+    }
+
+    .car-modal .modal-footer {
+      border-top: 1px solid var(--bmw-blue);
+    }
+
+    /* Footer */
+    footer {
+      background: var(--jade-dark) !important;
+      border-top: 3px solid var(--gold-color);
+    }
+
+    footer h5 {
+      color: var(--gold-color);
+    }
+
+    footer p {
+      margin-bottom: 8px;
+      opacity: 0.9;
+      color: var(--text-light);
+    }
+
+    /* Contact Float */
+    .contact-float {
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+      z-index: 1000;
+    }
+
+    .contact-float a {
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: var(--jade-black);
+      font-size: 24px;
+      text-decoration: none;
+      box-shadow: 0 6px 20px rgba(255, 215, 0, 0.3);
+      transition: all 0.3s ease;
+    }
+
+    .contact-float a:hover {
+      transform: scale(1.15);
+      box-shadow: 0 8px 25px rgba(255, 215, 0, 0.5);
+    }
+
+    .hotline {
+      background: linear-gradient(135deg, var(--gold-color), var(--dark-gold));
+    }
+
+    .facebook {
+      background: linear-gradient(135deg, var(--accent-gold), var(--gold-color));
+    }
+
+    /* User Dropdown */
+    .user-dropdown {
+      background: var(--jade-black);
+      border: 2px solid var(--gold-color);
+      border-radius: 10px;
+      box-shadow: 0 8px 30px rgba(255, 215, 0, 0.2);
+    }
+
+    .user-dropdown .dropdown-item {
+      color: var(--text-light);
+      padding: 10px 20px;
+      transition: all 0.3s ease;
+    }
+
+    .user-dropdown .dropdown-item:hover {
+      background: linear-gradient(135deg, var(--gold-color), var(--dark-gold));
+      color: var(--jade-black);
+    }
+
+    /* Toast notification */
+    .toast-container {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      z-index: 1055;
+    }
+
+    .custom-toast {
+      background: var(--jade-black);
+      border: 2px solid var(--bmw-blue);
+      border-radius: 10px;
+      color: var(--text-light);
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .search-hero h1 {
+        font-size: 2.5rem;
+      }
+
+      .search-hero p {
+        font-size: 1.1rem;
+      }
+
+      .contact-float {
+        bottom: 20px;
+        right: 20px;
+      }
+
+      .contact-float a {
+        width: 50px;
+        height: 50px;
+        font-size: 20px;
+      }
+
+      .car-card-actions {
+        flex-direction: column;
+      }
+
+      .filter-section {
+        margin-bottom: 20px;
+      }
+    }
+
+    /* Loading animation */
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .fade-in-up {
+      animation: fadeInUp 0.6s ease;
+    }
+
+    .car-image-placeholder {
+      width: 100%;
+      height: 250px;
+      background: var(--jade-dark);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--bmw-blue);
+      font-size: 3rem;
+    }
+
+    .img-fallback {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background-color: var(--jade-dark);
+      color: var(--bmw-blue);
+      font-size: 1.5rem;
+    }
+  </style>
+</head>
+<body>
+  <!-- Navigation -->
+  <nav class="navbar navbar-expand-lg shadow-lg">
+    <div class="container">
+      <a class="navbar-brand d-flex align-items-center" href="index.html">
+        <img src="https://preview.redd.it/petition-to-make-this-the-new-pic-of-the-sub-v0-x8o3qf29ah5f1.png?width=640&crop=smart&auto=webp&s=d04da2f01be93af3cba092e71c636a1c3bf61749" 
+             alt="Logo" 
+             style="height:40px; margin-right:10px; border-radius:50%; background-color:#000; padding:2px;"
+             onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAiIGhlaWdodD0iNDAiIHZpZXdCb3g9IjAgMCA4MCA4MCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHJlY3Qgd2lkdGg9IjgwIiBoZWlnaHQ9IjgwIiByeD0iNDAiIGZpbGw9IiMwMDY2QjMiLz4KPHN2ZyB4PSIxNiIgeT0iMTYiIHdpZHRoPSI0OCIgaGVpZ2h0PSI0OCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJub25lIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPgo8cGF0aCBkPSJNMTIgMkwxNS4wOSA4LjI2TDEyIDQuODJMOC45MSA4LjI2TDEyIDJaIiBmaWxsPSJ3aGl0ZSIvPgo8cGF0aCBkPSJNMTIgMjJMMTUuMDkgMTUuNzRMMTIgMTkuMThMOC45MSAxNS43NEwxMiAyMloiIGZpbGw9IndoaXRlIi8+CjxwYXRoIGQ9Ik0yIDEyTDguMjYgMTUuMDlMNC44MiAxMkw4LjI2IDguOTFMMiAxMloiIGZpbGw9IndoaXRlIi8+CjxwYXRoIGQ9Ik0yMiAxMkwxNS43NCA4LjkxTDE5LjE4IDEyTDE1Ljc0IDE1LjA5TDIyIDEyWiIgZmlsbD0id2hpdGUiLz4KPC9zdmc+Cjwvc3ZnPgo='">
+        <span class="brand-text">OTOTHESIU</span>
+      </a>
+      
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <!-- Mua xe Dropdown -->
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              <i class="fas fa-shopping-cart me-1"></i>Mua xe
+            </a>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item" href="mua-xe/lamborghini.html"><i class="fas fa-car me-2"></i>Lamborghini</a></li>
+              <li><a class="dropdown-item" href="mua-xe/ferrari.html"><i class="fas fa-car me-2"></i>Ferrari</a></li>
+              <li><a class="dropdown-item" href="mua-xe/bugatti.html"><i class="fas fa-car me-2"></i>Bugatti</a></li>
+              <li><a class="dropdown-item" href="mua-xe/koenigsegg.html"><i class="fas fa-car me-2"></i>Koenigsegg</a></li>
+              <li><a class="dropdown-item" href="mua-xe/mclaren.html"><i class="fas fa-car me-2"></i>McLaren</a></li>
+              <li><a class="dropdown-item" href="mua-xe/pagani.html"><i class="fas fa-car me-2"></i>Pagani</a></li>
+              <li><a class="dropdown-item" href="mua-xe/porsche.html"><i class="fas fa-car me-2"></i>Porsche (thể thao)</a></li>
+              <li><a class="dropdown-item" href="mua-xe/mercedes.html"><i class="fas fa-car me-2"></i>Mercedes-Benz (thể thao)</a></li>
+              <li><a class="dropdown-item" href="mua-xe/bmw.html"><i class="fas fa-car me-2"></i>BMW (thể thao)</a></li>
+            </ul>
+          </li>
+        </ul>
+        
+        <ul class="navbar-nav mb-2 mb-lg-0">
+          <!-- Hiển thị thông tin người dùng nếu đã đăng nhập -->
+          <li id="userInfo" class="nav-item dropdown" style="display: none;">
+            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              <i class="fas fa-user me-1"></i><span id="userName">Người dùng</span>
+            </a>
+            <ul class="dropdown-menu user-dropdown">
+              <li><a class="dropdown-item" href="customer-info.html"><i class="fas fa-user me-2"></i>Thông tin cá nhân</a></li>
+              <li><a class="dropdown-item" href="#" id="logoutBtn"><i class="fas fa-sign-out-alt me-2"></i>Đăng xuất</a></li>
+            </ul>
+          </li>
+          
+          <!-- Hiển thị nút đăng nhập nếu chưa đăng nhập -->
+          <li id="loginLink" class="nav-item">
+            <a class="nav-link" href="login.html">
+              <i class="fas fa-user me-1"></i>Đăng nhập
+            </a>
+          </li>
+          
+          <li class="nav-item">
+            <a class="nav-link" href="cart.html">
+              <i class="fas fa-shopping-bag me-1"></i>Giỏ hàng
+            </a>
+          </li>
+        </ul>
+        
+        <!-- Search Bar -->
+        <form class="d-flex ms-3" role="search">
+          <input class="form-control me-2" type="search" placeholder="Tìm kiếm siêu xe..." aria-label="Search">
+          <button class="btn btn-outline-light" type="submit">
+            <i class="fas fa-search"></i>
+          </button>
+        </form>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Toast Notification -->
+  <div class="toast-container">
+    <div id="successToast" class="toast custom-toast" role="alert" aria-live="assertive" aria-atomic="true">
+      <div class="toast-header">
+        <i class="fas fa-check-circle text-success me-2"></i>
+        <strong class="me-auto">Thành công</strong>
+        <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+      </div>
+      <div class="toast-body">
+        Đã thêm vào giỏ hàng thành công!
+      </div>
+    </div>
+  </div>
+
+  <!-- Car Details Modal -->
+  <div class="modal fade car-modal" id="carDetailsModal" tabindex="-1" aria-labelledby="carDetailsModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="carDetailsModalLabel">Chi tiết xe</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <img id="modalCarImage" class="car-image" src="" alt="BMW" onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIzMDAiIHZpZXdCb3g9IjAgMCA0MDAgMzAwIiBmaWxsPSJub25lIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPgo8cmVjdCB3aWR0aD0iNDAwIiBoZWlnaHQ9IjMwMCIgZmlsbD0iIzA0MUU0MiIvPgo8cGF0aCBkPSJNMTUwIDE1MEwyMDAgMTAwTDI1MCAxNTBMMjAwIDIwMEwxNTAgMTUwWiIgZmlsbD0iIzAwNjZCMyIvPgo8dGV4dCB4PSIyMDAiIHk9IjE2MCIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZmlsbD0iIzAwNjZCMyIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXNpemU9IjE4Ij5CTVc8L3RleHQ+Cjwvc3ZnPgo='">
+          <h3 id="modalCarName" class="mb-3" style="color: var(--bmw-blue);"></h3>
+          <div id="modalCarPrice" class="mb-3" style="color: var(--gold-color); font-size: 1.5rem; font-weight: bold;"></div>
+          <p id="modalCarDescription" class="mb-4"></p>
+          
+          <h5 style="color: var(--bmw-blue); margin-bottom: 15px;">Thông số kỹ thuật</h5>
+          <div class="specs-grid" id="modalCarSpecs">
+            <!-- Specs will be dynamically added here -->
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-outline-bmw" data-bs-dismiss="modal">Đóng</button>
+          <button type="button" class="btn btn-bmw" id="modalAddToCartBtn">
+            <i class="fas fa-shopping-cart me-2"></i>Thêm vào giỏ hàng
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Hero Section -->
+  <section class="search-hero">
+    <div class="container">
+      <h1 class="fade-in-up">Kết quả tìm kiếm</h1>
+      <p class="fade-in-up">Tìm kiếm các mẫu xe BMW phù hợp với nhu cầu của bạn</p>
+      <a class="btn btn-bmw btn-lg fade-in-up" href="#results">
+        <i class="fas fa-gem me-2"></i>Xem kết quả
+      </a>
+    </div>
+  </section>
+
+  <!-- Results Section -->
+  <section class="results-section" id="results">
+    <div class="container">
+      <h2 class="fade-in-up">Kết quả tìm kiếm xe BMW</h2>
+      
+      <div class="row">
+        <!-- Filter Section - Bên trái -->
+        <div class="col-lg-3 col-md-4 mb-4">
+          <div class="filter-section fade-in-up">
+            <h4 class="filter-title">
+              <i class="fas fa-filter me-2"></i>Bộ lọc
+            </h4>
+            
+            <!-- Lọc theo động cơ -->
+            <div class="filter-group">
+              <h5 class="filter-group-title">Loại động cơ</h5>
+              <div class="filter-options">
+                <div class="filter-option">
+                  <input type="checkbox" id="engine-v8" name="engine" value="v8">
+                  <label for="engine-v8">Động cơ V8</label>
+                </div>
+                <div class="filter-option">
+                  <input type="checkbox" id="engine-v6" name="engine" value="v6">
+                  <label for="engine-v6">Động cơ V6</label>
+                </div>
+                <div class="filter-option">
+                  <input type="checkbox" id="engine-hybrid" name="engine" value="hybrid">
+                  <label for="engine-hybrid">Hybrid</label>
+                </div>
+              </div>
+            </div>
+            
+            <!-- Lọc theo giá -->
+            <div class="filter-group">
+              <h5 class="filter-group-title">Mức giá</h5>
+              <div class="filter-options">
+                <div class="filter-option">
+                  <input type="checkbox" id="price-under-10" name="price" value="under-10">
+                  <label for="price-under-10">Dưới 10 tỷ</label>
+                </div>
+                <div class="filter-option">
+                  <input type="checkbox" id="price-10-20" name="price" value="10-20">
+                  <label for="price-10-20">10 - 20 tỷ</label>
+                </div>
+                <div class="filter-option">
+                  <input type="checkbox" id="price-over-20" name="price" value="over-20">
+                  <label for="price-over-20">Trên 20 tỷ</label>
+                </div>
+              </div>
+            </div>
+            
+            <!-- Lọc theo tốc độ -->
+            <div class="filter-group">
+              <h5 class="filter-group-title">Tốc độ tối đa</h5>
+              <div class="filter-options">
+                <div class="filter-option">
+                  <input type="checkbox" id="speed-over-300" name="speed" value="over-300">
+                  <label for="speed-over-300">Trên 300 km/h</label>
+                </div>
+                <div class="filter-option">
+                  <input type="checkbox" id="speed-under-300" name="speed" value="under-300">
+                  <label for="speed-under-300">Dưới 300 km/h</label>
+                </div>
+              </div>
+            </div>
+
+            <!-- Thanh tìm kiếm nâng cao dưới bộ lọc -->
+            <form class="d-flex mt-3 advanced-search-form" role="search">
+              <input class="form-control me-2" type="search" placeholder="Tìm kiếm theo tên xe..." aria-label="Search">
+              <button class="btn btn-outline-light" type="submit">
+                <i class="fas fa-search"></i>
+              </button>
+            </form>
+          </div>
+        </div>
+        
+        <!-- Cars Section - Bên phải -->
+        <div class="col-lg-9 col-md-8">
+          <div class="row">
+            <!-- BMW M8 Competition -->
+            <div class="col-lg-4 col-md-6">
+              <div class="car-card fade-in-up" data-car-id="1">
+                <img src="https://cdn.motor1.com/images/mgl/43kwJ/s1/bmw-m8-competition-coupe-by-manhart.webp" alt="BMW M8 Competition" onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIyNTAiIHZpZXdCb3g9IjAgMCA0MDAgMjUwIiBmaWxsPSJub25lIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPgo8cmVjdCB3aWR0aD0iNDAwIiBoZWlnaHQ9IjI1MCIgZmlsbD0iIzA0MUU0MiIvPgo8cGF0aCBkPSJNMTUwIDEyNUwyMDAgNzVMMjUwIDEyNUwyMDAgMTc1TDE1MCAxMjVaIiBmaWxsPSIjMDA2NkIzIi8+Cjx0ZXh0IHg9IjIwMCIgeT0iMTM1IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmaWxsPSIjMDA2NkIzIiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMTgiPkJNVzwvdGV4dD4KPC9zdmc+Cg=='">
+                <div class="car-card-body">
+                  <h3 class="car-card-title">BMW M8 Competition</h3>
+                  <div class="car-card-price">12,500,000,000 VNĐ</div>
+                  <ul class="car-card-features">
+                    <li><i class="fas fa-check"></i>Tốc độ tối đa: 305 km/h</li>
+                    <li><i class="fas fa-check"></i>Công suất: 625 mã lực</li>
+                    <li><i class="fas fa-check"></i>0-100 km/h: 3.2 giây</li>
+                    <li><i class="fas fa-check"></i>Động cơ V8 Twin-Turbo</li>
+                  </ul>
+                  <div class="car-card-actions">
+                    <button class="btn btn-outline-bmw w-100 view-details" data-bs-toggle="modal" data-bs-target="#carDetailsModal">
+                      <i class="fas fa-info-circle me-2"></i>Xem chi tiết
+                    </button>
+                    <button class="btn btn-bmw w-100 add-to-cart">
+                      <i class="fas fa-shopping-cart me-2"></i>Thêm vào giỏ
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+            
+            <!-- BMW M5 CS -->
+            <div class="col-lg-4 col-md-6">
+              <div class="car-card fade-in-up" data-car-id="2">
+                <img src="https://giaxeoto.vn/admin/upload/images/resize/640-BMW-M5-CS-hinh-anh.jpg" alt="BMW M5 CS" onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIyNTAiIHZpZXdCb3g9IjAgMCA0MDAgMjUwIiBmaWxsPSJub25lIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPgo8cmVjdCB3aWR0aD0iNDAwIiBoZWlnaHQ9IjI1MCIgZmlsbD0iIzA0MUU0MiIvPgo8cGF0aCBkPSJNMTUwIDEyNUwyMDAgNzVMMjUwIDEyNUwyMDAgMTc1TDE1MCAxMjVaIiBmaWxsPSIjMDA2NkIzIi8+Cjx0ZXh0IHg9IjIwMCIgeT0iMTM1IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmaWxsPSIjMDA2NkIzIiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMTgiPkJNVzwvdGV4dD4KPC9zdmc+Cg=='">
+                <div class="car-card-body">
+                  <h3 class="car-card-title">BMW M5 CS</h3>
+                  <div class="car-card-price">9,800,000,000 VNĐ</div>
+                  <ul class="car-card-features">
+                    <li><i class="fas fa-check"></i>Tốc độ tối đa: 305 km/h</li>
+                    <li><i class="fas fa-check"></i>Công suất: 635 mã lực</li>
+                    <li><i class="fas fa-check"></i>0-100 km/h: 3.0 giây</li>
+                    <li><i class="fas fa-check"></i>Sedan hiệu suất cao nhất</li>
+                  </ul>
+                  <div class="car-card-actions">
+                    <button class="btn btn-outline-bmw w-100 view-details" data-bs-toggle="modal" data-bs-target="#carDetailsModal">
+                      <i class="fas fa-info-circle me-2"></i>Xem chi tiết
+                    </button>
+                    <button class="btn btn-bmw w-100 add-to-cart">
+                      <i class="fas fa-shopping-cart me-2"></i>Thêm vào giỏ
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+            
+            <!-- BMW M4 Competition -->
+            <div class="col-lg-4 col-md-6">
+              <div class="car-card fade-in-up" data-car-id="3">
+                <img src="https://carpassion.vn/wp-content/uploads/2024/02/2025-BMW-M4-Coupe-08.webp" alt="BMW M4 Competition" onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIyNTAiIHZpZXdCb3g9IjAgMCA0MDAgMjUwIiBmaWxsPSJub25lIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPgo8cmVjdCB3aWR0aD0iNDAwIiBoZWlnaHQ9IjI1MCIgZmlsbD0iIzA0MUU0MiIvPgo8cGF0aCBkPSJNMTUwIDEyNUwyMDAgNzVMMjUwIDEyNUwyMDAgMTc1TDE1MCAxMjVaIiBmaWxsPSIjMDA2NkIzIi8+Cjx0ZXh0IHg9IjIwMCIgeT0iMTM1IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmaWxsPSIjMDA2NkIzIiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMTgiPkJNVzwvdGV4dD4KPC9zdmc+Cg=='">
+                <div class="car-card-body">
+                  <h3 class="car-card-title">BMW M4 Competition</h3>
+                  <div class="car-card-price">6,500,000,000 VNĐ</div>
+                  <ul class="car-card-features">
+                    <li><i class="fas fa-check"></i>Tốc độ tối đa: 290 km/h</li>
+                    <li><i class="fas fa-check"></i>Công suất: 510 mã lực</li>
+                    <li><i class="fas fa-check"></i>0-100 km/h: 3.9 giây</li>
+                    <li><i class="fas fa-check"></i>Thiết kế thể thao mạnh mẽ</li>
+                  </ul>
+                  <div class="car-card-actions">
+                    <button class="btn btn-outline-bmw w-100 view-details" data-bs-toggle="modal" data-bs-target="#carDetailsModal">
+                      <i class="fas fa-info-circle me-2"></i>Xem chi tiết
+                    </button>
+                    <button class="btn btn-bmw w-100 add-to-cart">
+                      <i class="fas fa-shopping-cart me-2"></i>Thêm vào giỏ
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+            
+            <!-- BMW i8 -->
+            <div class="col-lg-4 col-md-6">
+              <div class="car-card fade-in-up" data-car-id="4">
+                <img src="https://giaxeoto.vn/admin/upload/images/resize/640-bmw-i8-coupe.jpg" alt="BMW i8" onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIyNTAiIHZpZXdCb3g9IjAgMCA0MDAgMjUwIiBmaWxsPSJub25lIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPgo8cmVjdCB3aWR0aD0iNDAwIiBoZWlnaHQ9IjI1MCIgZmlsbD0iIzA0MUU0MiIvPgo8cGF0aCBkPSJNMTUwIDEyNUwyMDAgNzVMMjUwIDEyNUwyMDAgMTc1TDE1MCAxMjVaIiBmaWxsPSIjMDA2NkIzIi8+Cjx0ZXh0IHg9IjIwMCIgeT0iMTM1IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmaWxsPSIjMDA2NkIzIiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMTgiPkJNVzwvdGV4dD4KPC9zdmc+Cg=='">
+                <div class="car-card-body">
+                  <h3 class="car-card-title">BMW i8</h3>
+                  <div class="car-card-price">7,500,000,000 VNĐ</div>
+                  <ul class="car-card-features">
+                    <li><i class="fas fa-check"></i>Tốc độ tối đa: 250 km/h</li>
+                    <li><i class="fas fa-check"></i>Công suất: 374 mã lực</li>
+                    <li><i class="fas fa-check"></i>0-100 km/h: 4.4 giây</li>
+                    <li><i class="fas fa-check"></i>Hybrid thể thao tương lai</li>
+                  </ul>
+                  <div class="car-card-actions">
+                    <button class="btn btn-outline-bmw w-100 view-details" data-bs-toggle="modal" data-bs-target="#carDetailsModal">
+                      <i class="fas fa-info-circle me-2"></i>Xem chi tiết
+                    </button>
+                    <button class="btn btn-bmw w-100 add-to-cart">
+                      <i class="fas fa-shopping-cart me-2"></i>Thêm vào giỏ
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+            
+            <!-- BMW Z4 M40i -->
+            <div class="col-lg-4 col-md-6">
+              <div class="car-card fade-in-up" data-car-id="5">
+                <img src="https://giaxeoto.vn/admin/upload/images/resize/640-bmw-z4-2025-co-gi-moi.jpg" alt="BMW Z4 M40i" onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIyNTAiIHZpZXdCb3g9IjAgMCA0MDAgMjUwIiBmaWxsPSJub25lIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPgo8cmVjdCB3aWR0aD0iNDAwIiBoZWlnaHQ9IjI1MCIgZmlsbD0iIzA0MUU0MiIvPgo8cGF0aCBkPSJNMTUwIDEyNUwyMDAgNzVMMjUwIDEyNUwyMDAgMTc1TDE1MCAxMjVaIiBmaWxsPSIjMDA2NkIzIi8+Cjx0ZXh0IHg9IjIwMCIgeT0iMTM1IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmaWxsPSIjMDA2NkIzIiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMTgiPkJNVzwvdGV4dD4KPC9zdmc+Cg=='">
+                <div class="car-card-body">
+                  <h3 class="car-card-title">BMW Z4 M40i</h3>
+                  <div class="car-card-price">4,200,000,000 VNĐ</div>
+                  <ul class="car-card-features">
+                    <li><i class="fas fa-check"></i>Tốc độ tối đa: 250 km/h</li>
+                    <li><i class="fas fa-check"></i>Công suất: 340 mã lực</li>
+                    <li><i class="fas fa-check"></i>0-100 km/h: 4.5 giây</li>
+                    <li><i class="fas fa-check"></i>Roadster thể thao</li>
+                  </ul>
+                  <div class="car-card-actions">
+                    <button class="btn btn-outline-bmw w-100 view-details" data-bs-toggle="modal" data-bs-target="#carDetailsModal">
+                      <i class="fas fa-info-circle me-2"></i>Xem chi tiết
+                    </button>
+                    <button class="btn btn-bmw w-100 add-to-cart">
+                      <i class="fas fa-shopping-cart me-2"></i>Thêm vào giỏ
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+            
+            <!-- BMW X6 M Competition -->
+            <div class="col-lg-4 col-md-6">
+              <div class="car-card fade-in-up" data-car-id="6">
+                <img src="https://autocarvietnam.vn/wp-content/uploads/2023/02/autocarvietnam-vn-BMW-X6-M-ngoai-that-1.jpg" alt="BMW X6 M Competition" onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIyNTAiIHZpZXdCb3g9IjAgMCA0MDAgMjUwIiBmaWxsPSJub25lIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPgo8cmVjdCB3aWR0aD0iNDAwIiBoZWlnaHQ9IjI1MCIgZmlsbD0iIzA0MUU0MiIvPgo8cGF0aCBkPSJNMTUwIDEyNUwyMDAgNzVMMjUwIDEyNUwyMDAgMTc1TDE1MCAxMjVaIiBmaWxsPSIjMDA2NkIzIi8+Cjx0ZXh0IHg9IjIwMCIgeT0iMTM1IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmaWxsPSIjMDA2NkIzIiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMTgiPkJNVzwvdGV4dD4KPC9zdmc+Cg=='">
+                <div class="car-card-body">
+                  <h3 class="car-card-title">BMW X6 M Competition</h3>
+                  <div class="car-card-price">8,500,000,000 VNĐ</div>
+                  <ul class="car-card-features">
+                    <li><i class="fas fa-check"></i>Tốc độ tối đa: 290 km/h</li>
+                    <li><i class="fas fa-check"></i>Công suất: 625 mã lực</li>
+                    <li><i class="fas fa-check"></i>0-100 km/h: 3.8 giây</li>
+                    <li><i class="fas fa-check"></i>SUV thể thao hiệu suất cao</li>
+                  </ul>
+                  <div class="car-card-actions">
+                    <button class="btn btn-outline-bmw w-100 view-details" data-bs-toggle="modal" data-bs-target="#carDetailsModal">
+                      <i class="fas fa-info-circle me-2"></i>Xem chi tiết
+                    </button>
+                    <button class="btn btn-bmw w-100 add-to-cart">
+                      <i class="fas fa-shopping-cart me-2"></i>Thêm vào giỏ
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="py-4">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-6">
+          <h5 class="mb-3">
+            <i class="fas fa-phone-alt me-2"></i>Thông tin liên hệ
+          </h5>
+          <p class="mb-2"><i class="fas fa-envelope me-2"></i>thanhhoa13052006@gmail.com</p>
+          <p class="mb-2"><i class="fas fa-phone me-2"></i>0983 XXX XXX</p>
+        </div>
+        <div class="col-md-6">
+          <h5 class="mb-3">
+            <i class="fas fa-map-marker-alt me-2"></i>Địa chỉ
+          </h5>
+          <p class="mb-2"><i class="fas fa-building me-2"></i>123XYZ quận 1, TP.HCM</p>
+          <p class="mb-2"><i class="fas fa-user-tie me-2"></i>Liên hệ: Trần Văn Thiện</p>
+        </div>
+      </div>
+      <hr class="my-4" style="border-color: var(--gold-color);">
+      <div class="text-center">
+        <p class="mb-0">&copy; 2025 OTOTHESIU. Tất cả quyền được bảo lưu.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Floating Contact Buttons -->
+  <div class="contact-float">
+    <a href="tel:0838266864" class="hotline" title="Gọi ngay">
+      <i class="fas fa-phone"></i>
+    </a>
+    <a href="https://web.facebook.com/?_rdc=1&_rdr" class="facebook" title="Liên hệ qua Facebook" target="_blank">
+      <i class="fab fa-facebook-f"></i>
+    </a>
+  </div>
+
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <script>
+    // Kiểm tra trạng thái đăng nhập
+    function checkLoginStatus() {
+      const userInfo = document.getElementById('userInfo');
+      const loginLink = document.getElementById('loginLink');
+      const userName = document.getElementById('userName');
+      
+      // Kiểm tra xem có thông tin đăng nhập trong localStorage không
+      const loggedInUser = localStorage.getItem('loggedInUser');
+      
+      if (loggedInUser) {
+        const user = JSON.parse(loggedInUser);
+        userInfo.style.display = 'block';
+        loginLink.style.display = 'none';
+        userName.textContent = user.name;
+      } else {
+        userInfo.style.display = 'none';
+        loginLink.style.display = 'block';
+      }
+    }
+
+    // Xử lý đăng xuất
+    document.getElementById('logoutBtn').addEventListener('click', function(e) {
+      e.preventDefault();
+      localStorage.removeItem('loggedInUser');
+      checkLoginStatus();
+      alert('Đã đăng xuất thành công!');
+      window.location.href = '../index.html';
+    });
+
+    // Danh sách xe BMW với thông tin chi tiết
+    const bmwCars = [
+      {
+        id: 1,
+        name: "BMW M8 Competition",
+        price: "12,500,000,000 VNĐ",
+        image: "https://cdn.motor1.com/images/mgl/43kwJ/s1/bmw-m8-competition-coupe-by-manhart.webp",
+        description: "BMW M8 Competition là mẫu xe coupe hiệu suất cao với thiết kế sang trọng và sức mạnh vượt trội, mang đến trải nghiệm lái xe đỉnh cao.",
+        specs: [
+          { label: "Tốc độ tối đa", value: "305 km/h" },
+          { label: "Công suất", value: "625 mã lực" },
+          { label: "0-100 km/h", value: "3.2 giây" },
+          { label: "Động cơ", value: "V8 Twin-Turbo 4.4L" },
+          { label: "Hộp số", value: "Tự động 8 cấp M Steptronic" },
+          { label: "Dẫn động", value: "AWD (xDrive)" }
+        ]
+      },
+      {
+        id: 2,
+        name: "BMW M5 CS",
+        price: "9,800,000,000 VNĐ",
+        image: "https://giaxeoto.vn/admin/upload/images/resize/640-BMW-M5-CS-hinh-anh.jpg",
+        description: "BMW M5 CS là phiên bản sedan hiệu suất cao nhất của dòng M5, kết hợp sức mạnh vượt trội và thiết kế tinh tế.",
+        specs: [
+          { label: "Tốc độ tối đa", value: "305 km/h" },
+          { label: "Công suất", value: "635 mã lực" },
+          { label: "0-100 km/h", value: "3.0 giây" },
+          { label: "Động cơ", value: "V8 Twin-Turbo 4.4L" },
+          { label: "Hộp số", value: "Tự động 8 cấp M Steptronic" },
+          { label: "Dẫn động", value: "AWD (xDrive)" }
+        ]
+      },
+      {
+        id: 3,
+        name: "BMW M4 Competition",
+        price: "6,500,000,000 VNĐ",
+        image: "https://carpassion.vn/wp-content/uploads/2024/02/2025-BMW-M4-Coupe-08.webp",
+        description: "BMW M4 Competition mang đến sự cân bằng hoàn hảo giữa hiệu suất và phong cách, với thiết kế thể thao và khả năng vận hành mạnh mẽ.",
+        specs: [
+          { label: "Tốc độ tối đa", value: "290 km/h" },
+          { label: "Công suất", value: "510 mã lực" },
+          { label: "0-100 km/h", value: "3.9 giây" },
+          { label: "Động cơ", value: "I6 Twin-Turbo 3.0L" },
+          { label: "Hộp số", value: "Tự động 8 cấp M Steptronic" },
+          { label: "Dẫn động", value: "RWD/AWD" }
+        ]
+      },
+      {
+        id: 4,
+        name: "BMW i8",
+        price: "7,500,000,000 VNĐ",
+        image: "https://giaxeoto.vn/admin/upload/images/resize/640-bmw-i8-coupe.jpg",
+        description: "BMW i8 là mẫu xe hybrid thể thao với thiết kế tương lai, kết hợp hiệu suất cao và khả năng tiết kiệm nhiên liệu.",
+        specs: [
+          { label: "Tốc độ tối đa", value: "250 km/h" },
+          { label: "Công suất", value: "374 mã lực" },
+          { label: "0-100 km/h", value: "4.4 giây" },
+          { label: "Động cơ", value: "Hybrid 1.5L 3 xy-lanh + điện" },
+          { label: "Hộp số", value: "Tự động 6 cấp" },
+          { label: "Dẫn động", value: "AWD" }
+        ]
+      },
+      {
+        id: 5,
+        name: "BMW Z4 M40i",
+        price: "4,200,000,000 VNĐ",
+        image: "https://giaxeoto.vn/admin/upload/images/resize/640-bmw-z4-2025-co-gi-moi.jpg",
+        description: "BMW Z4 M40i là mẫu roadster thể thao với thiết kế mở, mang đến trải nghiệm lái xe tự do và đầy phấn khích.",
+        specs: [
+          { label: "Tốc độ tối đa", value: "250 km/h" },
+          { label: "Công suất", value: "340 mã lực" },
+          { label: "0-100 km/h", value: "4.5 giây" },
+          { label: "Động cơ", value: "I6 Turbo 3.0L" },
+          { label: "Hộp số", value: "Tự động 8 cấp" },
+          { label: "Dẫn động", value: "RWD" }
+        ]
+      },
+      {
+        id: 6,
+        name: "BMW X6 M Competition",
+        price: "8,500,000,000 VNĐ",
+        image: "https://autocarvietnam.vn/wp-content/uploads/2023/02/autocarvietnam-vn-BMW-X6-M-ngoai-that-1.jpg",
+        description: "BMW X6 M Competition là SUV hiệu suất cao với thiết kế mạnh mẽ và khả năng vận hành vượt trội trên mọi địa hình.",
+        specs: [
+          { label: "Tốc độ tối đa", value: "290 km/h" },
+          { label: "Công suất", value: "625 mã lực" },
+          { label: "0-100 km/h", value: "3.8 giây" },
+          { label: "Động cơ", value: "V8 Twin-Turbo 4.4L" },
+          { label: "Hộp số", value: "Tự động 8 cấp M Steptronic" },
+          { label: "Dẫn động", value: "AWD (xDrive)" }
+        ]
+      }
+    ];
+
+    // Xử lý sự kiện "Xem chi tiết"
+    document.querySelectorAll('.view-details').forEach(button => {
+      button.addEventListener('click', function() {
+        const carId = this.closest('.car-card').dataset.carId;
+        const car = bmwCars.find(c => c.id == carId);
+        
+        if (car) {
+          document.getElementById('modalCarName').textContent = car.name;
+          document.getElementById('modalCarPrice').textContent = car.price;
+          document.getElementById('modalCarImage').src = car.image;
+          document.getElementById('modalCarDescription').textContent = car.description;
+          
+          const specsContainer = document.getElementById('modalCarSpecs');
+          specsContainer.innerHTML = '';
+          car.specs.forEach(spec => {
+            const specItem = document.createElement('div');
+            specItem.className = 'spec-item';
+            specItem.innerHTML = `
+              <div class="spec-label">${spec.label}</div>
+              <div class="spec-value">${spec.value}</div>
+            `;
+            specsContainer.appendChild(specItem);
+          });
+
+          // Cập nhật nút "Thêm vào giỏ hàng" trong modal
+          const modalAddToCartBtn = document.getElementById('modalAddToCartBtn');
+          modalAddToCartBtn.dataset.carId = carId;
+        }
+      });
+    });
+
+    // Xử lý sự kiện "Thêm vào giỏ hàng"
+    document.querySelectorAll('.add-to-cart').forEach(button => {
+      button.addEventListener('click', function() {
+        const carId = this.closest('.car-card').dataset.carId;
+        const car = bmwCars.find(c => c.id == carId);
+        
+        if (car) {
+          let cart = JSON.parse(localStorage.getItem('cart')) || [];
+          const existingItem = cart.find(item => item.id == carId);
+          
+          if (existingItem) {
+            existingItem.quantity += 1;
+          } else {
+            cart.push({
+              id: car.id,
+              name: car.name,
+              price: car.price,
+              image: car.image,
+              quantity: 1
+            });
+          }
+          
+          localStorage.setItem('cart', JSON.stringify(cart));
+          
+          // Hiển thị toast notification
+          const toast = new bootstrap.Toast(document.getElementById('successToast'));
+          toast.show();
+        }
+      });
+    });
+
+    // Xử lý nút "Thêm vào giỏ hàng" trong modal
+    document.getElementById('modalAddToCartBtn').addEventListener('click', function() {
+      const carId = this.dataset.carId;
+      const car = bmwCars.find(c => c.id == carId);
+      
+      if (car) {
+        let cart = JSON.parse(localStorage.getItem('cart')) || [];
+        const existingItem = cart.find(item => item.id == carId);
+        
+        if (existingItem) {
+          existingItem.quantity += 1;
+        } else {
+          cart.push({
+            id: car.id,
+            name: car.name,
+            price: car.price,
+            image: car.image,
+            quantity: 1
+          });
+        }
+        
+        localStorage.setItem('cart', JSON.stringify(cart));
+        
+        // Hiển thị toast notification
+        const toast = new bootstrap.Toast(document.getElementById('successToast'));
+        toast.show();
+      }
+    });
+
+    // Khởi tạo trang
+    document.addEventListener('DOMContentLoaded', function() {
+      checkLoginStatus();
+    });
+  </script>
+</body>
+</html>
