@@ -358,6 +358,42 @@
     ::-webkit-scrollbar-thumb:hover {
       background: var(--dark-gold);
     }
+        /* ==== FIX NAVBAR MENU KHÔNG XUỐNG DÒNG ==== */
+.navbar-nav {
+  flex-wrap: nowrap !important;          /* Ngăn wrap xuống dòng */
+  overflow-x: auto;                       /* Cho phép cuộn ngang nếu quá nhiều */
+  -webkit-overflow-scrolling: touch;      /* Cuộn mượt trên mobile */
+  white-space: nowrap;                    /* Không xuống dòng */
+  gap: 10px;                              /* Khoảng cách đều giữa các mục */
+}
+
+.navbar-nav .nav-item {
+  flex: 0 0 auto;                         /* Không co giãn, giữ kích thước */
+}
+
+.navbar-nav .nav-link {
+  white-space: nowrap;                    /* Không xuống dòng */
+  overflow: hidden;                       /* Ẩn phần tràn */
+  text-overflow: ellipsis;                /* Thêm ... nếu quá dài */
+  max-width: 150px;                       /* Giới hạn chiều rộng mỗi mục */
+  display: block;                         /* Đảm bảo ellipsis hoạt động */
+  padding: 8px 12px !important;           /* Đệm đều */
+  font-size: 0.95rem;                     /* Chữ nhỏ hơn một chút nếu cần */
+}
+
+/* Ẩn thanh cuộn ngang nhưng vẫn cho phép cuộn (tùy chọn) */
+.navbar-nav::-webkit-scrollbar {
+  display: none;
+}
+.navbar-nav {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+/* KÉO TOÀN BỘ NAVBAR SÁT TRÁI HƠN MỘT CHÚT */
+.navbar .container {
+  padding-left: 15px !important;     /* Loại bỏ padding trái */
+  margin-left: -12px !important;  /* Dịch trái thêm 12px */
+}
   </style>
 </head>
 <body>
@@ -375,9 +411,6 @@
       </button>
       <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav ms-auto">
-          <li class="nav-item">
-            <a class="nav-link" href="dashboard.html"><i class="fas fa-tachometer-alt me-1"></i>Dashboard</a>
-          </li>
           <li class="nav-item">
             <a class="nav-link" href="products.html"><i class="fas fa-box me-1"></i>Sản phẩm</a>
           </li>

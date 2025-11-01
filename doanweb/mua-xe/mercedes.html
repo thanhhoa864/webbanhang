@@ -71,13 +71,27 @@
     }
 
     .btn-outline-light {
-      border-color: var(--jade-black);
-      color: var(--jade-black);
+      border: 2px solid var(--jade-black) !important;
+      color: var(--jade-black) !important;
+      background: transparent;
+      transition: all 0.3s ease;
     }
 
     .btn-outline-light:hover {
-      background: var(--jade-black);
-      border-color: var(--jade-black);
+      background: var(--jade-black) !important;
+      color: var(--text-light) !important;
+      border-color: var(--jade-black) !important;
+    }
+
+    .form-control {
+      border: 2px solid var(--jade-black) !important;
+      background: var(--text-light);
+      color: var(--jade-black);
+    }
+
+    .form-control:focus {
+      border-color: var(--gold-color) !important;
+      box-shadow: 0 0 5px rgba(255, 215, 0, 0.5);
     }
 
     /* Hero Section */
@@ -108,10 +122,10 @@
       background: linear-gradient(135deg, var(--mercedes-silver), var(--mercedes-dark-silver));
       border: none;
       color: var(--jade-black);
-      padding: 12px 30px;
-      font-size: 1.1rem;
+      padding: 8px 16px;
+      font-size: 0.9rem;
       font-weight: 600;
-      border-radius: 50px;
+      border-radius: 5px;
       transition: all 0.3s ease;
     }
 
@@ -126,10 +140,10 @@
       border: 2px solid var(--mercedes-silver);
       color: var(--mercedes-silver);
       background: transparent;
-      padding: 12px 30px;
-      font-size: 1.1rem;
+      padding: 8px 16px;
+      font-size: 0.9rem;
       font-weight: 600;
-      border-radius: 50px;
+      border-radius: 5px;
       transition: all 0.3s ease;
     }
 
@@ -324,43 +338,6 @@
       background: linear-gradient(135deg, var(--accent-gold), var(--gold-color));
     }
 
-    /* User Info */
-    .user-info {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
-
-    .user-avatar {
-      width: 40px;
-      height: 40px;
-      border-radius: 50%;
-      background: var(--gold-color);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: var(--jade-black);
-      font-weight: bold;
-    }
-
-    .user-dropdown {
-      background: var(--jade-black);
-      border: 2px solid var(--gold-color);
-      border-radius: 10px;
-      box-shadow: 0 8px 30px rgba(255, 215, 0, 0.2);
-    }
-
-    .user-dropdown .dropdown-item {
-      color: var(--text-light);
-      padding: 10px 20px;
-      transition: all 0.3s ease;
-    }
-
-    .user-dropdown .dropdown-item:hover {
-      background: linear-gradient(135deg, var(--gold-color), var(--dark-gold));
-      color: var(--jade-black);
-    }
-
     /* Modal Custom Styles */
     .car-modal .modal-content {
       background: var(--jade-black);
@@ -477,6 +454,32 @@
       cursor: pointer;
     }
 
+    /* Advanced Search Bar */
+    .advanced-search-form .form-control {
+      border: 2px solid var(--jade-black) !important;
+      background: var(--text-light);
+      color: var(--jade-black);
+      border-radius: 5px !important;
+    }
+
+    .advanced-search-form .form-control:focus {
+      border-color: var(--gold-color) !important;
+      box-shadow: 0 0 5px rgba(255, 215, 0, 0.5);
+    }
+
+    .advanced-search-form .btn-outline-light {
+      border: 2px solid var(--jade-black) !important;
+      color: var(--jade-black) !important;
+      background: transparent;
+      border-radius: 5px !important;
+    }
+
+    .advanced-search-form .btn-outline-light:hover {
+      background: var(--jade-black) !important;
+      color: var(--text-light) !important;
+      border-color: var(--jade-black) !important;
+    }
+
     /* Pagination */
     .pagination-container {
       display: flex;
@@ -499,6 +502,12 @@
     .pagination-btn.active {
       background: var(--mercedes-silver);
       color: var(--jade-black);
+    }
+
+    /* Loading Animation */
+    .loading {
+      opacity: 0.5;
+      pointer-events: none;
     }
 
     /* Responsive */
@@ -594,7 +603,6 @@
       font-size: 3rem;
     }
 
-    /* Image fallback styles */
     .img-fallback {
       width: 100%;
       height: 100%;
@@ -605,6 +613,118 @@
       color: var(--mercedes-silver);
       font-size: 1.5rem;
     }
+    .navbar .d-flex.ms-3 .form-control {
+    width: 200px;
+    height: 40px;
+    background: #ffffff;
+    border: 2px solid var(--jade-black);
+    color: var(--jade-black);
+    transition: all 0.3s ease;
+    font-size: 14px;
+}
+
+.navbar .d-flex.ms-3 .form-control:focus {
+    background: #ffffff;
+    border-color: var(--jade-black);
+    color: var(--jade-black);
+    box-shadow: 0 0 0 0.25rem rgba(13, 27, 42, 0.25);
+    width: 220px; /* Mở rộng nhẹ khi focus */
+}
+
+.navbar .d-flex.ms-3 .form-control::placeholder {
+    color: rgba(13, 27, 42, 0.5);
+    font-size: 14px;
+}
+
+.navbar .d-flex.ms-3 .btn-outline-light {
+    height: 40px;
+    width: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-color: var(--jade-black);
+    color: var(--jade-black);
+    background: transparent;
+    transition: all 0.3s ease;
+}
+
+.navbar .d-flex.ms-3 .btn-outline-light:hover {
+    background: var(--jade-black);
+    border-color: var(--jade-black);
+    color: var(--gold-color);
+}
+
+/* Responsive cho mobile */
+@media (max-width: 768px) {
+    .navbar .d-flex.ms-3 {
+        min-width: 200px;
+        margin-top: 10px;
+    }
+    
+    .navbar .d-flex.ms-3 .form-control {
+        width: 150px;
+        height: 35px;
+    }
+    
+    .navbar .d-flex.ms-3 .btn-outline-light {
+        height: 35px;
+        width: 35px;
+    }
+}
+/* Nút tìm kiếm nâng cao */
+.navbar .btn-outline-light[title="Tìm kiếm nâng cao"] {
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  border-color: var(--jade-black);
+  color: var(--jade-black);
+  background: transparent;
+  transition: all 0.3s ease;
+}
+
+.navbar .btn-outline-light[title="Tìm kiếm nâng cao"]:hover {
+  background: var(--jade-black);
+  border-color: var(--jade-black);
+  color: var(--gold-color);
+  transform: scale(1.1);
+}
+
+/* Form controls trong modal */
+#advancedSearchModal .form-control,
+#advancedSearchModal .form-select {
+  background: var(--jade-dark);
+  border: 2px solid var(--gold-color);
+  color: var(--text-light);
+  border-radius: 10px;
+  transition: all 0.3s ease;
+}
+
+#advancedSearchModal .form-control:focus,
+#advancedSearchModal .form-select:focus {
+  background: var(--jade-dark);
+  border-color: var(--accent-gold);
+  color: var(--text-light);
+  box-shadow: 0 0 0 0.25rem rgba(255, 215, 0, 0.25);
+}
+
+#advancedSearchModal .form-control::placeholder {
+  color: rgba(232, 232, 232, 0.6);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .navbar .btn-outline-light[title="Tìm kiếm nâng cao"] {
+    width: 35px;
+    height: 35px;
+  }
+  
+  #advancedSearchModal .modal-dialog {
+    margin: 20px;
+  }
+}
   </style>
 </head>
 <body>
@@ -625,7 +745,6 @@
       
       <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-          
           <!-- Mua xe Dropdown -->
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -648,11 +767,8 @@
         <ul class="navbar-nav mb-2 mb-lg-0">
           <!-- Hiển thị thông tin người dùng nếu đã đăng nhập -->
           <li id="userInfo" class="nav-item dropdown" style="display: none;">
-            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-              <div class="user-info">
-                <div class="user-avatar" id="userAvatar">U</div>
-                <span id="userName">Người dùng</span>
-              </div>
+            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false" id="userName">
+              Người dùng
             </a>
             <ul class="dropdown-menu user-dropdown">
               <li><a class="dropdown-item" href="../customer-info.html"><i class="fas fa-user me-2"></i>Thông tin cá nhân</a></li>
@@ -675,15 +791,133 @@
         </ul>
         
         <!-- Search Bar -->
-        <form class="d-flex ms-3" role="search">
-          <input class="form-control me-2" type="search" placeholder="Tìm kiếm siêu xe..." aria-label="Search">
-          <button class="btn btn-outline-light" type="submit">
-            <i class="fas fa-search"></i>
-          </button>
+         <!-- Search Bar --> 
+       <form class="d-flex ms-3" role="search" action="../search-result.html"> 
+        <input class="form-control me-2" type="search" placeholder="Tìm kiếm siêu xe..." aria-label="Search"> 
+        <button class="btn btn-outline-light" type="submit"> <i class="fas fa-search"></i> 
+      </button> 
+    </form> 
+  </div> 
+</div>
+<!-- Nút mở modal tìm kiếm nâng cao -->
+<div class="nav-item ms-2">
+  <button class="btn btn-outline-light" type="button" data-bs-toggle="modal" data-bs-target="#advancedSearchModal" title="Tìm kiếm nâng cao">
+    <i class="fas fa-sliders-h"></i>
+  </button>
+</div>
+
+<!-- Modal tìm kiếm nâng cao -->
+<div class="modal fade" id="advancedSearchModal" tabindex="-1" aria-labelledby="advancedSearchModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content" style="background: var(--jade-black); border: 2px solid var(--gold-color); border-radius: 15px;">
+      <div class="modal-header" style="border-bottom: 2px solid var(--gold-color);">
+        <h5 class="modal-title" style="color: var(--gold-color);" id="advancedSearchModalLabel">
+          <i class="fas fa-search me-2"></i>Tìm kiếm nâng cao
+        </h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" style="filter: invert(1);"></button>
+      </div>
+      <div class="modal-body">
+        <form id="advancedSearchForm" action="search-result.html" method="GET">
+          <div class="row">
+            <div class="col-md-6 mb-3">
+              <label class="form-label" style="color: var(--gold-color);">Tên xe</label>
+              <input type="text" class="form-control" name="carName" placeholder="Nhập tên xe...">
+            </div>
+            <div class="col-md-6 mb-3">
+              <label class="form-label" style="color: var(--gold-color);">Hãng xe</label>
+              <select class="form-select" name="brand">
+                <option value="">Tất cả hãng xe</option>
+                <option value="lamborghini">Lamborghini</option>
+                <option value="ferrari">Ferrari</option>
+                <option value="bugatti">Bugatti</option>
+                <option value="rolls-royce">Rolls-Royce</option>
+                <option value="porsche">Porsche</option>
+                <option value="mclaren">McLaren</option>
+                <option value="koenigsegg">Koenigsegg</option>
+                <option value="pagani">Pagani</option>
+                <option value="mercedes">Mercedes-Benz</option>
+                <option value="bmw">BMW</option>
+              </select>
+            </div>
+          </div>
+          
+          <div class="row">
+            <div class="col-md-6 mb-3">
+              <label class="form-label" style="color: var(--gold-color);">Loại động cơ</label>
+              <select class="form-select" name="engine">
+                <option value="">Tất cả động cơ</option>
+                <option value="v12">V12</option>
+                <option value="v10">V10</option>
+                <option value="v8">V8</option>
+                <option value="w16">W16</option>
+                <option value="hybrid">Hybrid</option>
+                <option value="electric">Điện</option>
+              </select>
+            </div>
+            <div class="col-md-6 mb-3">
+              <label class="form-label" style="color: var(--gold-color);">Khoảng giá</label>
+              <select class="form-select" name="priceRange">
+                <option value="">Tất cả mức giá</option>
+                <option value="0-10">Dưới 10 tỷ</option>
+                <option value="10-20">10 - 20 tỷ</option>
+                <option value="20-30">20 - 30 tỷ</option>
+                <option value="30-50">30 - 50 tỷ</option>
+                <option value="50-100">50 - 100 tỷ</option>
+                <option value="100+">Trên 100 tỷ</option>
+              </select>
+            </div>
+          </div>
+          
+          <div class="row">
+            <div class="col-md-6 mb-3">
+              <label class="form-label" style="color: var(--gold-color);">Công suất tối thiểu</label>
+              <select class="form-select" name="minHorsepower">
+                <option value="">Không yêu cầu</option>
+                <option value="500">500+ mã lực</option>
+                <option value="600">600+ mã lực</option>
+                <option value="700">700+ mã lực</option>
+                <option value="800">800+ mã lực</option>
+                <option value="900">900+ mã lực</option>
+                <option value="1000">1000+ mã lực</option>
+              </select>
+            </div>
+            <div class="col-md-6 mb-3">
+              <label class="form-label" style="color: var(--gold-color);">Tốc độ tối đa</label>
+              <select class="form-select" name="topSpeed">
+                <option value="">Không yêu cầu</option>
+                <option value="300">300+ km/h</option>
+                <option value="320">320+ km/h</option>
+                <option value="350">350+ km/h</option>
+                <option value="380">380+ km/h</option>
+                <option value="400">400+ km/h</option>
+              </select>
+            </div>
+          </div>
         </form>
       </div>
+      <div class="modal-footer" style="border-top: 2px solid var(--gold-color);">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" style="
+          border: 2px solid var(--gold-color);
+          color: var(--gold-color);
+          background: transparent;
+          border-radius: 50px;
+          padding: 8px 20px;
+        ">Đóng</button>
+        <button type="submit" form="advancedSearchForm" class="btn btn-primary" style="
+          background: linear-gradient(135deg, var(--gold-color), var(--dark-gold));
+          border: none;
+          color: var(--jade-black);
+          border-radius: 50px;
+          padding: 8px 25px;
+          font-weight: 600;
+        ">
+          <i class="fas fa-search me-2"></i>Tìm kiếm
+        </button>
+      </div>
     </div>
-  </nav>
+  </div>
+</div>
+</nav>
 
   <!-- Toast Notification -->
   <div class="toast-container">
@@ -830,20 +1064,26 @@
                 </div>
               </div>
             </div>
+
+            <!-- Advanced Search Bar -->
+            <div class="filter-group advanced-search-form">
+              <h5 class="filter-group-title">Tìm kiếm nâng cao</h5>
+              <form class="d-flex">
+                <input class="form-control me-2" type="search" id="advancedSearch" placeholder="Tìm kiếm theo tên xe..." aria-label="Search">
+                <button class="btn btn-outline-light" type="submit">
+                  <i class="fas fa-search"></i>
+                </button>
+              </form>
+            </div>
           </div>
         </div>
         
         <!-- Cars Section - Bên phải -->
         <div class="col-lg-9 col-md-8">
-          <div class="row" id="mercedesCars">
-            <!-- Cars will be dynamically loaded here -->
-          </div>
+          <div class="row" id="mercedesCars"></div>
           
-          <!-- Pagination - Dưới ảnh xe -->
-          <div class="pagination-container fade-in-up">
-            <button class="pagination-btn active">1</button>
-            <button class="pagination-btn">2</button>
-          </div>
+          <!-- Pagination -->
+          <div class="pagination-container fade-in-up" id="pagination"></div>
         </div>
       </div>
     </div>
@@ -925,7 +1165,15 @@
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
   
   <script>
-    // Dữ liệu xe Mercedes-Benz với hình ảnh thực tế
+    // Brand configuration
+    const brandConfig = {
+      brandName: 'Mercedes-Benz',
+      primaryColor: 'var(--mercedes-silver)',
+      secondaryColor: 'var(--mercedes-dark-silver)',
+      logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/9/90/Mercedes-Logo.svg/2048px-Mercedes-Logo.svg.png'
+    };
+
+    // Dữ liệu xe Mercedes-Benz
     const mercedesCars = [
       {
         id: 1,
@@ -947,7 +1195,9 @@
           topspeed: "325 km/h",
           transmission: "7-speed AMG SPEEDSHIFT DCT",
           drivetrain: "Rear-wheel drive"
-        }
+        },
+        engineType: "v8",
+        maxSpeed: 325
       },
       {
         id: 2,
@@ -969,7 +1219,9 @@
           topspeed: "352 km/h",
           transmission: "7-speed AMT",
           drivetrain: "All-wheel drive"
-        }
+        },
+        engineType: "hybrid",
+        maxSpeed: 352
       },
       {
         id: 3,
@@ -991,7 +1243,9 @@
           topspeed: "315 km/h",
           transmission: "9-speed AMG SPEEDSHIFT MCT",
           drivetrain: "All-wheel drive"
-        }
+        },
+        engineType: "v8",
+        maxSpeed: 315
       },
       {
         id: 4,
@@ -1013,7 +1267,9 @@
           topspeed: "280 km/h",
           transmission: "9-speed AMG SPEEDSHIFT MCT",
           drivetrain: "All-wheel drive"
-        }
+        },
+        engineType: "hybrid",
+        maxSpeed: 280
       },
       {
         id: 5,
@@ -1035,7 +1291,9 @@
           topspeed: "300 km/h",
           transmission: "9-speed AMG SPEEDSHIFT MCT",
           drivetrain: "All-wheel drive"
-        }
+        },
+        engineType: "v8",
+        maxSpeed: 300
       },
       {
         id: 6,
@@ -1057,105 +1315,115 @@
           topspeed: "290 km/h",
           transmission: "9-speed AMG SPEEDSHIFT MCT",
           drivetrain: "All-wheel drive"
-        }
+        },
+        engineType: "hybrid",
+        maxSpeed: 290
       }
     ];
 
-    // Biến lưu trữ xe hiện tại được chọn
+    // Utility module
+    const utils = {
+      formatPrice: (price) => {
+        try {
+          if (typeof price !== 'number' || isNaN(price)) {
+            throw new Error('Giá tiền không hợp lệ');
+          }
+          return new Intl.NumberFormat('vi-VN').format(price) + ' VNĐ';
+        } catch (error) {
+          console.error('Lỗi định dạng giá:', error.message);
+          return 'Lỗi giá';
+        }
+      },
+      addToCart: (car) => {
+        try {
+          if (!car || !car.id || !car.name || !car.price || !car.image) {
+            throw new Error('Thông tin xe không hợp lệ');
+          }
+          let cart = JSON.parse(localStorage.getItem('cart')) || [];
+          const existingItem = cart.find(item => item.id === car.id);
+          if (existingItem) {
+            existingItem.quantity += 1;
+          } else {
+            cart.push({ id: car.id, name: car.name, price: car.price, image: car.image, quantity: 1 });
+          }
+          localStorage.setItem('cart', JSON.stringify(cart));
+          const toast = new bootstrap.Toast(document.getElementById('successToast'));
+          toast.show();
+        } catch (error) {
+          console.error('Lỗi thêm vào giỏ hàng:', error.message);
+          alert('Không thể thêm vào giỏ hàng: ' + error.message);
+        }
+      }
+    };
+
+    // State variables
     let currentCar = null;
     let currentPage = 1;
     const carsPerPage = 3;
+    let filteredCars = [...mercedesCars];
 
-    // Hàm định dạng giá tiền
-    function formatPrice(price) {
-      return new Intl.NumberFormat('vi-VN').format(price);
+    // Debounce function
+    function debounce(func, wait) {
+      let timeout;
+      return function executedFunction(...args) {
+        const later = () => {
+          clearTimeout(timeout);
+          func(...args);
+        };
+        clearTimeout(timeout);
+        timeout = setTimeout(later, wait);
+      };
     }
 
-    // Hàm thêm vào giỏ hàng
-    function addToCart(car) {
-      // Lấy giỏ hàng từ localStorage
-      let cart = JSON.parse(localStorage.getItem('cart')) || [];
-      
-      // Kiểm tra xem xe đã có trong giỏ hàng chưa
-      const existingItem = cart.find(item => item.id === car.id);
-      
-      if (existingItem) {
-        existingItem.quantity += 1;
-      } else {
-        cart.push({
-          id: car.id,
-          name: car.name,
-          price: car.price,
-          image: car.image,
-          quantity: 1
+    // Filter cars
+    function filterCars() {
+      const engines = Array.from(document.querySelectorAll('input[name="engine"]:checked')).map(input => input.value);
+      const prices = Array.from(document.querySelectorAll('input[name="price"]:checked')).map(input => input.value);
+      const speeds = Array.from(document.querySelectorAll('input[name="speed"]:checked')).map(input => input.value);
+      const searchQuery = document.getElementById('advancedSearch').value.toLowerCase();
+
+      filteredCars = mercedesCars.filter(car => {
+        const matchesEngine = engines.length === 0 || engines.includes(car.engineType);
+        const matchesPrice = prices.length === 0 || prices.some(range => {
+          if (range === 'under-15') return car.price < 15000000000;
+          if (range === '15-30') return car.price >= 15000000000 && car.price <= 30000000000;
+          if (range === 'over-30') return car.price > 30000000000;
+          return true;
         });
-      }
-      
-      // Lưu giỏ hàng vào localStorage
-      localStorage.setItem('cart', JSON.stringify(cart));
-      
-      // Hiển thị thông báo
-      const toast = new bootstrap.Toast(document.getElementById('successToast'));
-      toast.show();
+        const matchesSpeed = speeds.length === 0 || speeds.some(speed => {
+          if (speed === 'over-300') return car.maxSpeed > 300;
+          if (speed === 'under-300') return car.maxSpeed <= 300;
+          return true;
+        });
+        const matchesSearch = searchQuery === '' || car.name.toLowerCase().includes(searchQuery);
+        return matchesEngine && matchesPrice && matchesSpeed && matchesSearch;
+      });
+
+      currentPage = 1;
+      displayMercedesCars();
+      updatePagination();
     }
 
-    // Hàm hiển thị chi tiết xe trong modal
-    function showCarDetails(car) {
-      currentCar = car;
-      
-      // Cập nhật nội dung modal
-      document.getElementById('carDetailsModalLabel').textContent = car.name;
-      document.getElementById('modalCarName').textContent = car.name;
-      document.getElementById('modalCarPrice').textContent = formatPrice(car.price) + ' VNĐ';
-      document.getElementById('modalCarDescription').textContent = car.description;
-      document.getElementById('modalCarImage').src = car.image;
-      document.getElementById('modalCarImage').alt = car.name;
-      
-      // Xóa và thêm lại thông số kỹ thuật
-      const specsContainer = document.getElementById('modalCarSpecs');
-      specsContainer.innerHTML = '';
-      
-      for (const [key, value] of Object.entries(car.specs)) {
-        const specItem = document.createElement('div');
-        specItem.className = 'spec-item';
-        
-        const specLabel = document.createElement('div');
-        specLabel.className = 'spec-label';
-        specLabel.textContent = key.charAt(0).toUpperCase() + key.slice(1);
-        
-        const specValue = document.createElement('div');
-        specValue.className = 'spec-value';
-        specValue.textContent = value;
-        
-        specItem.appendChild(specLabel);
-        specItem.appendChild(specValue);
-        specsContainer.appendChild(specItem);
-      }
-      
-      // Hiển thị modal
-      const modal = new bootstrap.Modal(document.getElementById('carDetailsModal'));
-      modal.show();
-    }
-
-    // Hàm hiển thị xe Mercedes-Benz theo trang
-    function displayMercedesCars(page = 1) {
+    // Display cars with animation delay
+    function displayMercedesCars(page = currentPage) {
       const container = document.getElementById('mercedesCars');
+      container.classList.add('loading');
       container.innerHTML = '';
-      
-      // Tính toán xe cần hiển thị
-      const startIndex = (page - 1) * carsPerPage;
-      const endIndex = startIndex + carsPerPage;
-      const carsToShow = mercedesCars.slice(startIndex, endIndex);
-      
-      // Hiển thị các xe
-      carsToShow.forEach(car => {
-        const carCard = `
-          <div class="col-lg-4 col-md-6">
-            <div class="car-card fade-in-up">
+
+      setTimeout(() => {
+        const startIndex = (page - 1) * carsPerPage;
+        const endIndex = startIndex + carsPerPage;
+        const carsToShow = filteredCars.slice(startIndex, endIndex);
+
+        carsToShow.forEach((car, index) => {
+          const carCard = document.createElement('div');
+          carCard.className = 'col-lg-4 col-md-6';
+          carCard.innerHTML = `
+            <div class="car-card fade-in-up" style="animation-delay: ${index * 0.2}s">
               <img src="${car.image}" alt="${car.name}" onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIyNTAiIHZpZXdCb3g9IjAgMCA0MDAgMjUwIiBmaWxsPSJub25lIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPgo8cmVjdCB3aWR0aD0iNDAwIiBoZWlnaHQ9IjI1MCIgZmlsbD0iIzA0MUU0MiIvPgo8cGF0aCBkPSJNMTUwIDEyNUwyMDAgNzVMMjUwIDEyNUwyMDAgMTc1TDE1MCAxMjVaIiBmaWxsPSIjQzBDMEMwIi8+Cjx0ZXh0IHg9IjIwMCIgeT0iMTM1IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmaWxsPSIjQzBDMEMwIiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMTgiPk1lcmNlZGVzPC90ZXh0Pgo8L3N2Zz4KJz">
               <div class="car-card-body">
                 <h3 class="car-card-title">${car.name}</h3>
-                <div class="car-card-price">${formatPrice(car.price)} VNĐ</div>
+                <div class="car-card-price">${utils.formatPrice(car.price)}</div>
                 <ul class="car-card-features">
                   ${car.features.map(feature => `<li><i class="fas fa-check"></i>${feature}</li>`).join('')}
                 </ul>
@@ -1163,104 +1431,132 @@
                   <button class="btn btn-outline-mercedes w-100" onclick="showCarDetails(${JSON.stringify(car).replace(/"/g, '&quot;')})">
                     <i class="fas fa-info-circle me-2"></i>Xem chi tiết
                   </button>
-                  <button class="btn btn-mercedes w-100" onclick="addToCart(${JSON.stringify(car).replace(/"/g, '&quot;')})">
+                  <button class="btn btn-mercedes w-100" onclick="utils.addToCart(${JSON.stringify(car).replace(/"/g, '&quot;')})">
                     <i class="fas fa-shopping-cart me-2"></i>Thêm vào giỏ
                   </button>
                 </div>
               </div>
             </div>
-          </div>
+          `;
+          container.appendChild(carCard);
+        });
+
+        container.classList.remove('loading');
+      }, 300);
+    }
+
+    // Update pagination
+    function updatePagination() {
+      const totalPages = Math.ceil(filteredCars.length / carsPerPage);
+      const paginationContainer = document.getElementById('pagination');
+      paginationContainer.innerHTML = '';
+
+      for (let i = 1; i <= totalPages; i++) {
+        const button = document.createElement('button');
+        button.className = `pagination-btn ${i === currentPage ? 'active' : ''}`;
+        button.textContent = i;
+        button.addEventListener('click', () => {
+          currentPage = i;
+          displayMercedesCars();
+          updatePagination();
+        });
+        paginationContainer.appendChild(button);
+      }
+    }
+
+    // Show car details in modal
+    function showCarDetails(car) {
+      currentCar = car;
+      document.getElementById('carDetailsModalLabel').textContent = car.name;
+      document.getElementById('modalCarName').textContent = car.name;
+      document.getElementById('modalCarPrice').textContent = utils.formatPrice(car.price);
+      document.getElementById('modalCarDescription').textContent = car.description;
+      document.getElementById('modalCarImage').src = car.image;
+      document.getElementById('modalCarImage').alt = car.name;
+
+      const specsContainer = document.getElementById('modalCarSpecs');
+      specsContainer.innerHTML = '';
+      for (const [key, value] of Object.entries(car.specs)) {
+        const specItem = document.createElement('div');
+        specItem.className = 'spec-item';
+        specItem.innerHTML = `
+          <div class="spec-label">${key.charAt(0).toUpperCase() + key.slice(1)}</div>
+          <div class="spec-value">${value}</div>
         `;
-        container.innerHTML += carCard;
-      });
+        specsContainer.appendChild(specItem);
+      }
+
+      const modal = new bootstrap.Modal(document.getElementById('carDetailsModal'));
+      modal.show();
     }
 
-    // Hàm chuyển trang
-    function switchPage(page) {
-      currentPage = page;
-      
-      // Cập nhật trạng thái nút phân trang
-      document.querySelectorAll('.pagination-btn').forEach((btn, index) => {
-        btn.classList.toggle('active', index + 1 === page);
-      });
-      
-      // Hiển thị xe theo trang
-      displayMercedesCars(page);
-    }
-
-    // Kiểm tra trạng thái đăng nhập
+    // Check login status
     function checkLoginStatus() {
       const userInfo = document.getElementById('userInfo');
       const loginLink = document.getElementById('loginLink');
       const userName = document.getElementById('userName');
-      const userAvatar = document.getElementById('userAvatar');
-      
-      // Kiểm tra xem có thông tin đăng nhập trong localStorage không
+
       const loggedInUser = localStorage.getItem('loggedInUser');
-      
       if (loggedInUser) {
         const user = JSON.parse(loggedInUser);
         userInfo.style.display = 'block';
         loginLink.style.display = 'none';
         userName.textContent = user.name;
-        userAvatar.textContent = user.name.charAt(0).toUpperCase();
       } else {
         userInfo.style.display = 'none';
         loginLink.style.display = 'block';
       }
     }
 
-    // Xử lý đăng xuất
-    document.getElementById('logoutBtn').addEventListener('click', function(e) {
-      e.preventDefault();
-      localStorage.removeItem('loggedInUser');
-      checkLoginStatus();
-      alert('Đã đăng xuất thành công!');
-      window.location.href = '../index.html';
-    });
-
-    // Xử lý thêm vào giỏ hàng từ modal
-    document.getElementById('modalAddToCartBtn').addEventListener('click', function() {
-      if (currentCar) {
-        addToCart(currentCar);
-        const modal = bootstrap.Modal.getInstance(document.getElementById('carDetailsModal'));
-        modal.hide();
-      }
-    });
-
-    // Khởi tạo trang
+    // Initialize page
     document.addEventListener('DOMContentLoaded', function() {
       checkLoginStatus();
-      
-      // Hiển thị trang đầu tiên
-      displayMercedesCars(currentPage);
-      
-      // Thêm sự kiện cho các nút phân trang
-      document.querySelectorAll('.pagination-btn').forEach((btn, index) => {
-        btn.addEventListener('click', function() {
-          switchPage(index + 1);
-        });
+      displayMercedesCars();
+      updatePagination();
+
+      // Add filter event listeners with debounce
+      const debouncedFilter = debounce(filterCars, 300);
+      document.querySelectorAll('input[name="engine"], input[name="price"], input[name="speed"]').forEach(input => {
+        input.addEventListener('change', debouncedFilter);
       });
-      
-      // Thêm hiệu ứng fade-in cho các phần tử khi cuộn trang
+
+      // Add advanced search event listener
+      document.getElementById('advancedSearch').addEventListener('input', debouncedFilter);
+
+      // Prevent form submission
+      document.querySelector('.advanced-search-form').addEventListener('submit', e => e.preventDefault());
+
+      // Handle logout
+      document.getElementById('logoutBtn').addEventListener('click', function(e) {
+        e.preventDefault();
+        localStorage.removeItem('loggedInUser');
+        checkLoginStatus();
+        alert('Đã đăng xuất thành công!');
+        window.location.href = '../index.html';
+      });
+
+      // Handle modal add to cart
+      document.getElementById('modalAddToCartBtn').addEventListener('click', function() {
+        if (currentCar) {
+          utils.addToCart(currentCar);
+          const modal = bootstrap.Modal.getInstance(document.getElementById('carDetailsModal'));
+          modal.hide();
+        }
+      });
+
+      // Fade-in effect on scroll
       const fadeElements = document.querySelectorAll('.fade-in-up');
-      
       const fadeInOnScroll = function() {
         fadeElements.forEach(element => {
           const elementTop = element.getBoundingClientRect().top;
           const elementVisible = 150;
-          
           if (elementTop < window.innerHeight - elementVisible) {
             element.style.opacity = 1;
             element.style.transform = 'translateY(0)';
           }
         });
       };
-      
-      // Kích hoạt ngay lập tức
       fadeInOnScroll();
-      
-      // Và khi cuộn
       window.addEventListener('scroll', fadeInOnScroll);
     });
   </script>

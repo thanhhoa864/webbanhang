@@ -160,6 +160,7 @@
       border-radius: 5px;
       color: var(--text-light);
       padding: 8px 12px;
+      min-width: 150px;
       transition: all 0.3s ease;
     }
 
@@ -522,6 +523,158 @@
     ::-webkit-scrollbar-thumb:hover {
       background: var(--dark-gold);
     }
+
+    /* ==== FIX NAVBAR MENU KHÔNG XUỐNG DÒNG ==== */
+    .navbar-nav {
+      flex-wrap: nowrap !important;
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      white-space: nowrap;
+      gap: 10px;
+    }
+
+    .navbar-nav .nav-item {
+      flex: 0 0 auto;
+    }
+
+    .navbar-nav .nav-link {
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      max-width: 150px;
+      display: block;
+      padding: 8px 12px !important;
+      font-size: 0.95rem;
+    }
+
+    .navbar-nav::-webkit-scrollbar {
+      display: none;
+    }
+    .navbar-nav {
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+    }
+
+    .navbar .container {
+      padding-left: 15px !important;
+      margin-left: -12px !important;
+    }
+
+    .search-filter-container {
+      display: flex;
+      gap: 15px;
+      flex-wrap: nowrap;
+      align-items: center;
+      justify-content: flex-end;
+      flex: 1;
+      min-width: 0;
+    }
+
+    .search-box {
+      position: relative;
+      min-width: 200px;
+      flex: 0 1 auto;
+    }
+
+    .search-box input {
+      background: var(--jade-dark);
+      border: 1px solid var(--gold-color);
+      border-radius: 50px;
+      color: var(--text-light);
+      padding: 10px 20px 10px 45px;
+      width: 100%;
+      transition: all 0.3s ease;
+    }
+
+    .search-box input:focus {
+      box-shadow: 0 0 0 3px rgba(255, 215, 0, 0.3);
+      outline: none;
+    }
+
+    .search-box i {
+      position: absolute;
+      left: 20px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--gold-color);
+    }
+
+    .status-filter {
+      min-width: 180px;
+      flex: 0 1 auto;
+    }
+
+    .status-filter select {
+      background: var(--jade-dark);
+      border: 1px solid var(--gold-color);
+      border-radius: 50px;
+      color: var(--text-light);
+      padding: 10px 20px;
+      width: 100%;
+      transition: all 0.3s ease;
+    }
+
+    .status-filter select:focus {
+      box-shadow: 0 0 0 3px rgba(255, 215, 0, 0.3);
+      outline: none;
+    }
+
+    .action-btn {
+      background: linear-gradient(135deg, var(--gold-color), var(--dark-gold));
+      border: none;
+      color: var(--jade-black);
+      padding: 12px 20px;
+      font-weight: 600;
+      border-radius: 50px;
+      transition: all 0.3s ease;
+      white-space: nowrap;
+      flex: 0 0 auto;
+      box-shadow: 0 4px 10px rgba(255, 215, 0, 0.3);
+    }
+
+    .action-btn:hover {
+      background: linear-gradient(135deg, var(--dark-gold), var(--gold-color));
+      transform: translateY(-2px);
+      box-shadow: 0 8px 25px rgba(255, 215, 0, 0.4);
+    }
+
+    @media (max-width: 992px) {
+      .search-filter-container {
+        flex-wrap: wrap;
+        justify-content: flex-start;
+      }
+      
+      .search-box,
+      .status-filter {
+        min-width: 100%;
+        flex: 1 1 100%;
+      }
+      
+      .action-btn {
+        margin-top: 10px;
+      }
+    }
+
+    .page-header {
+      background: var(--card-bg);
+      border-radius: var(--border-radius);
+      padding: 20px;
+      margin-bottom: 25px;
+      border: 1px solid var(--gold-color);
+      box-shadow: var(--box-shadow);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 15px;
+    }
+
+    .page-header h2 {
+      color: var(--gold-color);
+      margin: 0;
+      font-weight: 600;
+      white-space: nowrap;
+    }
   </style>
 </head>
 <body>
@@ -539,9 +692,6 @@
       </button>
       <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav ms-auto">
-          <li class="nav-item">
-            <a class="nav-link" href="dashboard.html"><i class="fas fa-tachometer-alt me-1"></i>Dashboard</a>
-          </li>
           <li class="nav-item">
             <a class="nav-link" href="products.html"><i class="fas fa-box me-1"></i>Sản phẩm</a>
           </li>
@@ -586,12 +736,11 @@
             <option value="">Tất cả hãng xe</option>
           </select>
         </div>
+        <!-- LỊCH CÓ THỂ ĐỔI NGÀY NHƯNG KHÔNG LỌC DỮ LIỆU -->
         <div class="date-filter">
-          <input type="date" id="startDate" class="date-input">
-          <span>đến</span>
-          <input type="date" id="endDate" class="date-input">
-          <button class="action-btn secondary small" onclick="filterByDate()">
-            <i class="fas fa-filter me-1"></i>Lọc
+          <input type="date" id="dateFilter" class="date-input" onchange="updateDateDisplay(this.value)">
+          <button class="action-btn secondary small" onclick="resetToToday()">
+            <i class="fas fa-refresh me-1"></i>Hôm nay
           </button>
         </div>
       </div>
@@ -871,391 +1020,270 @@
       { id: 4, productId: 2, date: "2024-01-17", type: "export", quantity: 2, reference: "DH-044", balance: -1 },
       { id: 5, productId: 3, date: "2024-01-18", type: "import", quantity: 5, reference: "PN-003", balance: 8 },
       { id: 6, productId: 4, date: "2024-01-15", type: "import", quantity: 1, reference: "PN-004", balance: 1 },
-      { id: 7, productId: 5, date: "2024-01-17", type: "import", quantity: 2, reference: "PN-005", balance: 4 },
-      { id: 8, productId: 6, date: "2024-01-16", type: "export", quantity: 1, reference: "DH-043", balance: 0 },
-      { id: 9, productId: 7, date: "2024-01-14", type: "import", quantity: 3, reference: "PN-006", balance: 6 },
-      { id: 10, productId: 8, date: "2024-01-13", type: "import", quantity: 2, reference: "PN-007", balance: 3 }
-    ];
+  { id: 7, productId: 5, date: "2024-01-17", type: "import", quantity: 4, reference: "PN-005", balance: 4 },
+  { id: 8, productId: 6, date: "2024-01-16", type: "export", quantity: 1, reference: "DH-043", balance: 0 },
+  { id: 9, productId: 7, date: "2024-01-14", type: "import", quantity: 6, reference: "PN-006", balance: 6 },
+  { id: 10, productId: 8, date: "2024-01-13", type: "import", quantity: 3, reference: "PN-007", balance: 3 }
+];
 
-    // Tải trang
-    document.addEventListener('DOMContentLoaded', function() {
-      // Giả lập kiểm tra đăng nhập admin
-      const adminUser = JSON.parse(localStorage.getItem('loggedInAdmin'));
-      if (!adminUser || adminUser.role !== 'admin') {
-        alert('Bạn cần đăng nhập admin để truy cập!');
-        window.location.href = 'admin-login.html';
-        return;
-      }
+// Hàm lấy trạng thái tồn kho
+function getStockStatus(stock, minStock) {
+  if (stock === 0) return "out";
+  if (stock < minStock) return "low";
+  if (stock <= minStock * 2) return "medium";
+  return "high";
+}
 
-      // Thiết lập ngày mặc định
-      const today = new Date();
-      const lastMonth = new Date(today.getFullYear(), today.getMonth() - 1, today.getDate());
-      
-      document.getElementById('startDate').valueAsDate = lastMonth;
-      document.getElementById('endDate').valueAsDate = today;
+// Hàm lấy tên trạng thái
+function getStockStatusText(status) {
+  switch(status) {
+    case "high": return "Cao";
+    case "medium": return "Trung bình";
+    case "low": return "Thấp";
+    case "out": return "Hết hàng";
+    default: return "Không xác định";
+  }
+}
 
-      // Tải dữ liệu
-      loadCurrentStock();
-      loadStockMovement();
-      loadAlerts();
-      populateBrandFilter();
-      updateStatistics();
-      
-      // Thiết lập sự kiện tìm kiếm
-      setupSearch();
-    });
+// Hàm lấy class CSS cho trạng thái
+function getStockStatusClass(status) {
+  switch(status) {
+    case "high": return "stock-high";
+    case "medium": return "stock-medium";
+    case "low": return "stock-low";
+    case "out": return "stock-out";
+    default: return "";
+  }
+}
 
-    // Tải tồn kho hiện tại
-    function loadCurrentStock() {
-      const container = document.getElementById('currentStockContainer');
-      container.innerHTML = '';
-      
-      products.forEach(product => {
-        const stockLevel = getStockLevel(product.currentStock, product.minStock);
-        const progressPercent = Math.min((product.currentStock / (product.minStock * 2)) * 100, 100);
-        
-        const row = document.createElement('tr');
-        row.innerHTML = `
-          <td><strong>${product.name}</strong></td>
-          <td><span class="badge bg-warning text-dark">${product.brand}</span></td>
-          <td>${product.currentStock}</td>
-          <td>
-            <span class="stock-status ${getStockStatusClass(stockLevel)}">
-              ${getStockStatusText(stockLevel)}
-            </span>
-          </td>
-          <td>
-            <div class="stock-progress">
-              <div class="stock-progress-bar ${getProgressBarClass(stockLevel)}" 
-                   style="width: ${progressPercent}%"></div>
-            </div>
-            <small class="text-muted">${product.currentStock}/${product.minStock * 2}</small>
-          </td>
-          <td>${formatDate(product.lastUpdated)}</td>
-          <td>
-            <button class="action-btn small" onclick="viewStockDetail(${product.id})">
-              <i class="fas fa-eye me-1"></i>Chi tiết
-            </button>
-          </td>
-        `;
-        container.appendChild(row);
-      });
+// Hàm lấy class CSS cho progress bar
+function getProgressBarClass(status) {
+  switch(status) {
+    case "high": return "progress-high";
+    case "medium": return "progress-medium";
+    case "low": return "progress-low";
+    default: return "";
+  }
+}
+
+// Hàm tính phần trăm tồn kho
+function getStockPercentage(stock, minStock) {
+  const maxStock = minStock * 4; // Giả định tồn tối đa là 4 lần tồn tối thiểu
+  return Math.min((stock / maxStock) * 100, 100);
+}
+
+// Hàm cập nhật thống kê tổng quan
+function updateStockSummary() {
+  const totalStock = products.reduce((sum, product) => sum + product.currentStock, 0);
+  const availableProducts = products.filter(p => p.currentStock > 0).length;
+  const lowStockProducts = products.filter(p => p.currentStock > 0 && p.currentStock < p.minStock).length;
+  const outOfStockProducts = products.filter(p => p.currentStock === 0).length;
+  
+  document.getElementById('totalStock').textContent = totalStock;
+  document.getElementById('availableProducts').textContent = availableProducts;
+  document.getElementById('lowStockProducts').textContent = lowStockProducts;
+  document.getElementById('outOfStockProducts').textContent = outOfStockProducts;
+  
+  // Tính % thay đổi so với tháng trước (giả định)
+  const stockChange = Math.floor(Math.random() * 20) - 5;
+  const stockChangeElement = document.getElementById('stockChange');
+  stockChangeElement.textContent = `${stockChange >= 0 ? '+' : ''}${stockChange}% so với tháng trước`;
+  stockChangeElement.className = `stock-card-change ${stockChange < 0 ? 'negative' : ''}`;
+}
+
+// Hàm hiển thị tồn kho hiện tại
+function renderCurrentStock() {
+  const container = document.getElementById('currentStockContainer');
+  container.innerHTML = '';
+  
+  products.forEach(product => {
+    const status = getStockStatus(product.currentStock, product.minStock);
+    const percentage = getStockPercentage(product.currentStock, product.minStock);
+    
+    const row = document.createElement('tr');
+    row.innerHTML = `
+      <td>${product.name}</td>
+      <td>${product.brand}</td>
+      <td>${product.currentStock}</td>
+      <td><span class="stock-status ${getStockStatusClass(status)}">${getStockStatusText(status)}</span></td>
+      <td>
+        <div class="stock-progress">
+          <div class="stock-progress-bar ${getProgressBarClass(status)}" style="width: ${percentage}%"></div>
+        </div>
+        <small>${Math.round(percentage)}%</small>
+      </td>
+      <td>${product.lastUpdated}</td>
+      <td>
+        <button class="action-btn secondary small" onclick="viewStockDetail(${product.id})">
+          <i class="fas fa-eye me-1"></i>Xem
+        </button>
+      </td>
+    `;
+    container.appendChild(row);
+  });
+}
+
+// Hàm hiển thị lịch sử nhập xuất
+function renderStockMovement() {
+  const container = document.getElementById('stockMovementContainer');
+  container.innerHTML = '';
+  
+  stockMovements.forEach(movement => {
+    const product = products.find(p => p.id === movement.productId);
+    const typeText = movement.type === 'import' ? 'Nhập hàng' : 'Xuất hàng';
+    const typeClass = movement.type === 'import' ? 'text-success' : 'text-warning';
+    
+    const row = document.createElement('tr');
+    row.innerHTML = `
+      <td>${movement.date}</td>
+      <td>${product ? product.name : 'Unknown'}</td>
+      <td>${product ? product.brand : 'Unknown'}</td>
+      <td>${movement.type === 'import' ? movement.quantity : '-'}</td>
+      <td>${movement.type === 'export' ? movement.quantity : '-'}</td>
+      <td>${movement.balance}</td>
+      <td><span class="${typeClass}">${typeText}</span></td>
+      <td>${movement.reference}</td>
+    `;
+    container.appendChild(row);
+  });
+}
+
+// Hàm hiển thị cảnh báo
+function renderAlerts() {
+  const container = document.getElementById('alertsContainer');
+  container.innerHTML = '';
+  
+  const alertProducts = products.filter(product => {
+    const status = getStockStatus(product.currentStock, product.minStock);
+    return status === 'low' || status === 'out';
+  });
+  
+  alertProducts.forEach(product => {
+    const status = getStockStatus(product.currentStock, product.minStock);
+    let suggestion = '';
+    
+    if (status === 'out') {
+      suggestion = `Nhập gấp ${product.minStock * 3} sản phẩm`;
+    } else if (status === 'low') {
+      suggestion = `Nhập thêm ${product.minStock * 2 - product.currentStock} sản phẩm`;
     }
+    
+    const row = document.createElement('tr');
+    row.innerHTML = `
+      <td>${product.name}</td>
+      <td>${product.brand}</td>
+      <td>${product.currentStock}</td>
+      <td>${product.minStock}</td>
+      <td><span class="stock-status ${getStockStatusClass(status)}">${getStockStatusText(status)}</span></td>
+      <td>${suggestion}</td>
+      <td>
+        <button class="action-btn secondary small" onclick="viewStockDetail(${product.id})">
+          <i class="fas fa-eye me-1"></i>Xem
+        </button>
+      </td>
+    `;
+    container.appendChild(row);
+  });
+}
 
-    // Tải lịch sử nhập xuất
-    function loadStockMovement() {
-      const container = document.getElementById('stockMovementContainer');
-      container.innerHTML = '';
-      
-      stockMovements.forEach(movement => {
-        const product = products.find(p => p.id === movement.productId);
-        if (product) {
-          const row = document.createElement('tr');
-          row.innerHTML = `
-            <td>${formatDate(movement.date)}</td>
-            <td><strong>${product.name}</strong></td>
-            <td><span class="badge bg-warning text-dark">${product.brand}</span></td>
-            <td class="text-success">${movement.type === 'import' ? movement.quantity : '-'}</td>
-            <td class="text-danger">${movement.type === 'export' ? movement.quantity : '-'}</td>
-            <td>${movement.balance}</td>
-            <td>
-              <span class="badge ${movement.type === 'import' ? 'bg-success' : 'bg-danger'}">
-                ${movement.type === 'import' ? 'Nhập' : 'Xuất'}
-              </span>
-            </td>
-            <td><small class="text-muted">${movement.reference}</small></td>
-          `;
-          container.appendChild(row);
-        }
-      });
-    }
+// Hàm xem chi tiết tồn kho
+function viewStockDetail(productId) {
+  const product = products.find(p => p.id === productId);
+  if (!product) return;
+  
+  const status = getStockStatus(product.currentStock, product.minStock);
+  
+  document.getElementById('detailProductName').textContent = product.name;
+  document.getElementById('detailBrand').textContent = product.brand;
+  document.getElementById('detailCurrentStock').textContent = product.currentStock;
+  document.getElementById('detailMinStock').textContent = product.minStock;
+  
+  const statusElement = document.getElementById('detailStockStatus');
+  statusElement.innerHTML = `<span class="stock-status ${getStockStatusClass(status)}">${getStockStatusText(status)}</span>`;
+  
+  // Hiển thị lịch sử nhập xuất của sản phẩm
+  const movementHistory = stockMovements
+    .filter(m => m.productId === productId)
+    .sort((a, b) => new Date(b.date) - new Date(a.date))
+    .slice(0, 10);
+  
+  const historyContainer = document.getElementById('detailMovementHistory');
+  historyContainer.innerHTML = '';
+  
+  movementHistory.forEach(movement => {
+    const typeText = movement.type === 'import' ? 'Nhập hàng' : 'Xuất hàng';
+    const typeClass = movement.type === 'import' ? 'text-success' : 'text-warning';
+    
+    const row = document.createElement('tr');
+    row.innerHTML = `
+      <td>${movement.date}</td>
+      <td><span class="${typeClass}">${typeText}</span></td>
+      <td>${movement.quantity}</td>
+      <td>${movement.reference}</td>
+      <td>${movement.balance}</td>
+    `;
+    historyContainer.appendChild(row);
+  });
+  
+  const modal = new bootstrap.Modal(document.getElementById('stockDetailModal'));
+  modal.show();
+}
 
-    // Tải cảnh báo
-    function loadAlerts() {
-      const container = document.getElementById('alertsContainer');
-      container.innerHTML = '';
-      
-      const lowStockProducts = products.filter(product => 
-        product.currentStock <= product.minStock && product.currentStock > 0
-      );
-      
-      const outOfStockProducts = products.filter(product => 
-        product.currentStock === 0
-      );
-      
-      [...lowStockProducts, ...outOfStockProducts].forEach(product => {
-        const stockLevel = getStockLevel(product.currentStock, product.minStock);
-        const suggestion = getStockSuggestion(stockLevel, product.currentStock, product.minStock);
-        
-        const row = document.createElement('tr');
-        row.innerHTML = `
-          <td><strong>${product.name}</strong></td>
-          <td><span class="badge bg-warning text-dark">${product.brand}</span></td>
-          <td class="${product.currentStock === 0 ? 'text-danger' : 'text-warning'}">
-            <strong>${product.currentStock}</strong>
-          </td>
-          <td>${product.minStock}</td>
-          <td>
-            <span class="stock-status ${getStockStatusClass(stockLevel)}">
-              ${getStockStatusText(stockLevel)}
-            </span>
-          </td>
-          <td>${suggestion}</td>
-          <td>
-            <button class="action-btn small" onclick="createImportOrder(${product.id})">
-              <i class="fas fa-file-import me-1"></i>Nhập hàng
-            </button>
-          </td>
-        `;
-        container.appendChild(row);
-      });
-    }
+// Hàm lọc theo hãng xe
+function filterByBrand(brand) {
+  // Trong thực tế, đây sẽ gọi API hoặc lọc dữ liệu
+  console.log('Lọc theo hãng:', brand);
+}
 
-    // Điền dữ liệu vào bộ lọc hãng
-    function populateBrandFilter() {
-      const brandFilter = document.getElementById('brandFilter');
-      const brands = [...new Set(products.map(p => p.brand))];
-      
-      brands.forEach(brand => {
-        const option = document.createElement('option');
-        option.value = brand;
-        option.textContent = brand;
-        brandFilter.appendChild(option);
-      });
-    }
+// Hàm cập nhật hiển thị ngày
+function updateDateDisplay(date) {
+  console.log('Ngày đã chọn:', date);
+  // Chỉ cập nhật hiển thị, không lọc dữ liệu
+}
 
-    // Thiết lập tìm kiếm
-    function setupSearch() {
-      const searchInput = document.getElementById('searchInput');
-      searchInput.addEventListener('input', function() {
-        const searchTerm = this.value.toLowerCase();
-        const filteredProducts = products.filter(product => 
-          product.name.toLowerCase().includes(searchTerm) ||
-          product.brand.toLowerCase().includes(searchTerm)
-        );
-        
-        displayFilteredProducts(filteredProducts);
-      });
-    }
+// Hàm reset về ngày hôm nay
+function resetToToday() {
+  const today = new Date().toISOString().split('T')[0];
+  document.getElementById('dateFilter').value = today;
+  console.log('Đã reset về ngày hôm nay:', today);
+}
 
-    // Lọc theo hãng
-    function filterByBrand(brand) {
-      if (!brand) {
-        loadCurrentStock();
-      } else {
-        const filteredProducts = products.filter(product => product.brand === brand);
-        displayFilteredProducts(filteredProducts);
-      }
-    }
+// Hàm tìm kiếm sản phẩm
+function setupSearch() {
+  const searchInput = document.getElementById('searchInput');
+  searchInput.addEventListener('input', function(e) {
+    const searchTerm = e.target.value.toLowerCase();
+    console.log('Tìm kiếm:', searchTerm);
+    // Trong thực tế, đây sẽ lọc danh sách sản phẩm
+  });
+}
 
-    // Lọc theo ngày
-    function filterByDate() {
-      const startDate = document.getElementById('startDate').value;
-      const endDate = document.getElementById('endDate').value;
-      
-      if (startDate && endDate) {
-        const filteredMovements = stockMovements.filter(movement => 
-          movement.date >= startDate && movement.date <= endDate
-        );
-        displayFilteredMovements(filteredMovements);
-      }
-    }
+// Hàm khởi tạo brand filter
+function initializeBrandFilter() {
+  const brandFilter = document.getElementById('brandFilter');
+  const brands = [...new Set(products.map(p => p.brand))];
+  
+  brands.forEach(brand => {
+    const option = document.createElement('option');
+    option.value = brand;
+    option.textContent = brand;
+    brandFilter.appendChild(option);
+  });
+}
 
-    // Hiển thị sản phẩm đã lọc
-    function displayFilteredProducts(filteredProducts) {
-      const container = document.getElementById('currentStockContainer');
-      container.innerHTML = '';
-      
-      filteredProducts.forEach(product => {
-        const stockLevel = getStockLevel(product.currentStock, product.minStock);
-        const progressPercent = Math.min((product.currentStock / (product.minStock * 2)) * 100, 100);
-        
-        const row = document.createElement('tr');
-        row.innerHTML = `
-          <td><strong>${product.name}</strong></td>
-          <td><span class="badge bg-warning text-dark">${product.brand}</span></td>
-          <td>${product.currentStock}</td>
-          <td>
-            <span class="stock-status ${getStockStatusClass(stockLevel)}">
-              ${getStockStatusText(stockLevel)}
-            </span>
-          </td>
-          <td>
-            <div class="stock-progress">
-              <div class="stock-progress-bar ${getProgressBarClass(stockLevel)}" 
-                   style="width: ${progressPercent}%"></div>
-            </div>
-            <small class="text-muted">${product.currentStock}/${product.minStock * 2}</small>
-          </td>
-          <td>${formatDate(product.lastUpdated)}</td>
-          <td>
-            <button class="action-btn small" onclick="viewStockDetail(${product.id})">
-              <i class="fas fa-eye me-1"></i>Chi tiết
-            </button>
-          </td>
-        `;
-        container.appendChild(row);
-      });
-    }
-
-    // Hiển thị lịch sử đã lọc
-    function displayFilteredMovements(filteredMovements) {
-      const container = document.getElementById('stockMovementContainer');
-      container.innerHTML = '';
-      
-      filteredMovements.forEach(movement => {
-        const product = products.find(p => p.id === movement.productId);
-        if (product) {
-          const row = document.createElement('tr');
-          row.innerHTML = `
-            <td>${formatDate(movement.date)}</td>
-            <td><strong>${product.name}</strong></td>
-            <td><span class="badge bg-warning text-dark">${product.brand}</span></td>
-            <td class="text-success">${movement.type === 'import' ? movement.quantity : '-'}</td>
-            <td class="text-danger">${movement.type === 'export' ? movement.quantity : '-'}</td>
-            <td>${movement.balance}</td>
-            <td>
-              <span class="badge ${movement.type === 'import' ? 'bg-success' : 'bg-danger'}">
-                ${movement.type === 'import' ? 'Nhập' : 'Xuất'}
-              </span>
-            </td>
-            <td><small class="text-muted">${movement.reference}</small></td>
-          `;
-          container.appendChild(row);
-        }
-      });
-    }
-
-    // Xem chi tiết tồn kho
-    function viewStockDetail(productId) {
-      const product = products.find(p => p.id === productId);
-      if (product) {
-        document.getElementById('detailProductName').textContent = product.name;
-        document.getElementById('detailBrand').textContent = product.brand;
-        document.getElementById('detailCurrentStock').textContent = product.currentStock;
-        document.getElementById('detailMinStock').textContent = product.minStock;
-        
-        const stockLevel = getStockLevel(product.currentStock, product.minStock);
-        document.getElementById('detailStockStatus').innerHTML = `
-          <span class="stock-status ${getStockStatusClass(stockLevel)}">
-            ${getStockStatusText(stockLevel)}
-          </span>
-        `;
-
-        // Hiển thị lịch sử nhập xuất
-        const movementHistory = stockMovements
-          .filter(m => m.productId === productId)
-          .sort((a, b) => new Date(b.date) - new Date(a.date))
-          .slice(0, 10);
-
-        const historyContainer = document.getElementById('detailMovementHistory');
-        historyContainer.innerHTML = '';
-        
-        movementHistory.forEach(movement => {
-          const row = document.createElement('tr');
-          row.innerHTML = `
-            <td>${formatDate(movement.date)}</td>
-            <td>
-              <span class="badge ${movement.type === 'import' ? 'bg-success' : 'bg-danger'}">
-                ${movement.type === 'import' ? 'Nhập' : 'Xuất'}
-              </span>
-            </td>
-            <td class="${movement.type === 'import' ? 'text-success' : 'text-danger'}">
-              ${movement.quantity}
-            </td>
-            <td><small class="text-muted">${movement.reference}</small></td>
-            <td>${movement.balance}</td>
-          `;
-          historyContainer.appendChild(row);
-        });
-
-        const modal = new bootstrap.Modal(document.getElementById('stockDetailModal'));
-        modal.show();
-      }
-    }
-
-    // Tạo phiếu nhập hàng
-    function createImportOrder(productId) {
-      const product = products.find(p => p.id === productId);
-      if (product) {
-        const suggestedQuantity = product.minStock * 2 - product.currentStock;
-        if (confirm(`Tạo phiếu nhập hàng cho ${product.name}?\nSố lượng đề xuất: ${Math.max(suggestedQuantity, 1)}`)) {
-          alert(`Đã tạo phiếu nhập hàng cho ${product.name}`);
-          // Trong thực tế, sẽ chuyển hướng đến trang nhập hàng
-        }
-      }
-    }
-
-    // Cập nhật thống kê
-    function updateStatistics() {
-      const totalStock = products.reduce((sum, p) => sum + p.currentStock, 0);
-      const availableProducts = products.filter(p => p.currentStock > 0).length;
-      const lowStockProducts = products.filter(p => p.currentStock <= p.minStock && p.currentStock > 0).length;
-      const outOfStockProducts = products.filter(p => p.currentStock === 0).length;
-      
-      document.getElementById('totalStock').textContent = totalStock;
-      document.getElementById('availableProducts').textContent = availableProducts;
-      document.getElementById('lowStockProducts').textContent = lowStockProducts;
-      document.getElementById('outOfStockProducts').textContent = outOfStockProducts;
-    }
-
-    // Helper functions
-    function getStockLevel(currentStock, minStock) {
-      if (currentStock === 0) return 'out';
-      if (currentStock <= minStock) return 'low';
-      if (currentStock <= minStock * 1.5) return 'medium';
-      return 'high';
-    }
-
-    function getStockStatusClass(level) {
-      switch(level) {
-        case 'high': return 'stock-high';
-        case 'medium': return 'stock-medium';
-        case 'low': return 'stock-low';
-        case 'out': return 'stock-out';
-        default: return 'stock-medium';
-      }
-    }
-
-    function getStockStatusText(level) {
-      switch(level) {
-        case 'high': return 'Cao';
-        case 'medium': return 'Trung bình';
-        case 'low': return 'Thấp';
-        case 'out': return 'Hết hàng';
-        default: return 'Trung bình';
-      }
-    }
-
-    function getProgressBarClass(level) {
-      switch(level) {
-        case 'high': return 'progress-high';
-        case 'medium': return 'progress-medium';
-        case 'low': return 'progress-low';
-        case 'out': return 'progress-low';
-        default: return 'progress-medium';
-      }
-    }
-
-    function getStockSuggestion(level, currentStock, minStock) {
-      switch(level) {
-        case 'high':
-          return 'Tồn kho ổn định';
-        case 'medium':
-          return 'Theo dõi thường xuyên';
-        case 'low':
-          return `Cần nhập thêm ${minStock * 2 - currentStock} sản phẩm`;
-        case 'out':
-          return `Cần nhập gấp ${minStock * 2} sản phẩm`;
-        default:
-          return 'Theo dõi thường xuyên';
-      }
-    }
-
-    function formatDate(dateString) {
-      const date = new Date(dateString);
-      return date.toLocaleDateString('vi-VN');
-    }
-  </script>
+// Khởi tạo khi trang được tải
+document.addEventListener('DOMContentLoaded', function() {
+  updateStockSummary();
+  renderCurrentStock();
+  renderStockMovement();
+  renderAlerts();
+  initializeBrandFilter();
+  setupSearch();
+  
+  // Đặt ngày mặc định là hôm nay
+  const today = new Date().toISOString().split('T')[0];
+  document.getElementById('dateFilter').value = today;
+});
+</script>
 </body>
 </html>

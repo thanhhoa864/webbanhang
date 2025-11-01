@@ -219,7 +219,7 @@
       margin-bottom: 5px;
     }
 
-    .product-type {
+    .product-brand {
       display: inline-block;
       background: linear-gradient(135deg, var(--gold-color), var(--dark-gold));
       color: var(--jade-black);
@@ -421,6 +421,45 @@
       resize: vertical;
     }
 
+    /* File Upload Styles */
+    .file-upload-container {
+      border: 2px dashed var(--gold-color);
+      border-radius: var(--border-radius);
+      padding: 20px;
+      text-align: center;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      background: var(--jade-dark);
+    }
+
+    .file-upload-container:hover {
+      background: rgba(255, 215, 0, 0.1);
+    }
+
+    .file-upload-container.dragover {
+      background: rgba(255, 215, 0, 0.2);
+      border-color: var(--accent-gold);
+    }
+
+    .file-upload-preview {
+      max-width: 100%;
+      max-height: 200px;
+      margin-top: 15px;
+      border-radius: var(--border-radius);
+      display: none;
+    }
+
+    .file-upload-text {
+      color: var(--accent-gold);
+      margin-bottom: 10px;
+    }
+
+    .file-upload-icon {
+      font-size: 3rem;
+      color: var(--gold-color);
+      margin-bottom: 10px;
+    }
+
     /* Loading animation */
     @keyframes fadeInUp {
       from {
@@ -523,6 +562,162 @@
     ::-webkit-scrollbar-thumb:hover {
       background: var(--dark-gold);
     }
+        /* ==== FIX NAVBAR MENU KHÔNG XUỐNG DÒNG ==== */
+.navbar-nav {
+  flex-wrap: nowrap !important;          /* Ngăn wrap xuống dòng */
+  overflow-x: auto;                       /* Cho phép cuộn ngang nếu quá nhiều */
+  -webkit-overflow-scrolling: touch;      /* Cuộn mượt trên mobile */
+  white-space: nowrap;                    /* Không xuống dòng */
+  gap: 10px;                              /* Khoảng cách đều giữa các mục */
+}
+
+.navbar-nav .nav-item {
+  flex: 0 0 auto;                         /* Không co giãn, giữ kích thước */
+}
+
+.navbar-nav .nav-link {
+  white-space: nowrap;                    /* Không xuống dòng */
+  overflow: hidden;                       /* Ẩn phần tràn */
+  text-overflow: ellipsis;                /* Thêm ... nếu quá dài */
+  max-width: 150px;                       /* Giới hạn chiều rộng mỗi mục */
+  display: block;                         /* Đảm bảo ellipsis hoạt động */
+  padding: 8px 12px !important;           /* Đệm đều */
+  font-size: 0.95rem;                     /* Chữ nhỏ hơn một chút nếu cần */
+}
+
+/* Ẩn thanh cuộn ngang nhưng vẫn cho phép cuộn (tùy chọn) */
+.navbar-nav::-webkit-scrollbar {
+  display: none;
+}
+.navbar-nav {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+/* KÉO TOÀN BỘ NAVBAR SÁT TRÁI HƠN MỘT CHÚT */
+.navbar .container {
+  padding-left: 15px !important;     /* Loại bỏ padding trái */
+  margin-left: -12px !important;  /* Dịch trái thêm 12px */
+}
+/* Search and Filter - FIXED */
+.search-filter-container {
+  display: flex;
+  gap: 15px;
+  flex-wrap: nowrap; /* Quan trọng: không cho xuống dòng */
+  align-items: center;
+  justify-content: flex-end;
+  flex: 1; /* Chiếm không gian còn lại */
+  min-width: 0; /* Quan trọng: cho phép co nhỏ */
+}
+
+.search-box {
+  position: relative;
+  min-width: 200px; /* Giảm min-width để vừa khung */
+  flex: 0 1 auto; /* Co giãn linh hoạt */
+}
+
+.search-box input {
+  background: var(--jade-dark);
+  border: 1px solid var(--gold-color);
+  border-radius: 50px;
+  color: var(--text-light);
+  padding: 10px 20px 10px 45px;
+  width: 100%;
+  transition: all 0.3s ease;
+}
+
+.search-box input:focus {
+  box-shadow: 0 0 0 3px rgba(255, 215, 0, 0.3);
+  outline: none;
+}
+
+.search-box i {
+  position: absolute;
+  left: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--gold-color);
+}
+
+/* Status Filter */
+.status-filter {
+  min-width: 180px; /* Giảm min-width */
+  flex: 0 1 auto; /* Co giãn linh hoạt */
+}
+
+.status-filter select {
+  background: var(--jade-dark);
+  border: 1px solid var(--gold-color);
+  border-radius: 50px;
+  color: var(--text-light);
+  padding: 10px 20px;
+  width: 100%;
+  transition: all 0.3s ease;
+}
+
+.status-filter select:focus {
+  box-shadow: 0 0 0 3px rgba(255, 215, 0, 0.3);
+  outline: none;
+}
+
+/* Action Buttons */
+.action-btn {
+  background: linear-gradient(135deg, var(--gold-color), var(--dark-gold));
+  border: none;
+  color: var(--jade-black);
+  padding: 12px 20px;
+  font-weight: 600;
+  border-radius: 50px;
+  transition: all 0.3s ease;
+  white-space: nowrap; /* Không xuống dòng chữ */
+  flex: 0 0 auto; /* Không co giãn */
+  box-shadow: 0 4px 10px rgba(255, 215, 0, 0.3);
+}
+
+.action-btn:hover {
+  background: linear-gradient(135deg, var(--dark-gold), var(--gold-color));
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(255, 215, 0, 0.4);
+}
+
+/* Responsive - chỉ áp dụng khi màn hình nhỏ */
+@media (max-width: 992px) {
+  .search-filter-container {
+    flex-wrap: wrap; /* Cho phép xuống dòng khi màn hình nhỏ */
+    justify-content: flex-start;
+  }
+  
+  .search-box,
+  .status-filter {
+    min-width: 100%; /* Chiếm full width khi xuống dòng */
+    flex: 1 1 100%;
+  }
+  
+  .action-btn {
+    margin-top: 10px;
+  }
+}
+
+/* Page Header - điều chỉnh để căn giữa tốt hơn */
+.page-header {
+  background: var(--card-bg);
+  border-radius: var(--border-radius);
+  padding: 20px;
+  margin-bottom: 25px;
+  border: 1px solid var(--gold-color);
+  box-shadow: var(--box-shadow);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 15px;
+}
+
+.page-header h2 {
+  color: var(--gold-color);
+  margin: 0;
+  font-weight: 600;
+  white-space: nowrap; /* Tiêu đề không xuống dòng */
+}
   </style>
 </head>
 <body>
@@ -540,9 +735,6 @@
       </button>
       <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav ms-auto">
-          <li class="nav-item">
-            <a class="nav-link" href="dashboard.html"><i class="fas fa-tachometer-alt me-1"></i>Dashboard</a>
-          </li>
           <li class="nav-item">
             <a class="nav-link active" href="products.html"><i class="fas fa-box me-1"></i>Sản phẩm</a>
           </li>
@@ -583,36 +775,31 @@
           <input type="text" id="searchInput" placeholder="Tìm kiếm sản phẩm...">
         </div>
         <div class="type-filter">
-          <select id="typeFilter" onchange="filterByType(this.value)">
-            <option value="">Tất cả loại xe</option>
-            <option value="Supercar">Supercar</option>
-            <option value="Hypercar">Hypercar</option>
-            <option value="Sports Car">Sports Car</option>
-            <option value="GT">Grand Tourer</option>
-            <option value="SUV">SUV</option>
-            <option value="Sedan">Sedan</option>
-            <option value="Coupe">Coupe</option>
-            <option value="Roadster">Roadster</option>
-            <option value="Electric">Electric</option>
-            <option value="Hybrid">Hybrid</option>
-            <option value="Limited Edition">Limited Edition</option>
+          <select id="brandFilter" onchange="filterByBrand(this.value)">
+            <option value="">Tất cả hãng xe</option>
+            <option value="BMW">BMW</option>
+            <option value="Mercedes-Benz">Mercedes-Benz</option>
+            <option value="Audi">Audi</option>
+            <option value="Porsche">Porsche</option>
+            <option value="Ferrari">Ferrari</option>
+            <option value="Lamborghini">Lamborghini</option>
+            <option value="Bugatti">Bugatti</option>
+            <option value="McLaren">McLaren</option>
+            <option value="Koenigsegg">Koenigsegg</option>
+            <option value="Pagani">Pagani</option>
+            <option value="Rolls-Royce">Rolls-Royce</option>
+            <option value="Bentley">Bentley</option>
+            <option value="Aston Martin">Aston Martin</option>
+            <option value="Maserati">Maserati</option>
+            <option value="Tesla">Tesla</option>
+            <option value="Lexus">Lexus</option>
+            <option value="Jaguar">Jaguar</option>
           </select>
         </div>
         <button class="action-btn" onclick="openAddModal()">
           <i class="fas fa-plus me-1"></i>Thêm Sản phẩm
         </button>
       </div>
-    </div>
-
-    <!-- Page Size Selector -->
-    <div class="page-size-selector">
-      <span>Hiển thị:</span>
-      <select id="pageSizeSelect" onchange="changePageSize(this.value)">
-        <option value="6">6 sản phẩm/trang</option>
-        <option value="12" selected>12 sản phẩm/trang</option>
-        <option value="18">18 sản phẩm/trang</option>
-        <option value="24">24 sản phẩm/trang</option>
-      </select>
     </div>
 
     <!-- Results Info -->
@@ -647,58 +834,77 @@
             <div class="row">
               <div class="col-md-6">
                 <div class="form-group">
-                  <label for="productName" class="form-label">Tên sản phẩm</label>
+                  <label for="productName" class="form-label">Tên sản phẩm *</label>
                   <input type="text" class="form-control" id="productName" required>
                 </div>
               </div>
               <div class="col-md-6">
                 <div class="form-group">
-                  <label for="productType" class="form-label">Loại/Xếp hạng</label>
-                  <select class="form-control" id="productType" required>
-                    <option value="">Chọn loại xe</option>
-                    <option value="Supercar">Supercar</option>
-                    <option value="Hypercar">Hypercar</option>
-                    <option value="Sports Car">Sports Car</option>
-                    <option value="GT">Grand Tourer</option>
-                    <option value="SUV">SUV</option>
-                    <option value="Sedan">Sedan</option>
-                    <option value="Coupe">Coupe</option>
-                    <option value="Roadster">Roadster</option>
-                    <option value="Electric">Electric</option>
-                    <option value="Hybrid">Hybrid</option>
-                    <option value="Limited Edition">Limited Edition</option>
+                  <label for="productBrand" class="form-label">Hãng xe *</label>
+                  <select class="form-control" id="productBrand" required>
+                    <option value="">Chọn hãng xe</option>
+                    <option value="BMW">BMW</option>
+                    <option value="Mercedes-Benz">Mercedes-Benz</option>
+                    <option value="Audi">Audi</option>
+                    <option value="Porsche">Porsche</option>
+                    <option value="Ferrari">Ferrari</option>
+                    <option value="Lamborghini">Lamborghini</option>
+                    <option value="Bugatti">Bugatti</option>
+                    <option value="McLaren">McLaren</option>
+                    <option value="Koenigsegg">Koenigsegg</option>
+                    <option value="Pagani">Pagani</option>
+                    <option value="Rolls-Royce">Rolls-Royce</option>
+                    <option value="Bentley">Bentley</option>
+                    <option value="Aston Martin">Aston Martin</option>
+                    <option value="Maserati">Maserati</option>
+                    <option value="Tesla">Tesla</option>
+                    <option value="Lexus">Lexus</option>
+                    <option value="Jaguar">Jaguar</option>
                   </select>
                 </div>
               </div>
             </div>
             <div class="row">
-              <div class="col-md-6">
+              <div class="col-md-12">
                 <div class="form-group">
-                  <label for="productPrice" class="form-label">Giá (VND)</label>
-                  <input type="number" class="form-control" id="productPrice" required>
-                </div>
-              </div>
-              <div class="col-md-6">
-                <div class="form-group">
-                  <label for="productImage" class="form-label">URL Hình ảnh</label>
-                  <input type="text" class="form-control" id="productImage" required>
+                  <label for="productPrice" class="form-label">Giá (tỷ VND) *</label>
+                  <input type="text" class="form-control" id="productPrice" placeholder="32,5 (32 tỷ 500 triệu)" required
+                         oninput="formatBillionPrice(this)">
+                  <small class="form-text text-muted">Nhập giá theo đơn vị tỷ VND, ví dụ: 32,5 = 32 tỷ 500 triệu</small>
                 </div>
               </div>
             </div>
+            
+            <!-- File Upload Section -->
             <div class="form-group">
-              <label for="productDescription" class="form-label">Mô tả</label>
+              <label class="form-label">Hình ảnh sản phẩm *</label>
+              <div class="file-upload-container" id="fileUploadContainer" onclick="document.getElementById('productImageFile').click()">
+                <div class="file-upload-icon">
+                  <i class="fas fa-cloud-upload-alt"></i>
+                </div>
+                <div class="file-upload-text">
+                  <strong>Click để chọn hình ảnh</strong><br>
+                  hoặc kéo thả file vào đây
+                </div>
+                <input type="file" id="productImageFile" accept="image/*" style="display: none;" onchange="handleImageUpload(this)">
+                <img id="imagePreview" class="file-upload-preview" alt="Preview">
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="productDescription" class="form-label">Mô tả *</label>
               <textarea class="form-control form-textarea" id="productDescription" required></textarea>
             </div>
             <div class="row">
               <div class="col-md-6">
                 <div class="form-group">
-                  <label for="productEngine" class="form-label">Động cơ</label>
+                  <label for="productEngine" class="form-label">Động cơ *</label>
                   <input type="text" class="form-control" id="productEngine" required>
                 </div>
               </div>
               <div class="col-md-6">
                 <div class="form-group">
-                  <label for="productPower" class="form-label">Công suất</label>
+                  <label for="productPower" class="form-label">Công suất *</label>
                   <input type="text" class="form-control" id="productPower" required>
                 </div>
               </div>
@@ -706,13 +912,13 @@
             <div class="row">
               <div class="col-md-6">
                 <div class="form-group">
-                  <label for="productTorque" class="form-label">Mô-men xoắn</label>
+                  <label for="productTorque" class="form-label">Mô-men xoắn *</label>
                   <input type="text" class="form-control" id="productTorque" required>
                 </div>
               </div>
               <div class="col-md-6">
                 <div class="form-group">
-                  <label for="productAcceleration" class="form-label">Tăng tốc (0-100 km/h)</label>
+                  <label for="productAcceleration" class="form-label">Tăng tốc (0-100 km/h) *</label>
                   <input type="text" class="form-control" id="productAcceleration" required>
                 </div>
               </div>
@@ -720,26 +926,26 @@
             <div class="row">
               <div class="col-md-6">
                 <div class="form-group">
-                  <label for="productTopspeed" class="form-label">Tốc độ tối đa</label>
+                  <label for="productTopspeed" class="form-label">Tốc độ tối đa *</label>
                   <input type="text" class="form-control" id="productTopspeed" required>
                 </div>
               </div>
               <div class="col-md-6">
                 <div class="form-group">
-                  <label for="productTransmission" class="form-label">Hộp số</label>
+                  <label for="productTransmission" class="form-label">Hộp số *</label>
                   <input type="text" class="form-control" id="productTransmission" required>
                 </div>
               </div>
             </div>
             <div class="form-group">
-              <label for="productDrivetrain" class="form-label">Hệ thống dẫn động</label>
+              <label for="productDrivetrain" class="form-label">Hệ thống dẫn động *</label>
               <input type="text" class="form-control" id="productDrivetrain" required>
             </div>
             <div class="form-group">
-              <label class="form-label">Tính năng nổi bật</label>
+              <label class="form-label">Tính năng nổi bật *</label>
               <div id="featuresContainer">
                 <div class="input-group mb-2">
-                  <input type="text" class="form-control feature-input" placeholder="Tính năng">
+                  <input type="text" class="form-control feature-input" placeholder="Tính năng" required>
                   <button type="button" class="btn btn-outline-danger" onclick="removeFeature(this)"><i class="fas fa-times"></i></button>
                 </div>
               </div>
@@ -772,7 +978,7 @@
             </div>
             <div class="col-md-6">
               <h3 id="viewProductName" class="text-gold mb-2"></h3>
-              <div id="viewProductType" class="badge bg-warning text-dark mb-3 p-2"></div>
+              <div id="viewProductBrand" class="badge bg-warning text-dark mb-3 p-2"></div>
               <h4 id="viewProductPrice" class="text-accent mb-4"></h4>
               <p id="viewProductDescription" class="mb-4"></p>
               
@@ -817,17 +1023,18 @@
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
   
-  <script>
+ <script>
     // Biến toàn cục
     let products = [];
     let nextId = 1;
     let currentPage = 1;
     let pageSize = 12;
     let totalPages = 1;
+    let currentImageFile = null;
 
-    // Dữ liệu mẫu đã được sửa lỗi cú pháp
+    // Dữ liệu mẫu đã được cập nhật với brand thay vì type
     const sampleProducts = [
-      {
+          {
         id: 1,
         name: "BMW M8 Competition",
         price: 12500000000,
@@ -1563,7 +1770,7 @@
           "0-100 km/h: 3.0 giây",
           "Hybrid mới nhất"
         ],
-        image: "https://images.alphacoders.com/113/1131466.jpg",
+        image: "https://upload.wikimedia.org/wikipedia/commons/thumb/9/95/McLaren_Senna_IMG_3279.jpg/1200px-McLaren_Senna_IMG_3279.jpg",
         description: "McLaren Artura là mẫu xe hybrid mới nhất, đánh dấu sự khởi đầu của thế hệ tiếp theo với động cơ V6 twin-turbo hoàn toàn mới kết hợp với hệ thống hybrid. Artura kết hợp hiệu suất cao với khả năng vận hành điện.",
         specs: {
           engine: "3.0L V6 Twin-Turbo + động cơ điện",
@@ -2017,11 +2224,13 @@
       }
     ];
 
+
     // Khởi tạo
     document.addEventListener('DOMContentLoaded', function() {
       initializeProducts();
       loadProducts();
       setupEventListeners();
+      setupFileUpload();
     });
 
     // Khởi tạo sản phẩm
@@ -2036,13 +2245,39 @@
       searchInput.addEventListener('input', debounce(handleSearch, 300));
     }
 
+    // Thiết lập file upload
+    function setupFileUpload() {
+      const uploadContainer = document.getElementById('fileUploadContainer');
+      const fileInput = document.getElementById('productImageFile');
+      
+      // Drag and drop events
+      uploadContainer.addEventListener('dragover', function(e) {
+        e.preventDefault();
+        this.classList.add('dragover');
+      });
+      
+      uploadContainer.addEventListener('dragleave', function(e) {
+        e.preventDefault();
+        this.classList.remove('dragover');
+      });
+      
+      uploadContainer.addEventListener('drop', function(e) {
+        e.preventDefault();
+        this.classList.remove('dragover');
+        const files = e.dataTransfer.files;
+        if (files.length > 0) {
+          handleImageFile(files[0]);
+        }
+      });
+    }
+
     // Xử lý tìm kiếm
     function handleSearch() {
       const searchTerm = this.value.toLowerCase();
       const filteredProducts = products.filter(product => 
         product.name.toLowerCase().includes(searchTerm) ||
         product.description.toLowerCase().includes(searchTerm) ||
-        (product.type && product.type.toLowerCase().includes(searchTerm))
+        product.brand.toLowerCase().includes(searchTerm)
       );
       
       currentPage = 1;
@@ -2069,7 +2304,7 @@
                onerror="this.src='https://via.placeholder.com/300x200/1A2A3A/FFD700?text=No+Image'">
           <div class="product-content">
             <h3 class="product-name">${product.name}</h3>
-            <div class="product-type">${product.type}</div>
+            <div class="product-brand">${product.brand}</div>
             <div class="product-price">${formatCurrency(product.price)} VND</div>
             <div class="product-features">
               ${product.features.slice(0, 3).map(feature => `
@@ -2176,20 +2411,13 @@
       window.scrollTo({ top: 0, behavior: 'smooth' });
     }
 
-    // Thay đổi số sản phẩm mỗi trang
-    function changePageSize(size) {
-      pageSize = parseInt(size);
+    // Lọc theo hãng xe
+    function filterByBrand(brand) {
       currentPage = 1;
-      loadProducts();
-    }
-
-    // Lọc theo loại
-    function filterByType(type) {
-      currentPage = 1;
-      if (!type) {
+      if (!brand) {
         loadProducts();
       } else {
-        const filteredProducts = products.filter(product => product.type === type);
+        const filteredProducts = products.filter(product => product.brand === brand);
         renderProducts(filteredProducts);
       }
     }
@@ -2206,16 +2434,25 @@
       document.getElementById('productForm').reset();
       document.getElementById('productId').value = '';
       resetFeaturesInput();
+      resetImagePreview();
+      currentImageFile = null;
     }
 
     // Reset input tính năng
     function resetFeaturesInput() {
       document.getElementById('featuresContainer').innerHTML = `
         <div class="input-group mb-2">
-          <input type="text" class="form-control feature-input" placeholder="Tính năng">
+          <input type="text" class="form-control feature-input" placeholder="Tính năng" required>
           <button type="button" class="btn btn-outline-danger" onclick="removeFeature(this)"><i class="fas fa-times"></i></button>
         </div>
       `;
+    }
+
+    // Reset preview ảnh
+    function resetImagePreview() {
+      const preview = document.getElementById('imagePreview');
+      preview.style.display = 'none';
+      preview.src = '';
     }
 
     // Thêm tính năng
@@ -2229,7 +2466,7 @@
       const featureInput = document.createElement('div');
       featureInput.className = 'input-group mb-2';
       featureInput.innerHTML = `
-        <input type="text" class="form-control feature-input" placeholder="Tính năng" value="${value}">
+        <input type="text" class="form-control feature-input" placeholder="Tính năng" value="${value}" required>
         <button type="button" class="btn btn-outline-danger" onclick="removeFeature(this)"><i class="fas fa-times"></i></button>
       `;
       return featureInput;
@@ -2242,6 +2479,108 @@
       }
     }
 
+    // Xử lý upload ảnh
+    function handleImageUpload(input) {
+      if (input.files && input.files[0]) {
+        handleImageFile(input.files[0]);
+      }
+    }
+
+    // Xử lý file ảnh
+    function handleImageFile(file) {
+      if (!file.type.match('image.*')) {
+        showNotification('Vui lòng chọn file ảnh!', 'error');
+        return;
+      }
+
+      if (file.size > 5 * 1024 * 1024) { // 5MB limit
+        showNotification('Kích thước file không được vượt quá 5MB!', 'error');
+        return;
+      }
+
+      currentImageFile = file;
+      
+      const reader = new FileReader();
+      reader.onload = function(e) {
+        const preview = document.getElementById('imagePreview');
+        preview.src = e.target.result;
+        preview.style.display = 'block';
+      };
+      reader.readAsDataURL(file);
+    }
+
+    // Định dạng giá theo đơn vị tỷ - real-time
+    function formatBillionPrice(input) {
+        // Lấy vị trí con trỏ hiện tại
+        const cursorPosition = input.selectionStart;
+        
+        // Lấy giá trị hiện tại
+        let value = input.value;
+        
+        // Chỉ cho phép số và dấu phẩy
+        value = value.replace(/[^\d,]/g, '');
+        
+        // Đảm bảo chỉ có một dấu phẩy
+        const parts = value.split(',');
+        if (parts.length > 2) {
+            value = parts[0] + ',' + parts.slice(1).join('');
+        }
+        
+        // Giới hạn số chữ số sau dấu phẩy (tối đa 3 chữ số)
+        if (parts.length > 1 && parts[1].length > 3) {
+            value = parts[0] + ',' + parts[1].substring(0, 3);
+        }
+        
+        // Cập nhật giá trị
+        input.value = value;
+        
+        // Đặt lại vị trí con trỏ
+        input.setSelectionRange(cursorPosition, cursorPosition);
+    }
+
+    // Chuyển đổi giá từ chuỗi định dạng tỷ sang số
+    function parseBillionPrice(priceString) {
+        // Nếu không có dấu phẩy, nhân với 1 tỷ
+        if (!priceString.includes(',')) {
+            return parseInt(priceString) * 1000000000;
+        }
+        
+        // Nếu có dấu phẩy, tách phần nguyên và phần thập phân
+        const parts = priceString.split(',');
+        const billionPart = parseInt(parts[0]) * 1000000000;
+        
+        // Xử lý phần thập phân (triệu)
+        let millionPart = 0;
+        if (parts.length > 1) {
+            // Thêm các số 0 để đảm bảo có 9 chữ số
+            let millionStr = parts[1];
+            while (millionStr.length < 9) {
+                millionStr += '0';
+            }
+            // Chỉ lấy tối đa 9 chữ số (tương đương 1 tỷ)
+            millionPart = parseInt(millionStr.substring(0, 9));
+        }
+        
+        return billionPart + millionPart;
+    }
+
+    // Định dạng số rất lớn thủ công
+    function formatLargeNumber(numStr) {
+        let result = '';
+        let count = 0;
+        
+        // Duyệt từ cuối chuỗi về đầu
+        for (let i = numStr.length - 1; i >= 0; i--) {
+            if (count > 0 && count % 3 === 0) {
+                result = '.' + result;
+            }
+            result = numStr[i] + result;
+            count++;
+        }
+        
+        return result;
+    }
+
     // Lấy dữ liệu từ form
     function getFormData() {
       const features = [];
@@ -2251,12 +2590,25 @@
         }
       });
       
+      // Xử lý ảnh
+      let imageUrl = '';
+      if (currentImageFile) {
+        imageUrl = URL.createObjectURL(currentImageFile);
+      } else if (document.getElementById('productId').value) {
+        const productId = document.getElementById('productId').value;
+        const existingProduct = products.find(p => p.id === parseInt(productId));
+        imageUrl = existingProduct ? existingProduct.image : '';
+      }
+      
+      // Xử lý giá - chuyển đổi từ định dạng tỷ sang số
+      const priceValue = parseBillionPrice(document.getElementById('productPrice').value);
+      
       return {
         id: document.getElementById('productId').value,
         name: document.getElementById('productName').value,
-        type: document.getElementById('productType').value,
-        price: parseInt(document.getElementById('productPrice').value),
-        image: document.getElementById('productImage').value,
+        brand: document.getElementById('productBrand').value,
+        price: priceValue,
+        image: imageUrl,
         description: document.getElementById('productDescription').value,
         engine: document.getElementById('productEngine').value,
         power: document.getElementById('productPower').value,
@@ -2289,7 +2641,7 @@
     // Validate form
     function validateForm() {
       const requiredFields = [
-        'productName', 'productType', 'productPrice', 'productImage', 
+        'productName', 'productBrand', 'productPrice', 
         'productDescription', 'productEngine', 'productPower'
       ];
       
@@ -2300,6 +2652,26 @@
           element.focus();
           return false;
         }
+      }
+
+      // Kiểm tra ảnh
+      if (!currentImageFile && !document.getElementById('productId').value) {
+        showNotification('Vui lòng chọn hình ảnh sản phẩm!', 'error');
+        return false;
+      }
+
+      // Kiểm tra ít nhất một tính năng
+      const features = document.querySelectorAll('.feature-input');
+      let hasFeature = false;
+      features.forEach(input => {
+        if (input.value.trim() !== '') {
+          hasFeature = true;
+        }
+      });
+      
+      if (!hasFeature) {
+        showNotification('Vui lòng thêm ít nhất một tính năng!', 'error');
+        return false;
       }
       
       return true;
@@ -2357,10 +2729,18 @@
       document.getElementById('productModalLabel').textContent = 'Sửa Sản phẩm';
       document.getElementById('productId').value = product.id;
       document.getElementById('productName').value = product.name;
-      document.getElementById('productType').value = product.type;
-      document.getElementById('productPrice').value = product.price;
-      document.getElementById('productImage').value = product.image;
+      document.getElementById('productBrand').value = product.brand;
+      
+      // Chuyển đổi giá từ số sang định dạng tỷ
+      const priceInBillions = product.price / 1000000000;
+      document.getElementById('productPrice').value = priceInBillions.toFixed(3).replace(/\.?0+$/, '');
+      
       document.getElementById('productDescription').value = product.description;
+      
+      // Hiển thị ảnh preview
+      const preview = document.getElementById('imagePreview');
+      preview.src = product.image;
+      preview.style.display = 'block';
       
       // Điền thông số kỹ thuật
       document.getElementById('productEngine').value = product.specs.engine;
@@ -2401,7 +2781,7 @@
     // Điền dữ liệu vào modal xem
     function populateViewModal(product) {
       document.getElementById('viewProductName').textContent = product.name;
-      document.getElementById('viewProductType').textContent = product.type;
+      document.getElementById('viewProductBrand').textContent = product.brand;
       document.getElementById('viewProductPrice').textContent = formatCurrency(product.price) + ' VND';
       document.getElementById('viewProductDescription').textContent = product.description;
       document.getElementById('viewProductImage').src = product.image;
@@ -2474,9 +2854,14 @@
       }, 3000);
     }
 
-    // Định dạng tiền tệ
+    // Định dạng tiền tệ hiển thị - FIXED cho số rất lớn
     function formatCurrency(amount) {
-      return new Intl.NumberFormat('vi-VN').format(amount);
+        // Nếu amount là string (số rất lớn), định dạng thủ công
+        if (typeof amount === 'string') {
+            return formatLargeNumber(amount);
+        }
+        // Nếu amount là number, sử dụng toLocaleString
+        return new Intl.NumberFormat('vi-VN').format(amount);
     }
 
     // Hàm debounce
@@ -2491,6 +2876,6 @@
         timeout = setTimeout(later, wait);
       };
     }
-  </script>
+</script>
 </body>
 </html>

@@ -411,6 +411,60 @@
         width: 35px !important;
       }
     }
+    /* Nút tìm kiếm nâng cao */
+.navbar .btn-outline-light[title="Tìm kiếm nâng cao"] {
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  border-color: var(--jade-black);
+  color: var(--jade-black);
+  background: transparent;
+  transition: all 0.3s ease;
+}
+
+.navbar .btn-outline-light[title="Tìm kiếm nâng cao"]:hover {
+  background: var(--jade-black);
+  border-color: var(--jade-black);
+  color: var(--gold-color);
+  transform: scale(1.1);
+}
+
+/* Form controls trong modal */
+#advancedSearchModal .form-control,
+#advancedSearchModal .form-select {
+  background: var(--jade-dark);
+  border: 2px solid var(--gold-color);
+  color: var(--text-light);
+  border-radius: 10px;
+  transition: all 0.3s ease;
+}
+
+#advancedSearchModal .form-control:focus,
+#advancedSearchModal .form-select:focus {
+  background: var(--jade-dark);
+  border-color: var(--accent-gold);
+  color: var(--text-light);
+  box-shadow: 0 0 0 0.25rem rgba(255, 215, 0, 0.25);
+}
+
+#advancedSearchModal .form-control::placeholder {
+  color: rgba(232, 232, 232, 0.6);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .navbar .btn-outline-light[title="Tìm kiếm nâng cao"] {
+    width: 35px;
+    height: 35px;
+  }
+  
+  #advancedSearchModal .modal-dialog {
+    margin: 20px;
+  }
+}
   </style>
 </head>
 <body>
@@ -476,17 +530,133 @@
           </li>
         </ul>
         
-        <!-- Search Bar -->
-        <form class="d-flex ms-3" role="search">
-          <input class="form-control me-2" type="search" placeholder="Tìm kiếm siêu xe..." aria-label="Search">
-          <button class="btn btn-outline-light" type="submit">
-            <i class="fas fa-search"></i>
-          </button>
+   <!-- Search Bar --> 
+       <form class="d-flex ms-3" role="search" action="search-result.html"> 
+        <input class="form-control me-2" type="search" placeholder="Tìm kiếm siêu xe..." aria-label="Search"> 
+        <button class="btn btn-outline-light" type="submit"> <i class="fas fa-search"></i> 
+      </button> 
+    </form> 
+  </div> 
+</div>
+<!-- Nút mở modal tìm kiếm nâng cao -->
+<div class="nav-item ms-2">
+  <button class="btn btn-outline-light" type="button" data-bs-toggle="modal" data-bs-target="#advancedSearchModal" title="Tìm kiếm nâng cao">
+    <i class="fas fa-sliders-h"></i>
+  </button>
+</div>
+
+<!-- Modal tìm kiếm nâng cao -->
+<div class="modal fade" id="advancedSearchModal" tabindex="-1" aria-labelledby="advancedSearchModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content" style="background: var(--jade-black); border: 2px solid var(--gold-color); border-radius: 15px;">
+      <div class="modal-header" style="border-bottom: 2px solid var(--gold-color);">
+        <h5 class="modal-title" style="color: var(--gold-color);" id="advancedSearchModalLabel">
+          <i class="fas fa-search me-2"></i>Tìm kiếm nâng cao
+        </h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" style="filter: invert(1);"></button>
+      </div>
+      <div class="modal-body">
+        <form id="advancedSearchForm" action="search-result.html" method="GET">
+          <div class="row">
+            <div class="col-md-6 mb-3">
+              <label class="form-label" style="color: var(--gold-color);">Tên xe</label>
+              <input type="text" class="form-control" name="carName" placeholder="Nhập tên xe...">
+            </div>
+            <div class="col-md-6 mb-3">
+              <label class="form-label" style="color: var(--gold-color);">Hãng xe</label>
+              <select class="form-select" name="brand">
+                <option value="">Tất cả hãng xe</option>
+                <option value="lamborghini">Lamborghini</option>
+                <option value="ferrari">Ferrari</option>
+                <option value="bugatti">Bugatti</option>
+                <option value="rolls-royce">Rolls-Royce</option>
+                <option value="porsche">Porsche</option>
+                <option value="mclaren">McLaren</option>
+                <option value="koenigsegg">Koenigsegg</option>
+                <option value="pagani">Pagani</option>
+                <option value="mercedes">Mercedes-Benz</option>
+                <option value="bmw">BMW</option>
+              </select>
+            </div>
+          </div>
+          
+          <div class="row">
+            <div class="col-md-6 mb-3">
+              <label class="form-label" style="color: var(--gold-color);">Loại động cơ</label>
+              <select class="form-select" name="engine">
+                <option value="">Tất cả động cơ</option>
+                <option value="v12">V12</option>
+                <option value="v10">V10</option>
+                <option value="v8">V8</option>
+                <option value="w16">W16</option>
+                <option value="hybrid">Hybrid</option>
+                <option value="electric">Điện</option>
+              </select>
+            </div>
+            <div class="col-md-6 mb-3">
+              <label class="form-label" style="color: var(--gold-color);">Khoảng giá</label>
+              <select class="form-select" name="priceRange">
+                <option value="">Tất cả mức giá</option>
+                <option value="0-10">Dưới 10 tỷ</option>
+                <option value="10-20">10 - 20 tỷ</option>
+                <option value="20-30">20 - 30 tỷ</option>
+                <option value="30-50">30 - 50 tỷ</option>
+                <option value="50-100">50 - 100 tỷ</option>
+                <option value="100+">Trên 100 tỷ</option>
+              </select>
+            </div>
+          </div>
+          
+          <div class="row">
+            <div class="col-md-6 mb-3">
+              <label class="form-label" style="color: var(--gold-color);">Công suất tối thiểu</label>
+              <select class="form-select" name="minHorsepower">
+                <option value="">Không yêu cầu</option>
+                <option value="500">500+ mã lực</option>
+                <option value="600">600+ mã lực</option>
+                <option value="700">700+ mã lực</option>
+                <option value="800">800+ mã lực</option>
+                <option value="900">900+ mã lực</option>
+                <option value="1000">1000+ mã lực</option>
+              </select>
+            </div>
+            <div class="col-md-6 mb-3">
+              <label class="form-label" style="color: var(--gold-color);">Tốc độ tối đa</label>
+              <select class="form-select" name="topSpeed">
+                <option value="">Không yêu cầu</option>
+                <option value="300">300+ km/h</option>
+                <option value="320">320+ km/h</option>
+                <option value="350">350+ km/h</option>
+                <option value="380">380+ km/h</option>
+                <option value="400">400+ km/h</option>
+              </select>
+            </div>
+          </div>
         </form>
       </div>
+      <div class="modal-footer" style="border-top: 2px solid var(--gold-color);">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" style="
+          border: 2px solid var(--gold-color);
+          color: var(--gold-color);
+          background: transparent;
+          border-radius: 50px;
+          padding: 8px 20px;
+        ">Đóng</button>
+        <button type="submit" form="advancedSearchForm" class="btn btn-primary" style="
+          background: linear-gradient(135deg, var(--gold-color), var(--dark-gold));
+          border: none;
+          color: var(--jade-black);
+          border-radius: 50px;
+          padding: 8px 25px;
+          font-weight: 600;
+        ">
+          <i class="fas fa-search me-2"></i>Tìm kiếm
+        </button>
+      </div>
     </div>
-  </nav>
-
+  </div>
+</div>
+</nav>
   <!-- Hero Section -->
   <header class="hero">
     <div class="container text-center fade-in-up">

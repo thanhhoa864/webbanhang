@@ -444,6 +444,162 @@
     ::-webkit-scrollbar-thumb:hover {
       background: var(--dark-gold);
     }
+        /* ==== FIX NAVBAR MENU KHÔNG XUỐNG DÒNG ==== */
+.navbar-nav {
+  flex-wrap: nowrap !important;          /* Ngăn wrap xuống dòng */
+  overflow-x: auto;                       /* Cho phép cuộn ngang nếu quá nhiều */
+  -webkit-overflow-scrolling: touch;      /* Cuộn mượt trên mobile */
+  white-space: nowrap;                    /* Không xuống dòng */
+  gap: 10px;                              /* Khoảng cách đều giữa các mục */
+}
+
+.navbar-nav .nav-item {
+  flex: 0 0 auto;                         /* Không co giãn, giữ kích thước */
+}
+
+.navbar-nav .nav-link {
+  white-space: nowrap;                    /* Không xuống dòng */
+  overflow: hidden;                       /* Ẩn phần tràn */
+  text-overflow: ellipsis;                /* Thêm ... nếu quá dài */
+  max-width: 150px;                       /* Giới hạn chiều rộng mỗi mục */
+  display: block;                         /* Đảm bảo ellipsis hoạt động */
+  padding: 8px 12px !important;           /* Đệm đều */
+  font-size: 0.95rem;                     /* Chữ nhỏ hơn một chút nếu cần */
+}
+
+/* Ẩn thanh cuộn ngang nhưng vẫn cho phép cuộn (tùy chọn) */
+.navbar-nav::-webkit-scrollbar {
+  display: none;
+}
+.navbar-nav {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+/* KÉO TOÀN BỘ NAVBAR SÁT TRÁI HƠN MỘT CHÚT */
+.navbar .container {
+  padding-left: 15px !important;     /* Loại bỏ padding trái */
+  margin-left: -12px !important;  /* Dịch trái thêm 12px */
+}
+/* Search and Filter - FIXED */
+.search-filter-container {
+  display: flex;
+  gap: 15px;
+  flex-wrap: nowrap; /* Quan trọng: không cho xuống dòng */
+  align-items: center;
+  justify-content: flex-end;
+  flex: 1; /* Chiếm không gian còn lại */
+  min-width: 0; /* Quan trọng: cho phép co nhỏ */
+}
+
+.search-box {
+  position: relative;
+  min-width: 200px; /* Giảm min-width để vừa khung */
+  flex: 0 1 auto; /* Co giãn linh hoạt */
+}
+
+.search-box input {
+  background: var(--jade-dark);
+  border: 1px solid var(--gold-color);
+  border-radius: 50px;
+  color: var(--text-light);
+  padding: 10px 20px 10px 45px;
+  width: 100%;
+  transition: all 0.3s ease;
+}
+
+.search-box input:focus {
+  box-shadow: 0 0 0 3px rgba(255, 215, 0, 0.3);
+  outline: none;
+}
+
+.search-box i {
+  position: absolute;
+  left: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--gold-color);
+}
+
+/* Status Filter */
+.status-filter {
+  min-width: 180px; /* Giảm min-width */
+  flex: 0 1 auto; /* Co giãn linh hoạt */
+}
+
+.status-filter select {
+  background: var(--jade-dark);
+  border: 1px solid var(--gold-color);
+  border-radius: 50px;
+  color: var(--text-light);
+  padding: 10px 20px;
+  width: 100%;
+  transition: all 0.3s ease;
+}
+
+.status-filter select:focus {
+  box-shadow: 0 0 0 3px rgba(255, 215, 0, 0.3);
+  outline: none;
+}
+
+/* Action Buttons */
+.action-btn {
+  background: linear-gradient(135deg, var(--gold-color), var(--dark-gold));
+  border: none;
+  color: var(--jade-black);
+  padding: 12px 20px;
+  font-weight: 600;
+  border-radius: 50px;
+  transition: all 0.3s ease;
+  white-space: nowrap; /* Không xuống dòng chữ */
+  flex: 0 0 auto; /* Không co giãn */
+  box-shadow: 0 4px 10px rgba(255, 215, 0, 0.3);
+}
+
+.action-btn:hover {
+  background: linear-gradient(135deg, var(--dark-gold), var(--gold-color));
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(255, 215, 0, 0.4);
+}
+
+/* Responsive - chỉ áp dụng khi màn hình nhỏ */
+@media (max-width: 992px) {
+  .search-filter-container {
+    flex-wrap: wrap; /* Cho phép xuống dòng khi màn hình nhỏ */
+    justify-content: flex-start;
+  }
+  
+  .search-box,
+  .status-filter {
+    min-width: 100%; /* Chiếm full width khi xuống dòng */
+    flex: 1 1 100%;
+  }
+  
+  .action-btn {
+    margin-top: 10px;
+  }
+}
+
+/* Page Header - điều chỉnh để căn giữa tốt hơn */
+.page-header {
+  background: var(--card-bg);
+  border-radius: var(--border-radius);
+  padding: 20px;
+  margin-bottom: 25px;
+  border: 1px solid var(--gold-color);
+  box-shadow: var(--box-shadow);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 15px;
+}
+
+.page-header h2 {
+  color: var(--gold-color);
+  margin: 0;
+  font-weight: 600;
+  white-space: nowrap; /* Tiêu đề không xuống dòng */
+}
   </style>
 </head>
 <body>
@@ -461,9 +617,6 @@
       </button>
       <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav ms-auto">
-          <li class="nav-item">
-            <a class="nav-link" href="dashboard.html"><i class="fas fa-tachometer-alt me-1"></i>Dashboard</a>
-          </li>
           <li class="nav-item">
             <a class="nav-link" href="products.html"><i class="fas fa-box me-1"></i>Sản phẩm</a>
           </li>
@@ -673,84 +826,102 @@
     </div>
   </div>
   
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
   <script>
-    // Dữ liệu mẫu sản phẩm
-    const sampleProducts = [
-      { id: 1, name: "BMW M8 Competition", brand: "BMW", currentStock: 5 },
-      { id: 2, name: "BMW M5 CS", brand: "BMW", currentStock: 3 },
-      { id: 3, name: "BMW M4 Competition", brand: "BMW", currentStock: 8 },
-      { id: 4, name: "Bugatti Chiron", brand: "Bugatti", currentStock: 2 },
-      { id: 5, name: "Ferrari SF90 Stradale", brand: "Ferrari", currentStock: 4 },
-      { id: 6, name: "Lamborghini Aventador", brand: "Lamborghini", currentStock: 3 },
-      { id: 7, name: "Porsche 911 Turbo S", brand: "Porsche", currentStock: 6 }
-    ];
+  // ========================================
+  // QUẢN LÝ NHẬP SIÊU XE - PHIÊN BẢN HOÀN CHỈNH
+  // Không thay đổi giao diện - Tất cả chức năng hoạt động
+  // ========================================
 
-    // Dữ liệu phiếu nhập
-    let importOrders = [
-      {
-        id: 1,
-        code: "PN-001",
-        date: "2024-01-15",
-        products: [
-          { productId: 1, name: "BMW M8 Competition", quantity: 2, importPrice: 11500000000 },
-          { productId: 4, name: "Bugatti Chiron", quantity: 1, importPrice: 350000000000 }
-        ],
-        note: "Nhập hàng quý I",
-        status: "completed",
-        totalQuantity: 3,
-        totalValue: 373000000000
-      },
-      {
-        id: 2,
-        code: "PN-002",
-        date: "2024-01-20",
-        products: [
-          { productId: 2, name: "BMW M5 CS", quantity: 3, importPrice: 9000000000 },
-          { productId: 5, name: "Ferrari SF90 Stradale", quantity: 2, importPrice: 27000000000 }
-        ],
-        note: "Bổ sung tồn kho",
-        status: "pending",
-        totalQuantity: 5,
-        totalValue: 81000000000
-      }
-    ];
+  // Dữ liệu mẫu siêu xe - ĐÃ THÊM 2 SẢN PHẨM
+  const sampleProducts = [
+    { id: 1, name: "Bugatti Chiron Super Sport", brand: "Bugatti", currentStock: 1 },
+    { id: 2, name: "Koenigsegg Jesko Absolut", brand: "Koenigsegg", currentStock: 0 },
+    { id: 3, name: "Pininfarina Battista", brand: "Automobili Pininfarina", currentStock: 2 },
+    { id: 4, name: "Rimac Nevera", brand: "Rimac", currentStock: 1 },
+    { id: 5, name: "Pagani Huayra BC Roadster", brand: "Pagani", currentStock: 0 },
+    { id: 6, name: "Lamborghini Sian FKP 37", brand: "Lamborghini", currentStock: 1 },
+    { id: 7, name: "Ferrari SF90 XX Stradale", brand: "Ferrari", currentStock: 2 },
+    { id: 8, name: "Tesla Roadster 2024", brand: "Tesla", currentStock: 3 },
+    { id: 9, name: "Porsche 911 Turbo S", brand: "Porsche", currentStock: 2 }
+  ];
 
-    let nextImportId = 3;
-    let nextImportCode = 3;
+  // Giá nhập mặc định (tỷ VND) - ĐÃ THÊM 2 SẢN PHẨM
+  const defaultImportPrices = {
+    1: 380000000000, 2: 420000000000, 3: 280000000000,
+    4: 250000000000, 5: 350000000000, 6: 320000000000, 
+    7: 290000000000, 8: 120000000000, 9: 95000000000
+  };
 
-    // Biến phân trang
-    let currentPage = 1;
-    let pageSize = 10;
-    let totalPages = 1;
+  // Biến phân trang
+  let currentPage = 1;
+  const pageSize = 10;
+  let totalPages = 1;
 
-    // Tải trang
-    document.addEventListener('DOMContentLoaded', function() {
-      // Giả lập kiểm tra đăng nhập admin
-      const adminUser = JSON.parse(localStorage.getItem('loggedInAdmin'));
-      if (!adminUser || adminUser.role !== 'admin') {
-        alert('Bạn cần đăng nhập admin để truy cập!');
-        window.location.href = 'admin-login.html';
-        return;
-      }
+  // Dữ liệu gốc với 2 phiếu nhập mẫu
+  let importOrders = JSON.parse(localStorage.getItem('importOrders')) || [
+    {
+      id: 1,
+      code: "PN-001",
+      date: "2024-01-15",
+      products: [
+        { productId: 1, name: "Bugatti Chiron Super Sport", quantity: 1, importPrice: 380000000000 },
+        { productId: 3, name: "Pininfarina Battista", quantity: 2, importPrice: 280000000000 }
+      ],
+      note: "Nhập lô siêu xe cao cấp",
+      status: "completed",
+      totalQuantity: 3,
+      totalValue: 940000000000
+    },
+    {
+      id: 2,
+      code: "PN-002", 
+      date: "2024-01-20",
+      products: [
+        { productId: 8, name: "Tesla Roadster 2024", quantity: 1, importPrice: 120000000000 },
+        { productId: 9, name: "Porsche 911 Turbo S", quantity: 2, importPrice: 95000000000 }
+      ],
+      note: "Nhập xe thể thao đời mới",
+      status: "pending",
+      totalQuantity: 3,
+      totalValue: 310000000000
+    }
+  ];
+  
+  let filteredOrders = [...importOrders]; // Dữ liệu đang hiển thị
+  let nextImportId = importOrders.length > 0 ? Math.max(...importOrders.map(o => o.id)) + 1 : 3;
+  let nextImportCode = importOrders.length > 0 ? Math.max(...importOrders.map(o => parseInt(o.code.replace('PN-', '')))) + 1 : 3;
 
-      // Tải danh sách phiếu nhập
-      loadImportOrders();
-      
-      // Thiết lập sự kiện tìm kiếm
-      setupSearch();
-    });
+  // Tải trang
+  document.addEventListener('DOMContentLoaded', function() {
+    // Lưu dữ liệu mẫu vào localStorage nếu chưa có
+    localStorage.setItem('importOrders', JSON.stringify(importOrders));
+    
+    loadImportOrders();
+    setupSearch();
+    updateStockDisplay();
+  });
 
-    // Tải danh sách phiếu nhập
-    function loadImportOrders() {
-      const container = document.getElementById('importOrdersContainer');
-      container.innerHTML = '';
-      
-      // Tính toán phân trang
-      const startIndex = (currentPage - 1) * pageSize;
-      const endIndex = Math.min(startIndex + pageSize, importOrders.length);
-      const currentOrders = importOrders.slice(startIndex, endIndex);
-      
-      // Hiển thị phiếu nhập
+  // Tải danh sách phiếu nhập
+  function loadImportOrders() {
+    const container = document.getElementById('importOrdersContainer');
+    container.innerHTML = '';
+
+    totalPages = Math.ceil(filteredOrders.length / pageSize);
+    const startIndex = (currentPage - 1) * pageSize;
+    const endIndex = Math.min(startIndex + pageSize, filteredOrders.length);
+    const currentOrders = filteredOrders.slice(startIndex, endIndex);
+
+    if (currentOrders.length === 0) {
+      container.innerHTML = `
+        <tr>
+          <td colspan="7" class="text-center py-4">
+            <i class="fas fa-inbox fa-2x mb-3" style="color: var(--gold-color);"></i>
+            <p>Chưa có phiếu nhập nào. Hãy thêm phiếu nhập mới!</p>
+          </td>
+        </tr>
+      `;
+    } else {
       currentOrders.forEach(order => {
         const row = document.createElement('tr');
         row.innerHTML = `
@@ -766,142 +937,350 @@
           </td>
           <td>
             <div class="import-actions">
-              <button class="import-btn view" onclick="viewImportOrder(${order.id})" title="Xem chi tiết">
+              <button class="import-btn view" onclick="viewImportOrder(${order.id})" title="Xem">
                 <i class="fas fa-eye"></i>
               </button>
               ${order.status === 'pending' ? `
                 <button class="import-btn edit" onclick="editImportOrder(${order.id})" title="Sửa">
                   <i class="fas fa-edit"></i>
                 </button>
-                <button class="import-btn complete" onclick="completeImportOrder(${order.id})" title="Hoàn thành">
+                <button class="import-btn complete" onclick="confirmComplete(${order.id})" title="Hoàn thành">
                   <i class="fas fa-check"></i>
-                </button>
+              </button>
               ` : ''}
             </div>
           </td>
         `;
         container.appendChild(row);
       });
-      
-      // Tạo phân trang
-      generatePagination();
     }
 
-    // Tạo phân trang
-    function generatePagination() {
-      totalPages = Math.ceil(importOrders.length / pageSize);
-      const pagination = document.getElementById('pagination');
-      pagination.innerHTML = '';
-      
-      // Nút Previous
-      const prevItem = document.createElement('li');
-      prevItem.className = `page-item ${currentPage === 1 ? 'disabled' : ''}`;
-      prevItem.innerHTML = `
-        <a class="page-link" href="#" onclick="changePage(${currentPage - 1})" aria-label="Previous">
-          <span aria-hidden="true">&laquo;</span>
-        </a>
-      `;
-      pagination.appendChild(prevItem);
-      
-      // Các nút trang
-      const maxVisiblePages = 5;
-      let startPage = Math.max(1, currentPage - Math.floor(maxVisiblePages / 2));
-      let endPage = Math.min(totalPages, startPage + maxVisiblePages - 1);
-      
-      // Điều chỉnh nếu gần cuối
-      if (endPage - startPage + 1 < maxVisiblePages) {
-        startPage = Math.max(1, endPage - maxVisiblePages + 1);
-      }
-      
-      for (let i = startPage; i <= endPage; i++) {
-        const pageItem = document.createElement('li');
-        pageItem.className = `page-item ${i === currentPage ? 'active' : ''}`;
-        pageItem.innerHTML = `<a class="page-link" href="#" onclick="changePage(${i})">${i}</a>`;
-        pagination.appendChild(pageItem);
-      }
-      
-      // Nút Next
-      const nextItem = document.createElement('li');
-      nextItem.className = `page-item ${currentPage === totalPages ? 'disabled' : ''}`;
-      nextItem.innerHTML = `
-        <a class="page-link" href="#" onclick="changePage(${currentPage + 1})" aria-label="Next">
-          <span aria-hidden="true">&raquo;</span>
-        </a>
-      `;
-      pagination.appendChild(nextItem);
+    generatePagination();
+  }
+
+  // Tạo phân trang
+  function generatePagination() {
+    const pagination = document.getElementById('pagination');
+    pagination.innerHTML = '';
+
+    if (totalPages <= 1) return;
+
+    const prevItem = document.createElement('li');
+    prevItem.className = `page-item ${currentPage === 1 ? 'disabled' : ''}`;
+    prevItem.innerHTML = `<a class="page-link" href="#" onclick="changePage(${currentPage - 1})">&laquo;</a>`;
+    pagination.appendChild(prevItem);
+
+    const maxVisible = 5;
+    let startPage = Math.max(1, currentPage - Math.floor(maxVisible / 2));
+    let endPage = Math.min(totalPages, startPage + maxVisible - 1);
+    if (endPage - startPage + 1 < maxVisible) startPage = Math.max(1, endPage - maxVisible + 1);
+
+    for (let i = startPage; i <= endPage; i++) {
+      const pageItem = document.createElement('li');
+      pageItem.className = `page-item ${i === currentPage ? 'active' : ''}`;
+      pageItem.innerHTML = `<a class="page-link" href="#" onclick="changePage(${i})">${i}</a>`;
+      pagination.appendChild(pageItem);
     }
 
-    // Thay đổi trang
-    function changePage(page) {
-      if (page < 1 || page > totalPages) return;
-      currentPage = page;
-      loadImportOrders();
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    }
+    const nextItem = document.createElement('li');
+    nextItem.className = `page-item ${currentPage === totalPages ? 'disabled' : ''}`;
+    nextItem.innerHTML = `<a class="page-link" href="#" onclick="changePage(${currentPage + 1})">&raquo;</a>`;
+    pagination.appendChild(nextItem);
+  }
 
-    // Thiết lập tìm kiếm
-    function setupSearch() {
-      const searchInput = document.getElementById('searchInput');
-      searchInput.addEventListener('input', function() {
-        const searchTerm = this.value.toLowerCase();
-        const filteredOrders = importOrders.filter(order => 
-          order.code.toLowerCase().includes(searchTerm) ||
-          order.note.toLowerCase().includes(searchTerm)
-        );
-        
-        importOrders = [...filteredOrders];
-        currentPage = 1;
-        loadImportOrders();
-      });
-    }
+  function changePage(page) {
+    if (page < 1 || page > totalPages) return;
+    currentPage = page;
+    loadImportOrders();
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
 
-    // Lọc theo trạng thái
-    function filterByStatus(status) {
-      if (!status) {
-        importOrders = [...importOrders];
-      } else {
-        importOrders = importOrders.filter(order => order.status === status);
-      }
+  // Tìm kiếm nâng cao (không ghi đè dữ liệu gốc)
+  function setupSearch() {
+    const searchInput = document.getElementById('searchInput');
+    searchInput.addEventListener('input', function() {
+      const term = this.value.toLowerCase();
+      filteredOrders = importOrders.filter(order =>
+        order.code.toLowerCase().includes(term) ||
+        (order.note && order.note.toLowerCase().includes(term)) ||
+        order.products.some(p => p.name.toLowerCase().includes(term))
+      );
       currentPage = 1;
       loadImportOrders();
+    });
+  }
+
+  // Lọc trạng thái (không ghi đè)
+  function filterByStatus(status) {
+    filteredOrders = status 
+      ? importOrders.filter(o => o.status === status)
+      : [...importOrders];
+    currentPage = 1;
+    loadImportOrders();
+  }
+
+  // Định dạng
+  function formatCurrency(amount) {
+    return new Intl.NumberFormat('vi-VN').format(amount);
+  }
+  function formatDate(date) {
+    return new Date(date).toLocaleDateString('vi-VN');
+  }
+
+  // Mở modal thêm
+  function openAddImportModal() {
+    document.getElementById('importModalLabel').textContent = 'Thêm Phiếu nhập Mới';
+    document.getElementById('importForm').reset();
+    document.getElementById('importId').value = '';
+    document.getElementById('importDate').valueAsDate = new Date();
+    document.getElementById('productsContainer').innerHTML = '';
+    addProductItem();
+    calculateTotals();
+    document.getElementById('saveImportBtn').style.display = 'block';
+    document.getElementById('completeImportBtn').style.display = 'none';
+  }
+
+  // Thêm sản phẩm
+  function addProductItem() {
+    const container = document.getElementById('productsContainer');
+    const item = document.createElement('div');
+    item.className = 'product-item';
+    item.innerHTML = `
+      <div class="product-item-header">
+        <div class="product-item-name">Sản phẩm #${container.children.length + 1}</div>
+        <button type="button" class="remove-product" onclick="removeProductItem(this)">
+          <i class="fas fa-times"></i> Xóa
+        </button>
+      </div>
+      <div class="row">
+        <div class="col-md-6">
+          <div class="form-group">
+            <label class="form-label">Sản phẩm</label>
+            <select class="form-control product-select" onchange="updateProductInfo(this)" required>
+              <option value="">Chọn siêu xe</option>
+              ${sampleProducts.map(p => `
+                <option value="${p.id}">${p.name} (${p.brand}) - Tồn: ${p.currentStock}</option>
+              `).join('')}
+            </select>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="form-group">
+            <label class="form-label">Số lượng</label>
+            <input type="number" class="form-control product-quantity" min="1" value="1" onchange="calculateTotals()" required>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="form-group">
+            <label class="form-label">Giá nhập (VND)</label>
+            <input type="number" class="form-control product-price" min="0" value="0" onchange="calculateTotals()" required>
+          </div>
+        </div>
+      </div>
+    `;
+    container.appendChild(item);
+  }
+
+  function removeProductItem(btn) {
+    if (document.querySelectorAll('.product-item').length > 1) {
+      btn.closest('.product-item').remove();
+      calculateTotals();
+    } else {
+      alert('Phải có ít nhất 1 xe!');
+    }
+  }
+
+  function updateProductInfo(select) {
+    const priceInput = select.closest('.product-item').querySelector('.product-price');
+    const productId = parseInt(select.value);
+    priceInput.value = defaultImportPrices[productId] || 0;
+    calculateTotals();
+  }
+
+  function calculateTotals() {
+    let qty = 0, val = 0, count = 0;
+    document.querySelectorAll('.product-item').forEach(item => {
+      const q = parseInt(item.querySelector('.product-quantity').value) || 0;
+      const p = parseInt(item.querySelector('.product-price').value) || 0;
+      qty += q; val += q * p; count++;
+    });
+    document.getElementById('totalQuantity').textContent = qty;
+    document.getElementById('totalValue').textContent = formatCurrency(val) + ' VND';
+    document.getElementById('totalProducts').textContent = count;
+  }
+
+  // Lưu phiếu nhập
+  function saveImportOrder() {
+    const products = [];
+    let valid = true;
+
+    document.querySelectorAll('.product-item').forEach(item => {
+      const select = item.querySelector('.product-select');
+      const qty = item.querySelector('.product-quantity').value;
+      const price = item.querySelector('.product-price').value;
+      if (!select.value || !qty || !price) { 
+        valid = false; 
+        return; 
+      }
+      const p = sampleProducts.find(x => x.id == select.value);
+      products.push({ 
+        productId: p.id, 
+        name: p.name, 
+        quantity: +qty, 
+        importPrice: +price 
+      });
+    });
+
+    if (!valid || products.length === 0) {
+      alert('Vui lòng nhập đầy đủ thông tin cho tất cả sản phẩm!');
+      return;
     }
 
-    // Định dạng tiền tệ
-    function formatCurrency(amount) {
-      return new Intl.NumberFormat('vi-VN').format(amount);
+    const totalQty = products.reduce((s, p) => s + p.quantity, 0);
+    const totalVal = products.reduce((s, p) => s + p.quantity * p.importPrice, 0);
+
+    const importId = document.getElementById('importId').value;
+    let order;
+
+    if (importId) {
+      // Sửa phiếu nhập
+      order = importOrders.find(o => o.id == importId);
+      order.date = document.getElementById('importDate').value;
+      order.products = products;
+      order.note = document.getElementById('importNote').value;
+      order.totalQuantity = totalQty;
+      order.totalValue = totalVal;
+    } else {
+      // Thêm phiếu nhập mới
+      order = {
+        id: nextImportId++,
+        code: `PN-${String(nextImportCode++).padStart(3, '0')}`,
+        date: document.getElementById('importDate').value,
+        products,
+        note: document.getElementById('importNote').value,
+        status: 'pending',
+        totalQuantity: totalQty,
+        totalValue: totalVal
+      };
+      importOrders.push(order);
     }
 
-    // Định dạng ngày
-    function formatDate(dateString) {
-      const date = new Date(dateString);
-      return date.toLocaleDateString('vi-VN');
-    }
+    localStorage.setItem('importOrders', JSON.stringify(importOrders));
+    filteredOrders = [...importOrders];
+    
+    const modal = bootstrap.Modal.getInstance(document.getElementById('importModal'));
+    if (modal) modal.hide();
+    
+    loadImportOrders();
+    alert('Lưu phiếu nhập thành công!');
+  }
 
-    // Mở modal thêm phiếu nhập
-    function openAddImportModal() {
-      document.getElementById('importModalLabel').textContent = 'Thêm Phiếu nhập Mới';
-      document.getElementById('importForm').reset();
-      document.getElementById('importId').value = '';
-      document.getElementById('importDate').valueAsDate = new Date();
-      document.getElementById('productsContainer').innerHTML = '';
-      document.getElementById('totalQuantity').textContent = '0';
-      document.getElementById('totalValue').textContent = '0 VND';
-      document.getElementById('totalProducts').textContent = '0';
-      document.getElementById('saveImportBtn').style.display = 'block';
-      document.getElementById('completeImportBtn').style.display = 'none';
+  // Hoàn thành từ modal
+  function completeImportOrder() {
+    const importId = document.getElementById('importId').value;
+    if (!importId) {
+      alert('Vui lòng lưu phiếu nhập trước khi hoàn thành!');
+      return;
+    }
+    
+    const order = importOrders.find(o => o.id == importId);
+    if (order && order.status === 'pending') {
+      order.status = 'completed';
+      order.products.forEach(p => {
+        const product = sampleProducts.find(x => x.id === p.productId);
+        if (product) product.currentStock += p.quantity;
+      });
+      localStorage.setItem('importOrders', JSON.stringify(importOrders));
+      updateStockDisplay();
+      loadImportOrders();
       
-      // Thêm sản phẩm mẫu đầu tiên
-      addProductItem();
+      const modal = bootstrap.Modal.getInstance(document.getElementById('importModal'));
+      if (modal) modal.hide();
+      
+      alert('Phiếu nhập đã được hoàn thành!');
+    }
+  }
+
+  // Xác nhận hoàn thành
+  function confirmComplete(id) {
+    if (confirm('Hoàn thành phiếu nhập? Tồn kho sẽ được cập nhật!')) {
+      const order = importOrders.find(o => o.id === id);
+      if (order && order.status === 'pending') {
+        order.status = 'completed';
+        order.products.forEach(p => {
+          const product = sampleProducts.find(x => x.id === p.productId);
+          if (product) product.currentStock += p.quantity;
+        });
+        localStorage.setItem('importOrders', JSON.stringify(importOrders));
+        filteredOrders = [...importOrders];
+        updateStockDisplay();
+        loadImportOrders();
+        alert('Hoàn thành phiếu nhập!');
+      }
+    }
+  }
+
+  // Cập nhật tồn kho hiển thị
+  function updateStockDisplay() {
+    document.querySelectorAll('.product-select').forEach(select => {
+      Array.from(select.options).forEach(opt => {
+        if (opt.value) {
+          const product = sampleProducts.find(p => p.id == opt.value);
+          if (product) {
+            const regex = new RegExp(` - Tồn: \\d+`);
+            opt.text = opt.text.replace(regex, ` - Tồn: ${product.currentStock}`);
+          }
+        }
+      });
+    });
+  }
+
+  // Xem chi tiết
+  function viewImportOrder(id) {
+    const order = importOrders.find(o => o.id === id);
+    if (!order) return;
+
+    document.getElementById('viewImportCode').textContent = order.code;
+    document.getElementById('viewImportDate').textContent = formatDate(order.date);
+    document.getElementById('viewImportStatus').innerHTML = `<span class="status-badge ${order.status === 'completed' ? 'status-completed' : 'status-pending'}">${order.status === 'completed' ? 'Đã hoàn thành' : 'Đang chờ'}</span>`;
+    document.getElementById('viewImportNote').textContent = order.note || 'Không có';
+
+    const tbody = document.getElementById('viewImportProducts');
+    tbody.innerHTML = '';
+    let total = 0;
+    order.products.forEach(p => {
+      const val = p.quantity * p.importPrice;
+      total += val;
+      const tr = document.createElement('tr');
+      tr.innerHTML = `<td>${p.name}</td><td>${p.quantity}</td><td>${formatCurrency(p.importPrice)} VND</td><td>${formatCurrency(val)} VND</td>`;
+      tbody.appendChild(tr);
+    });
+    document.getElementById('viewImportTotal').textContent = formatCurrency(total) + ' VND';
+
+    new bootstrap.Modal(document.getElementById('viewImportModal')).show();
+  }
+
+  // Sửa phiếu nhập
+  function editImportOrder(id) {
+    const order = importOrders.find(o => o.id === id);
+    if (!order || order.status !== 'pending') {
+      alert('Chỉ sửa được phiếu đang chờ!');
+      return;
     }
 
-    // Thêm sản phẩm vào phiếu nhập
-    function addProductItem() {
-      const container = document.getElementById('productsContainer');
-      const productItem = document.createElement('div');
-      productItem.className = 'product-item';
-      productItem.innerHTML = `
+    document.getElementById('importModalLabel').textContent = 'Sửa Phiếu nhập';
+    document.getElementById('importId').value = order.id;
+    document.getElementById('importDate').value = order.date;
+    document.getElementById('importNote').value = order.note || '';
+
+    const container = document.getElementById('productsContainer');
+    container.innerHTML = '';
+    order.products.forEach(p => {
+      const item = document.createElement('div');
+      item.className = 'product-item';
+      item.innerHTML = `
         <div class="product-item-header">
-          <div class="product-item-name">Sản phẩm #${container.children.length + 1}</div>
+          <div class="product-item-name">Sản phẩm</div>
           <button type="button" class="remove-product" onclick="removeProductItem(this)">
             <i class="fas fa-times"></i> Xóa
           </button>
@@ -911,9 +1290,11 @@
             <div class="form-group">
               <label class="form-label">Sản phẩm</label>
               <select class="form-control product-select" onchange="updateProductInfo(this)" required>
-                <option value="">Chọn sản phẩm</option>
-                ${sampleProducts.map(product => `
-                  <option value="${product.id}">${product.name} (${product.brand}) - Tồn: ${product.currentStock}</option>
+                <option value="">Chọn xe</option>
+                ${sampleProducts.map(x => `
+                  <option value="${x.id}" ${x.id === p.productId ? 'selected' : ''}>
+                    ${x.name} (${x.brand}) - Tồn: ${x.currentStock}
+                  </option>
                 `).join('')}
               </select>
             </div>
@@ -921,277 +1302,25 @@
           <div class="col-md-3">
             <div class="form-group">
               <label class="form-label">Số lượng</label>
-              <input type="number" class="form-control product-quantity" min="1" value="1" onchange="calculateTotals()" required>
+              <input type="number" class="form-control product-quantity" min="1" value="${p.quantity}" onchange="calculateTotals()" required>
             </div>
           </div>
           <div class="col-md-3">
             <div class="form-group">
               <label class="form-label">Giá nhập (VND)</label>
-              <input type="number" class="form-control product-price" min="0" value="0" onchange="calculateTotals()" required>
+              <input type="number" class="form-control product-price" min="0" value="${p.importPrice}" onchange="calculateTotals()" required>
             </div>
           </div>
         </div>
       `;
-      container.appendChild(productItem);
-      calculateTotals();
-    }
+      container.appendChild(item);
+    });
 
-    // Xóa sản phẩm khỏi phiếu nhập
-    function removeProductItem(button) {
-      if (document.querySelectorAll('.product-item').length > 1) {
-        button.closest('.product-item').remove();
-        calculateTotals();
-      } else {
-        alert('Phiếu nhập phải có ít nhất 1 sản phẩm!');
-      }
-    }
-
-    // Cập nhật thông tin sản phẩm
-    function updateProductInfo(select) {
-      const productId = select.value;
-      if (productId) {
-        const product = sampleProducts.find(p => p.id == productId);
-        const productItem = select.closest('.product-item');
-        const priceInput = productItem.querySelector('.product-price');
-        
-        // Đặt giá mặc định dựa trên sản phẩm (trong thực tế sẽ lấy từ database)
-        const defaultPrices = {
-          1: 11500000000,
-          2: 9000000000,
-          3: 6000000000,
-          4: 350000000000,
-          5: 27000000000,
-          6: 250000000000,
-          7: 11500000000
-        };
-        
-        priceInput.value = defaultPrices[productId] || 0;
-        calculateTotals();
-      }
-    }
-
-    // Tính toán tổng số lượng và giá trị
-    function calculateTotals() {
-      let totalQuantity = 0;
-      let totalValue = 0;
-      let totalProducts = 0;
-
-      document.querySelectorAll('.product-item').forEach(item => {
-        const quantity = parseInt(item.querySelector('.product-quantity').value) || 0;
-        const price = parseInt(item.querySelector('.product-price').value) || 0;
-        
-        totalQuantity += quantity;
-        totalValue += quantity * price;
-        totalProducts++;
-      });
-
-      document.getElementById('totalQuantity').textContent = totalQuantity;
-      document.getElementById('totalValue').textContent = formatCurrency(totalValue) + ' VND';
-      document.getElementById('totalProducts').textContent = totalProducts;
-    }
-
-    // Lưu phiếu nhập
-    function saveImportOrder() {
-      const importId = document.getElementById('importId').value;
-      const importDate = document.getElementById('importDate').value;
-      const importNote = document.getElementById('importNote').value;
-      
-      const products = [];
-      let isValid = true;
-
-      document.querySelectorAll('.product-item').forEach(item => {
-        const productSelect = item.querySelector('.product-select');
-        const quantity = item.querySelector('.product-quantity').value;
-        const price = item.querySelector('.product-price').value;
-
-        if (!productSelect.value || !quantity || !price) {
-          isValid = false;
-          return;
-        }
-
-        const product = sampleProducts.find(p => p.id == productSelect.value);
-        products.push({
-          productId: product.id,
-          name: product.name,
-          quantity: parseInt(quantity),
-          importPrice: parseInt(price)
-        });
-      });
-
-      if (!isValid) {
-        alert('Vui lòng nhập đầy đủ thông tin cho tất cả sản phẩm!');
-        return;
-      }
-
-      if (products.length === 0) {
-        alert('Vui lòng thêm ít nhất 1 sản phẩm!');
-        return;
-      }
-
-      const totalQuantity = products.reduce((sum, p) => sum + p.quantity, 0);
-      const totalValue = products.reduce((sum, p) => sum + (p.quantity * p.importPrice), 0);
-
-      if (importId) {
-        // Cập nhật phiếu nhập
-        const index = importOrders.findIndex(order => order.id == importId);
-        if (index !== -1) {
-          importOrders[index] = {
-            ...importOrders[index],
-            date: importDate,
-            note: importNote,
-            products: products,
-            totalQuantity: totalQuantity,
-            totalValue: totalValue
-          };
-        }
-      } else {
-        // Thêm phiếu nhập mới
-        const newOrder = {
-          id: nextImportId++,
-          code: `PN-${String(nextImportCode++).padStart(3, '0')}`,
-          date: importDate,
-          products: products,
-          note: importNote,
-          status: 'pending',
-          totalQuantity: totalQuantity,
-          totalValue: totalValue
-        };
-        importOrders.push(newOrder);
-      }
-
-      // Đóng modal và tải lại danh sách
-      const modal = bootstrap.Modal.getInstance(document.getElementById('importModal'));
-      modal.hide();
-      loadImportOrders();
-      
-      alert(importId ? 'Phiếu nhập đã được cập nhật!' : 'Phiếu nhập đã được thêm mới!');
-    }
-
-    // Hoàn thành phiếu nhập
-    function completeImportOrder(orderId = null) {
-      if (orderId) {
-        // Hoàn thành từ danh sách
-        const order = importOrders.find(o => o.id === orderId);
-        if (order && order.status === 'pending') {
-          if (confirm('Bạn có chắc chắn muốn hoàn thành phiếu nhập này?')) {
-            order.status = 'completed';
-            loadImportOrders();
-            alert('Phiếu nhập đã được hoàn thành!');
-          }
-        }
-      } else {
-        // Hoàn thành từ modal
-        saveImportOrder();
-        const currentOrder = importOrders[importOrders.length - 1];
-        if (currentOrder) {
-          currentOrder.status = 'completed';
-          loadImportOrders();
-        }
-      }
-    }
-
-    // Xem chi tiết phiếu nhập
-    function viewImportOrder(orderId) {
-      const order = importOrders.find(o => o.id === orderId);
-      if (order) {
-        document.getElementById('viewImportCode').textContent = order.code;
-        document.getElementById('viewImportDate').textContent = formatDate(order.date);
-        document.getElementById('viewImportStatus').innerHTML = `
-          <span class="status-badge ${order.status === 'completed' ? 'status-completed' : 'status-pending'}">
-            ${order.status === 'completed' ? 'Đã hoàn thành' : 'Đang chờ'}
-          </span>
-        `;
-        document.getElementById('viewImportNote').textContent = order.note || 'Không có ghi chú';
-
-        const productsContainer = document.getElementById('viewImportProducts');
-        productsContainer.innerHTML = '';
-        
-        let totalValue = 0;
-        
-        order.products.forEach(product => {
-          const productValue = product.quantity * product.importPrice;
-          totalValue += productValue;
-          
-          const row = document.createElement('tr');
-          row.innerHTML = `
-            <td>${product.name}</td>
-            <td>${product.quantity}</td>
-            <td>${formatCurrency(product.importPrice)} VND</td>
-            <td>${formatCurrency(productValue)} VND</td>
-          `;
-          productsContainer.appendChild(row);
-        });
-
-        document.getElementById('viewImportTotal').textContent = formatCurrency(totalValue) + ' VND';
-        
-        const modal = new bootstrap.Modal(document.getElementById('viewImportModal'));
-        modal.show();
-      }
-    }
-
-    // Sửa phiếu nhập
-    function editImportOrder(orderId) {
-      const order = importOrders.find(o => o.id === orderId);
-      if (order && order.status === 'pending') {
-        document.getElementById('importModalLabel').textContent = 'Sửa Phiếu nhập';
-        document.getElementById('importId').value = order.id;
-        document.getElementById('importDate').value = order.date;
-        document.getElementById('importNote').value = order.note || '';
-        
-        const productsContainer = document.getElementById('productsContainer');
-        productsContainer.innerHTML = '';
-        
-        order.products.forEach((product, index) => {
-          const productItem = document.createElement('div');
-          productItem.className = 'product-item';
-          productItem.innerHTML = `
-            <div class="product-item-header">
-              <div class="product-item-name">Sản phẩm #${index + 1}</div>
-              <button type="button" class="remove-product" onclick="removeProductItem(this)">
-                <i class="fas fa-times"></i> Xóa
-              </button>
-            </div>
-            <div class="row">
-              <div class="col-md-6">
-                <div class="form-group">
-                  <label class="form-label">Sản phẩm</label>
-                  <select class="form-control product-select" onchange="updateProductInfo(this)" required>
-                    <option value="">Chọn sản phẩm</option>
-                    ${sampleProducts.map(p => `
-                      <option value="${p.id}" ${p.id === product.productId ? 'selected' : ''}>
-                        ${p.name} (${p.brand}) - Tồn: ${p.currentStock}
-                      </option>
-                    `).join('')}
-                  </select>
-                </div>
-              </div>
-              <div class="col-md-3">
-                <div class="form-group">
-                  <label class="form-label">Số lượng</label>
-                  <input type="number" class="form-control product-quantity" min="1" value="${product.quantity}" onchange="calculateTotals()" required>
-                </div>
-              </div>
-              <div class="col-md-3">
-                <div class="form-group">
-                  <label class="form-label">Giá nhập (VND)</label>
-                  <input type="number" class="form-control product-price" min="0" value="${product.importPrice}" onchange="calculateTotals()" required>
-                </div>
-              </div>
-            </div>
-          `;
-          productsContainer.appendChild(productItem);
-        });
-
-        calculateTotals();
-        document.getElementById('saveImportBtn').style.display = 'block';
-        document.getElementById('completeImportBtn').style.display = 'block';
-        
-        const modal = new bootstrap.Modal(document.getElementById('importModal'));
-        modal.show();
-      } else {
-        alert('Chỉ có thể sửa phiếu nhập đang ở trạng thái "Đang chờ"!');
-      }
-    }
-  </script>
+    calculateTotals();
+    document.getElementById('saveImportBtn').style.display = 'block';
+    document.getElementById('completeImportBtn').style.display = 'block';
+    new bootstrap.Modal(document.getElementById('importModal')).show();
+  }
+</script>
 </body>
 </html>

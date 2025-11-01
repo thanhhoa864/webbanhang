@@ -538,6 +538,162 @@
     ::-webkit-scrollbar-thumb:hover {
       background: var(--dark-gold);
     }
+        /* ==== FIX NAVBAR MENU KHÔNG XUỐNG DÒNG ==== */
+.navbar-nav {
+  flex-wrap: nowrap !important;          /* Ngăn wrap xuống dòng */
+  overflow-x: auto;                       /* Cho phép cuộn ngang nếu quá nhiều */
+  -webkit-overflow-scrolling: touch;      /* Cuộn mượt trên mobile */
+  white-space: nowrap;                    /* Không xuống dòng */
+  gap: 10px;                              /* Khoảng cách đều giữa các mục */
+}
+
+.navbar-nav .nav-item {
+  flex: 0 0 auto;                         /* Không co giãn, giữ kích thước */
+}
+
+.navbar-nav .nav-link {
+  white-space: nowrap;                    /* Không xuống dòng */
+  overflow: hidden;                       /* Ẩn phần tràn */
+  text-overflow: ellipsis;                /* Thêm ... nếu quá dài */
+  max-width: 150px;                       /* Giới hạn chiều rộng mỗi mục */
+  display: block;                         /* Đảm bảo ellipsis hoạt động */
+  padding: 8px 12px !important;           /* Đệm đều */
+  font-size: 0.95rem;                     /* Chữ nhỏ hơn một chút nếu cần */
+}
+
+/* Ẩn thanh cuộn ngang nhưng vẫn cho phép cuộn (tùy chọn) */
+.navbar-nav::-webkit-scrollbar {
+  display: none;
+}
+.navbar-nav {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+/* KÉO TOÀN BỘ NAVBAR SÁT TRÁI HƠN MỘT CHÚT */
+.navbar .container {
+  padding-left: 15px !important;     /* Loại bỏ padding trái */
+  margin-left: -12px !important;  /* Dịch trái thêm 12px */
+}
+/* Search and Filter - FIXED */
+.search-filter-container {
+  display: flex;
+  gap: 15px;
+  flex-wrap: nowrap; /* Quan trọng: không cho xuống dòng */
+  align-items: center;
+  justify-content: flex-end;
+  flex: 1; /* Chiếm không gian còn lại */
+  min-width: 0; /* Quan trọng: cho phép co nhỏ */
+}
+
+.search-box {
+  position: relative;
+  min-width: 200px; /* Giảm min-width để vừa khung */
+  flex: 0 1 auto; /* Co giãn linh hoạt */
+}
+
+.search-box input {
+  background: var(--jade-dark);
+  border: 1px solid var(--gold-color);
+  border-radius: 50px;
+  color: var(--text-light);
+  padding: 10px 20px 10px 45px;
+  width: 100%;
+  transition: all 0.3s ease;
+}
+
+.search-box input:focus {
+  box-shadow: 0 0 0 3px rgba(255, 215, 0, 0.3);
+  outline: none;
+}
+
+.search-box i {
+  position: absolute;
+  left: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--gold-color);
+}
+
+/* Status Filter */
+.status-filter {
+  min-width: 180px; /* Giảm min-width */
+  flex: 0 1 auto; /* Co giãn linh hoạt */
+}
+
+.status-filter select {
+  background: var(--jade-dark);
+  border: 1px solid var(--gold-color);
+  border-radius: 50px;
+  color: var(--text-light);
+  padding: 10px 20px;
+  width: 100%;
+  transition: all 0.3s ease;
+}
+
+.status-filter select:focus {
+  box-shadow: 0 0 0 3px rgba(255, 215, 0, 0.3);
+  outline: none;
+}
+
+/* Action Buttons */
+.action-btn {
+  background: linear-gradient(135deg, var(--gold-color), var(--dark-gold));
+  border: none;
+  color: var(--jade-black);
+  padding: 12px 20px;
+  font-weight: 600;
+  border-radius: 50px;
+  transition: all 0.3s ease;
+  white-space: nowrap; /* Không xuống dòng chữ */
+  flex: 0 0 auto; /* Không co giãn */
+  box-shadow: 0 4px 10px rgba(255, 215, 0, 0.3);
+}
+
+.action-btn:hover {
+  background: linear-gradient(135deg, var(--dark-gold), var(--gold-color));
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(255, 215, 0, 0.4);
+}
+
+/* Responsive - chỉ áp dụng khi màn hình nhỏ */
+@media (max-width: 992px) {
+  .search-filter-container {
+    flex-wrap: wrap; /* Cho phép xuống dòng khi màn hình nhỏ */
+    justify-content: flex-start;
+  }
+  
+  .search-box,
+  .status-filter {
+    min-width: 100%; /* Chiếm full width khi xuống dòng */
+    flex: 1 1 100%;
+  }
+  
+  .action-btn {
+    margin-top: 10px;
+  }
+}
+
+/* Page Header - điều chỉnh để căn giữa tốt hơn */
+.page-header {
+  background: var(--card-bg);
+  border-radius: var(--border-radius);
+  padding: 20px;
+  margin-bottom: 25px;
+  border: 1px solid var(--gold-color);
+  box-shadow: var(--box-shadow);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 15px;
+}
+
+.page-header h2 {
+  color: var(--gold-color);
+  margin: 0;
+  font-weight: 600;
+  white-space: nowrap; /* Tiêu đề không xuống dòng */
+}
   </style>
 </head>
 <body>
@@ -555,9 +711,6 @@
       </button>
       <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav ms-auto">
-          <li class="nav-item">
-            <a class="nav-link" href="dashboard.html"><i class="fas fa-tachometer-alt me-1"></i>Dashboard</a>
-          </li>
           <li class="nav-item">
             <a class="nav-link" href="products.html"><i class="fas fa-box me-1"></i>Sản phẩm</a>
           </li>

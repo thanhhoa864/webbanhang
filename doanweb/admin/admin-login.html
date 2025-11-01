@@ -167,10 +167,83 @@
       margin-bottom: 10px;
     }
 
+    /* Demo Account Info */
+    .demo-account {
+      background: rgba(255, 215, 0, 0.1);
+      border: 1px solid var(--gold-color);
+      border-radius: 10px;
+      padding: 15px;
+      margin-bottom: 20px;
+      font-size: 0.9rem;
+    }
+
+    .demo-account h6 {
+      color: var(--gold-color);
+      margin-bottom: 10px;
+    }
+
+    .demo-account p {
+      margin-bottom: 5px;
+    }
+
+    .demo-account .credentials {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 10px;
+    }
+
+    .demo-account .credential-item {
+      flex: 1;
+      text-align: center;
+      padding: 8px;
+      background: rgba(13, 27, 42, 0.7);
+      border-radius: 5px;
+      margin: 0 5px;
+    }
+
+    .demo-account .credential-item strong {
+      color: var(--gold-color);
+      display: block;
+      font-size: 0.8rem;
+    }
+
+    /* Quick Fill Buttons */
+    .quick-fill {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 15px;
+    }
+
+    .quick-fill-btn {
+      flex: 1;
+      background: rgba(255, 215, 0, 0.2);
+      border: 1px solid var(--gold-color);
+      color: var(--gold-color);
+      padding: 8px 12px;
+      border-radius: 5px;
+      font-size: 0.85rem;
+      transition: all 0.3s ease;
+      cursor: pointer;
+    }
+
+    .quick-fill-btn:hover {
+      background: rgba(255, 215, 0, 0.3);
+      transform: translateY(-2px);
+    }
+
     /* Responsive */
     @media (max-width: 768px) {
       .hero h1 {
         font-size: 2rem;
+      }
+      
+      .demo-account .credentials {
+        flex-direction: column;
+        gap: 10px;
+      }
+      
+      .quick-fill {
+        flex-direction: column;
       }
     }
 
@@ -215,7 +288,6 @@
               <span class="admin-badge"><i class="fas fa-shield-alt me-1"></i>Admin Panel</span>
               <h2><i class="fas fa-lock me-2"></i>Đăng nhập Admin</h2>
             </div>
-            
             <div class="login-body">
               <form id="adminLoginForm">
                 <div class="mb-3">
@@ -277,27 +349,58 @@
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
   
   <script>
+    // Tài khoản admin mặc định
+    const adminAccounts = [
+      { username: 'admin', password: 'admin123', name: 'Quản trị viên' },
+      { username: 'otothesiu', password: 'otothesiu2024', name: 'Admin OTOTHESIU' }
+    ];
+
+    // Hàm điền tài khoản admin 1
+    function fillAdminAccount1() {
+      document.getElementById('adminUsername').value = adminAccounts[0].username;
+      document.getElementById('adminPassword').value = adminAccounts[0].password;
+      document.getElementById('rememberAdmin').checked = true;
+    }
+
+    // Hàm điền tài khoản admin 2
+    function fillAdminAccount2() {
+      document.getElementById('adminUsername').value = adminAccounts[1].username;
+      document.getElementById('adminPassword').value = adminAccounts[1].password;
+      document.getElementById('rememberAdmin').checked = true;
+    }
+
+    // Xử lý đăng nhập
     document.getElementById('adminLoginForm').addEventListener('submit', function(e) {
       e.preventDefault();
       
       const username = document.getElementById('adminUsername').value;
       const password = document.getElementById('adminPassword').value;
       
-      // Lưu trạng thái admin vào localStorage - cho phép đăng nhập với bất kỳ thông tin nào
-      const adminUser = {
-        role: 'admin',
-        username: username,
-        name: 'Admin OTOTHESIU',
-        loginTime: new Date().toLocaleString('vi-VN')
-      };
+      // Kiểm tra thông tin đăng nhập
+      const validAccount = adminAccounts.find(account => 
+        account.username === username && account.password === password
+      );
       
-      localStorage.setItem('loggedInAdmin', JSON.stringify(adminUser));
-      
-      // Hiển thị thông báo thành công
-      alert('Đăng nhập admin thành công! Chào mừng ' + username);
-      
-      // Chuyển hướng đến dashboard
-      window.location.href = 'dashboard.html';
+      if (validAccount) {
+        // Lưu trạng thái admin vào localStorage
+        const adminUser = {
+          role: 'admin',
+          username: username,
+          name: validAccount.name,
+          loginTime: new Date().toLocaleString('vi-VN')
+        };
+        
+        localStorage.setItem('loggedInAdmin', JSON.stringify(adminUser));
+        
+        // Hiển thị thông báo thành công
+        alert(`Đăng nhập admin thành công! Chào mừng ${validAccount.name}`);
+        
+        // Chuyển hướng đến dashboard
+        window.location.href = 'products.html';
+      } else {
+        // Hiển thị thông báo lỗi
+        alert('Tên đăng nhập hoặc mật khẩu không chính xác! Vui lòng thử lại.');
+      }
     });
 
     // Thêm hiệu ứng fade-in cho các phần tử khi cuộn trang
@@ -318,6 +421,9 @@
       
       // Kích hoạt ngay lập tức
       fadeInOnScroll();
+      
+      // Tự động điền tài khoản demo đầu tiên
+      fillAdminAccount1();
     });
   </script>
 </body>
